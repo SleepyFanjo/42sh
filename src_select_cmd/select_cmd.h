@@ -6,7 +6,7 @@
 /*   By: jrenouf- <jrenouf-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/08 14:32:42 by jrenouf-          #+#    #+#             */
-/*   Updated: 2014/02/24 15:19:22 by jrenouf-         ###   ########.fr       */
+/*   Updated: 2014/02/24 19:10:09 by jrenouf-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,14 @@
 # define LEN		param->len
 # define LEN_MAX	param->len_max
 # define STR		param->str
+# define SIZE		param->size
 
 typedef struct		s_param
 {
 	int				i;
 	int				len;
 	int				len_max;
+	int				size;
 	int				prompt;
 	char			*str;
 }					t_param;

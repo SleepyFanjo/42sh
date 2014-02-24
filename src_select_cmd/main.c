@@ -4,7 +4,9 @@ int					main(void)
 {
 	char			*str;
 
-	str = select_cmd(0);
+	ft_putstr("(.)(.) > ");
+	str = select_cmd(9);
+	ft_putstr("(.)(.) > ");
 	ft_putendl(str);
 	return (0);
 }
