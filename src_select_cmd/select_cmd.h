@@ -6,12 +6,12 @@
 /*   By: jrenouf- <jrenouf-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/08 14:32:42 by jrenouf-          #+#    #+#             */
-/*   Updated: 2014/02/08 15:24:45 by jrenouf-         ###   ########.fr       */
+/*   Updated: 2014/02/24 15:19:22 by jrenouf-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL3_H
-# define MINISHELL3_H
+#ifndef SELECT_CMD_H
+# define SELECT_CMD_H
 
 # include <sys/ioctl.h>
 # include <stdio.h>
@@ -21,7 +21,7 @@
 # include <termios.h>
 # include <termcap.h>
 # include <term.h>
-# include "../libft/includes/libft.h"
+# include "../libft/libft.h"
 
 # define UP			4283163
 # define DOWN		4348699
@@ -63,4 +63,5 @@ void				word_jump_right(t_param *param);
 int					set_term(void);
 int					unset_term(void);
 int					ft_prompt(char **env);
+char				*select_cmd(int nb);
 #endif
