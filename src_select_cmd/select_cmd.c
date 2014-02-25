@@ -6,7 +6,7 @@
 /*   By: jrenouf- <jrenouf-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/08 14:33:20 by jrenouf-          #+#    #+#             */
-/*   Updated: 2014/02/24 19:25:26 by jrenouf-         ###   ########.fr       */
+/*   Updated: 2014/02/25 15:57:26 by jrenouf-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int						get_lenmax(void)
 	struct winsize	size;
 
 	ioctl(1, TIOCGWINSZ, &size);
-	len = size.ws_col;
+	len = size.ws_col - 1;
 	return (len);
 }
 
@@ -45,13 +45,43 @@ void					go_down(t_param *param)
 	tmp_len = (LEN + P) / SIZE;
 	if ((LEN + P) > (SIZE * tmp_len) && I <= tmp_len * SIZE)
 	{
-		j = I + P - SIZE;
+		j = (I + P) % SIZE;
+		I = I + (SIZE - j) + 1;;
 		tputs(tgetstr("do", NULL), 1, tputs_putchar);
-		while (j > 0)
+		while (I < LEN && j > 0)
 		{
 			tputs(tgetstr("nd", NULL), 1, tputs_putchar);
 			j--;
+			I++;
 		}
+	}
+}
+
+void					go_up(t_param *param)
+{
+	int					j;
+
+	j = 0;
+	if (I > SIZE)
+	{
+		while (j <= SIZE)
+		{
+			tputs(tgetstr("le", NULL), 1, tputs_putchar);
+			I--;
+			j++;
+		}
+	}
+}
+
+void					extreme_end(t_param *param)
+{
+	while (I != LEN)
+	{
+		if ((I + P) % SIZE == 0)
+			tputs(tgetstr("do", NULL), 1, tputs_putchar);
+		else
+			tputs(tgetstr("nd", NULL), 1, tputs_putchar);
+		I++;
 	}
 }
 
@@ -75,19 +105,20 @@ void					if_forest(t_param *param, char *buf)
 	else if (BUF == ALT_RIGHT)
 		word_jump_right(param);
 	else if (BUF == RETURN)
+	{
+		extreme_end(param);
 		write(1, "\n", 1);
-	else if (BUF == DOWN)
+	}
+	else if (BUF == ALT_DOWN)
 		go_down(param);
+	else if (BUF == ALT_UP)
+		go_up(param);
+	else
+		ft_putendl_fd(buf, fd1);
 	ft_putstr_fd("I : ", fd);
 	ft_putendl_fd(ft_itoa(I), fd);
 	ft_putstr_fd("LEN : ", fd);
 	ft_putendl_fd(ft_itoa(LEN), fd);
-	ft_putstr_fd("SIZE : ", fd1);
-	ft_putendl_fd(ft_itoa(SIZE), fd1);
-	ft_putstr_fd("P : ", fd1);
-	ft_putendl_fd(ft_itoa(P), fd1);
-	ft_putstr_fd("LEN_MAX : ", fd1);
-	ft_putendl_fd(ft_itoa(LEN_MAX), fd1);
 }
 
 char					*select_cmd(int nb)
