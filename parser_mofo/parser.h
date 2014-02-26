@@ -6,7 +6,7 @@
 /*   By: qchevrin <qchevrin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/24 11:16:46 by qchevrin          #+#    #+#             */
-/*   Updated: 2014/02/24 17:35:38 by qchevrin         ###   ########.fr       */
+/*   Updated: 2014/02/26 17:51:11 by qchevrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # include <libft.h>
 # include <struct.h>
 
+int			q_is_special_char(char *str, int i);
 int			q_is_whitespace(char c);
 char		*g_strndup(char *str, int n);
 void		q_error(char *s1, char *s2, int mode);
