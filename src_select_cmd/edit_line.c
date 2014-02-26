@@ -6,11 +6,21 @@
 /*   By: jrenouf- <jrenouf-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/07 15:50:36 by jrenouf-          #+#    #+#             */
-/*   Updated: 2014/02/25 15:57:31 by jrenouf-         ###   ########.fr       */
+/*   Updated: 2014/02/26 11:41:16 by qchevrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "select_cmd.h"
+
+/*
+** tu peux remplacer toute ta boucle par :
+** write(1, str, ft_strlen(str))
+** ca donnerait 
+** {
+** 		ft_putstr("(.)(.) > ");
+** 		write(1, str, ft_strlen(str));
+** }
+*/
 
 void					write_str(t_param *param, char *str)
 {
@@ -20,7 +30,7 @@ void					write_str(t_param *param, char *str)
 	ft_putstr("(.)(.) > ");
 	while (str[i] != '\0')
 	{
-		write(1, &str[i], 1);
+		write(1, str + i, 1);
 		i++;
 	}
 	(void)param;
@@ -57,6 +67,10 @@ void					refresh_screen(t_param *param, int mode)
 		}
 	}
 }
+
+/*
+** Il existe une fonction similaire ft_str_realloc_cat dans la libft
+*/
 
 void					remalloc_cat(char **s1, char *s2)
 {
