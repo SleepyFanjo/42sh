@@ -6,21 +6,21 @@
 /*   By: jrenouf- <jrenouf-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/07 15:50:36 by jrenouf-          #+#    #+#             */
-/*   Updated: 2014/02/26 11:41:16 by qchevrin         ###   ########.fr       */
+/*   Updated: 2014/02/27 12:18:42 by lredoban         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "select_cmd.h"
 
 /*
-** tu peux remplacer toute ta boucle par :
-** write(1, str, ft_strlen(str))
-** ca donnerait 
-** {
-** 		ft_putstr("(.)(.) > ");
-** 		write(1, str, ft_strlen(str));
-** }
-*/
+ ** tu peux remplacer toute ta boucle par :
+ ** write(1, str, ft_strlen(str))
+ ** ca donnerait 
+ ** {
+ ** 		ft_putstr("(.)(.) > ");
+ ** 		write(1, str, ft_strlen(str));
+ ** }
+ */
 
 void					write_str(t_param *param, char *str)
 {
@@ -69,8 +69,8 @@ void					refresh_screen(t_param *param, int mode)
 }
 
 /*
-** Il existe une fonction similaire ft_str_realloc_cat dans la libft
-*/
+ ** Il existe une fonction similaire ft_str_realloc_cat dans la libft
+ */
 
 void					remalloc_cat(char **s1, char *s2)
 {
@@ -108,41 +108,51 @@ static void				del_char(char **s, int i)
 	*s = str;
 }
 
-void					char_del(t_param *param, char *buf)
+int						char_del(t_param *param, char *buf)
 {
-	if (BUF == DELETE && I < LEN)
+	if (BUF == DELETE || BUF == B_SPACE)
 	{
-		tputs(tgetstr("dc", NULL), 1, tputs_putchar);
-		del_char(&STR, I);
-		LEN--;
+		if (BUF == DELETE && I < LEN)
+		{
+			tputs(tgetstr("dc", NULL), 1, tputs_putchar);
+			del_char(&STR, I);
+			LEN--;
+		}
+		else if (BUF == B_SPACE && I != 0)
+		{
+			tputs(tgetstr("le", NULL), 1, tputs_putchar);
+			tputs(tgetstr("dc", NULL), 1, tputs_putchar);
+			I--;
+			del_char(&STR, I);
+			LEN--;
+		}
+		refresh_screen(param, 1);
+		return (1);
 	}
-	else if (BUF == B_SPACE && I != 0)
-	{
-		tputs(tgetstr("le", NULL), 1, tputs_putchar);
-		tputs(tgetstr("dc", NULL), 1, tputs_putchar);
-		I--;
-		del_char(&STR, I);
-		LEN--;
-	}
-	refresh_screen(param, 1);
+	return (0);
 }
 
-void					char_insert(t_param *param, char *buf)
+int						char_insert(t_param *param, char *buf)
 {
-	if (I + P != LEN_MAX - 1 && LEN + P < LEN_MAX - 1)
+	if (ft_isprint(BUF) == 1)
 	{
-//		tputs(tgetstr("im", NULL), 1, tputs_putchar);
+		if (I + P != LEN_MAX - 1 && LEN + P < LEN_MAX - 1)
+		{
+			//		tputs(tgetstr("im", NULL), 1, tputs_putchar);
+			if (I == LEN)
+				remalloc_cat(&STR, buf);
+			else
+				insert_char(&STR, buf, I);
+			LEN++;
+			ft_putstr(buf);
+			I++;
+			//		tputs(tgetstr("ei", NULL), 1, tputs_putchar);
+		}
 		if (I == LEN)
-			remalloc_cat(&STR, buf);
+			refresh_screen(param, 0);
 		else
-			insert_char(&STR, buf, I);
-		LEN++;
-		ft_putstr(buf);
-		I++;
-//		tputs(tgetstr("ei", NULL), 1, tputs_putchar);
+			refresh_screen(param, 1);
+		return (1);
 	}
-	if (I == LEN)
-		refresh_screen(param, 0);
-	else
-		refresh_screen(param, 1);
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: jrenouf- <jrenouf-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/08 14:32:42 by jrenouf-          #+#    #+#             */
-/*   Updated: 2014/02/25 15:57:26 by jrenouf-         ###   ########.fr       */
+/*   Updated: 2014/02/27 14:44:41 by lredoban         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,14 +58,17 @@ typedef struct		s_param
 }					t_param;
 
 int					tputs_putchar(int c);
-void				char_del(t_param *param, char *buf);
-void				char_insert(t_param *param, char *buf);
-void				sideways(t_param *param, char *buf);
-void				extreme_sideways(t_param *param, char *buf);
-void				word_jump_left(t_param *param);
-void				word_jump_right(t_param *param);
+int					char_del(t_param *param, char *buf);
+int					char_insert(t_param *param, char *buf);
+int					sideways(t_param *param, char *buf);
+int					extreme_sideways(t_param *param, char *buf);
+int					word_jump_left(t_param *param, char *buf);
+int					word_jump_right(t_param *param, char *buf);
+int					go_down(t_param *param, char *buf);
+int					go_up(t_param *param, char *buf);
 int					set_term(void);
 int					unset_term(void);
 int					ft_prompt(char **env);
 char				*select_cmd(int nb);
+
 #endif

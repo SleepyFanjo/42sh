@@ -6,7 +6,7 @@
 /*   By: jrenouf- <jrenouf-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/08 14:33:20 by jrenouf-          #+#    #+#             */
-/*   Updated: 2014/02/25 15:57:26 by jrenouf-         ###   ########.fr       */
+/*   Updated: 2014/02/27 15:45:26 by lredoban         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,16 +37,17 @@ void					init_param(t_param *param, int nb)
 	STR = ft_strdup("");
 }
 
-void					go_down(t_param *param)
+int						go_down(t_param *param, char *buf)
 {
 	int					tmp_len;
 	int					j;
 
 	tmp_len = (LEN + P) / SIZE;
-	if ((LEN + P) > (SIZE * tmp_len) && I <= tmp_len * SIZE)
+	if (BUF == ALT_DOWN &&
+			((LEN + P) > (SIZE * tmp_len) && I <= tmp_len * SIZE))
 	{
 		j = (I + P) % SIZE;
-		I = I + (SIZE - j) + 1;;
+		I = I + (SIZE - j) + 1;
 		tputs(tgetstr("do", NULL), 1, tputs_putchar);
 		while (I < LEN && j > 0)
 		{
@@ -54,15 +55,17 @@ void					go_down(t_param *param)
 			j--;
 			I++;
 		}
+		return (1);
 	}
+	return (0);
 }
 
-void					go_up(t_param *param)
+int						go_up(t_param *param, char *buf)
 {
 	int					j;
 
 	j = 0;
-	if (I > SIZE)
+	if (BUF == ALT_UP && I > SIZE)
 	{
 		while (j <= SIZE)
 		{
@@ -70,7 +73,9 @@ void					go_up(t_param *param)
 			I--;
 			j++;
 		}
+		return (1);
 	}
+	return (0);
 }
 
 void					extreme_end(t_param *param)
@@ -85,40 +90,32 @@ void					extreme_end(t_param *param)
 	}
 }
 
+static int			(*key_tab[])(t_param *, char *)=
+{
+					char_insert,
+					char_del,
+					sideways,
+					extreme_sideways,
+					word_jump_left,
+					word_jump_right,
+					go_down,
+					go_up,
+					NULL
+};
+
 void					if_forest(t_param *param, char *buf)
 {
-	int					fd;
-	int					fd1;
+	int					i;
 
-	fd = open("toto", O_WRONLY | O_CREAT | O_APPEND, 0644);
-	fd1 = open("tata", O_WRONLY | O_CREAT | O_APPEND, 0644);
-	if (ft_isprint(BUF) == 1)
-		char_insert(param, buf);
-	else if (BUF == DELETE || BUF == B_SPACE)
-		char_del(param, buf);
-	else if (BUF == LEFT || BUF == RIGHT)
-		sideways(param, buf);
-	else if (BUF == END || BUF == HOME)
-		extreme_sideways(param, buf);
-	else if (BUF == ALT_LEFT)
-		word_jump_left(param);
-	else if (BUF == ALT_RIGHT)
-		word_jump_right(param);
-	else if (BUF == RETURN)
+	i = 0;
+	while (key_tab[i] != NULL)
 	{
-		extreme_end(param);
-		write(1, "\n", 1);
+		if ((key_tab[i])(param, buf))
+			return ;
+		i += 1;
 	}
-	else if (BUF == ALT_DOWN)
-		go_down(param);
-	else if (BUF == ALT_UP)
-		go_up(param);
-	else
-		ft_putendl_fd(buf, fd1);
-	ft_putstr_fd("I : ", fd);
-	ft_putendl_fd(ft_itoa(I), fd);
-	ft_putstr_fd("LEN : ", fd);
-	ft_putendl_fd(ft_itoa(LEN), fd);
+	if (BUF == RETURN)
+		extreme_end(param);
 }
 
 char					*select_cmd(int nb)
