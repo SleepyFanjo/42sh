@@ -6,7 +6,7 @@
 /*   By: qchevrin <qchevrin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/27 15:45:30 by qchevrin          #+#    #+#             */
-/*   Updated: 2014/02/27 16:18:55 by qchevrin         ###   ########.fr       */
+/*   Updated: 2014/02/27 18:05:34 by qchevrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ char		q_get_utility(char *str)
 	if (!ft_strcmp(str, "|") || !ft_strcmp(str, "&"))
 		return (Q_CTRL);
 	if (!ft_strcmp(str, "||") || !ft_strcmp(str, "&&"))
+		return (Q_CTRL);
+	if (!ft_strcmp(str, ";"))
 		return (Q_CTRL);
 	return (Q_STR);
 }

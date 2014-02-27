@@ -6,7 +6,7 @@
 /*   By: qchevrin <qchevrin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/24 15:56:39 by qchevrin          #+#    #+#             */
-/*   Updated: 2014/02/27 16:19:56 by qchevrin         ###   ########.fr       */
+/*   Updated: 2014/02/27 17:45:05 by qchevrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,5 +75,5 @@ t_list		*q_lexer(char *str)
 		i = i + 1;
 	}
 	free(str);
-	return (list);
+	return (q_rolex(list));
 }

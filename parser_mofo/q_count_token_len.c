@@ -6,7 +6,7 @@
 /*   By: qchevrin <qchevrin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/26 14:24:50 by qchevrin          #+#    #+#             */
-/*   Updated: 2014/02/27 15:38:31 by qchevrin         ###   ########.fr       */
+/*   Updated: 2014/02/27 18:06:32 by qchevrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ int			q_is_special_char(char *str, int i, int *end)
 		}
 		return (1);
 	}
+	if (str[i] == ';')
+		return (1);
 	return (0);
 }
 
