@@ -6,20 +6,21 @@
 /*   By: qchevrin <qchevrin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/24 16:02:14 by qchevrin          #+#    #+#             */
-/*   Updated: 2014/02/26 17:51:15 by qchevrin         ###   ########.fr       */
+/*   Updated: 2014/02/27 16:16:14 by qchevrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCT_H
 # define STRUCT_H
 # define Q_STR		(-1)
-# define Q_CMD		(0)
-# define Q_ARG		(1)
-# define Q_FILE		(2)
-# define Q_LINK		(3)
-# define Q_BUILTIN	(6)
-# define Q_CTRL		(7)
-# define Q_SPACE	(8)
+# define Q_CMD		(1)
+# define Q_ARG		(2)
+# define Q_FILE		(3)
+# define Q_BUILTIN	(4)
+# define Q_LINK		(5)
+# define Q_CTRL		(6)
+
+# define Q_SPACE	(0)
 
 /*
 ** Q_LINK : Redirection '<' '>' '<<' '>>'

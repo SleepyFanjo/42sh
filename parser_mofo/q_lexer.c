@@ -6,7 +6,7 @@
 /*   By: qchevrin <qchevrin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/24 15:56:39 by qchevrin          #+#    #+#             */
-/*   Updated: 2014/02/26 17:27:40 by qchevrin         ###   ########.fr       */
+/*   Updated: 2014/02/27 16:19:56 by qchevrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,40 +31,49 @@ t_list		*q_create_obj(void *elem)
 
 	if ((obj = (t_list *)malloc(sizeof(t_list))) == NULL)
 		q_error("Error : can't malloc", NULL, 1);
-	list->elem = elem;
-	list->next = NULL;
+	obj->elem = elem;
+	obj->next = NULL;
 	return (obj);
 }
 
-void		q_add_in_list(t_list **list, void *elem)
+int			q_add_in_list(t_list **list, void *elem)
 {
 	t_list	*cursor;
 	t_list	*obj;
 
+	if (elem == NULL)
+		return (1);
 	obj = q_create_obj(elem);
 	if (*list == NULL)
 	{
 		*list = obj;
-		return ;
+		return (0);
 	}
 	cursor = *list;
 	while (cursor->next != NULL)
 		cursor = cursor->next;
 	cursor->next = obj;
+	return (0);
 }
 
 t_list		*q_lexer(char *str)
 {
 	t_list	*list;
+	int		fail;
 	int		i;
 
 	i = 0;
 	list = NULL;
 	while (str[i] != '\0')
 	{
-		q_add_in_list(&list, (void *)create_token(str, &i));
+		fail = q_add_in_list(&list, (void *)q_create_token(str, &i));
+		if (fail)
+		{
+			q_free_list(&list);
+			return (q_lexer(ft_str_realloc_cat(&str, tmp_prompt())));
+		}
 		i = i + 1;
 	}
 	free(str);
-	return (q_rolex(list));
+	return (list);
 }

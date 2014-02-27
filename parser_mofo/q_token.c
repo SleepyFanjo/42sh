@@ -6,7 +6,7 @@
 /*   By: qchevrin <qchevrin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/24 16:12:57 by qchevrin          #+#    #+#             */
-/*   Updated: 2014/02/26 17:51:13 by qchevrin         ###   ########.fr       */
+/*   Updated: 2014/02/27 16:16:37 by qchevrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,13 @@ t_token		*q_white_token(char *str, int *i)
 	j = *i;
 	while (q_is_whitespace(str[j]))
 		j = j + 1;
-	token->name = q_strndup(str + *i, j - *i);
+	token->name = q_strndup(str + *i, j - *i, 0);
 	token->type = Q_SPACE;
 	*i = j - 1;
 	return (token);
 }
 
-char		*q_strndup(char *str, int n)
+char		*q_strndup(char *str, int n, int inh)
 {
 	char		*dup;
 	int			i;
@@ -45,7 +45,7 @@ char		*q_strndup(char *str, int n)
 	i = 0;
 	while (i < n)
 	{
-		if (str[i] == '\' && str[i + 1] != '\0')
+		if (!inh && str[i] == '\\' && str[i + 1] != '\0')
 			str = str + 1;
 		dup[i] = str[i];
 		i = i + 1;
@@ -57,14 +57,17 @@ char		*q_strndup(char *str, int n)
 t_token		*q_create_token(char *str, int *i)
 {
 	char		*name;
+	int			inh;
 	int			k;
 	int			j;
 
 	j = *i;
 	if (q_is_whitespace(str[j]))
 		return (q_white_token(str, i));
-	k = q_count_token_len(str, i, &j);
-	name = q_strndup(str + *i, k);
+	k = q_count_token_len(str, i, &j, &inh);
+	if (k == -1)
+		return (NULL);
+	name = q_strndup(str + *i, k, inh);
 	*i = j;
 	return (q_utility_token(name));
 }
