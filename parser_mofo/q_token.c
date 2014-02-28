@@ -6,7 +6,7 @@
 /*   By: qchevrin <qchevrin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/24 16:12:57 by qchevrin          #+#    #+#             */
-/*   Updated: 2014/02/27 18:05:44 by qchevrin         ###   ########.fr       */
+/*   Updated: 2014/02/28 13:45:09 by qchevrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,20 +17,14 @@ int			q_is_whitespace(char c)
 	return (c == ' ' || c == '\t' || c == '\n');
 }
 
-t_token		*q_white_token(char *str, int *i)
+void		q_white_token(char *str, int *i)
 {
-	t_token		*token;
 	int			j;
 
-	if ((token = (t_token *)malloc(sizeof(t_token))) == NULL)
-		q_error("Error : can't malloc", NULL, 1);
 	j = *i;
 	while (q_is_whitespace(str[j]))
 		j = j + 1;
-	token->name = q_strndup(str + *i, j - *i, 0);
-	token->type = Q_SPACE;
-	*i = j - 1;
-	return (token);
+	*i = j;
 }
 
 char		*q_strndup(char *str, int n, int inh)
@@ -63,7 +57,10 @@ t_token		*q_create_token(char *str, int *i)
 
 	j = *i;
 	if (q_is_whitespace(str[j]))
-		return (q_white_token(str, i));
+	{
+		q_white_token(str, i);
+		return (q_create_token(str, i));
+	}
 	k = q_count_token_len(str, i, &j, &inh);
 	if (k == -1)
 		return (NULL);

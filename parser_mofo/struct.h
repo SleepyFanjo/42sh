@@ -6,7 +6,7 @@
 /*   By: qchevrin <qchevrin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/24 16:02:14 by qchevrin          #+#    #+#             */
-/*   Updated: 2014/02/27 18:06:43 by qchevrin         ###   ########.fr       */
+/*   Updated: 2014/02/28 13:45:12 by qchevrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,18 @@
 ** Q_CTRL : Separateur de commande '&&' '||' '|' '&' ';'
 ** Q_SPACE : Whitespace : ' ' '\t' '\n'
 */
+
+typedef struct		s_cmd
+{
+	char			*cmd;
+	char			**arg;
+	int				pipe_in;
+	char			*file_in;
+	char			*file_out;
+	int				in_mode;
+	int				out_mode;
+	int				pipe_mode;
+}					t_cmd;
 
 typedef struct		s_list
 {
