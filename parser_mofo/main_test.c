@@ -6,7 +6,7 @@
 /*   By: qchevrin <qchevrin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/27 12:38:15 by qchevrin          #+#    #+#             */
-/*   Updated: 2014/02/28 13:45:36 by qchevrin         ###   ########.fr       */
+/*   Updated: 2014/02/28 14:22:23 by qchevrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static char	*q_get(char c)
 		return (ft_strdup("Redirection"));
 	if (c == Q_CTRL)
 		return (ft_strdup("Controle"));
-	return (ft_strdup("Blank"));
+	return (ft_strdup("Unknown"));
 }
 
 static void	print_list(t_list *list)

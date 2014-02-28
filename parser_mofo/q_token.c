@@ -6,7 +6,7 @@
 /*   By: qchevrin <qchevrin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/24 16:12:57 by qchevrin          #+#    #+#             */
-/*   Updated: 2014/02/28 13:45:09 by qchevrin         ###   ########.fr       */
+/*   Updated: 2014/02/28 14:19:44 by qchevrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ char		*q_strndup(char *str, int n, int inh)
 	return (dup);
 }
 
-t_token		*q_create_token(char *str, int *i)
+t_token		*q_create_token(char *str, int *i, int *error)
 {
 	char		*name;
 	int			inh;
@@ -56,10 +56,15 @@ t_token		*q_create_token(char *str, int *i)
 	int			j;
 
 	j = *i;
+	if (str[*i] == '\0')
+	{
+		*error = 1;
+		return (NULL);
+	}
 	if (q_is_whitespace(str[j]))
 	{
 		q_white_token(str, i);
-		return (q_create_token(str, i));
+		return (q_create_token(str, i, error));
 	}
 	k = q_count_token_len(str, i, &j, &inh);
 	if (k == -1)

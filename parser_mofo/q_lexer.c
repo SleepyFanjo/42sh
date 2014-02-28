@@ -6,7 +6,7 @@
 /*   By: qchevrin <qchevrin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/24 15:56:39 by qchevrin          #+#    #+#             */
-/*   Updated: 2014/02/28 13:42:19 by qchevrin         ###   ########.fr       */
+/*   Updated: 2014/02/28 14:20:45 by qchevrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ int			q_add_in_list(t_list **list, void *elem)
 t_list		*q_lexer(char *str)
 {
 	t_list	*list;
+	int		error;
 	int		fail;
 	int		i;
 
@@ -66,9 +67,12 @@ t_list		*q_lexer(char *str)
 	list = NULL;
 	while (str[i] != '\0')
 	{
-		fail = q_add_in_list(&list, (void *)q_create_token(str, &i));
+		error = 0;
+		fail = q_add_in_list(&list, (void *)q_create_token(str, &i, &error));
 		if (fail)
 		{
+			if (error)
+				return (q_rolex(list));
 			q_free_list(&list);
 			return (q_lexer(ft_str_realloc_cat(&str, tmp_prompt())));
 		}
