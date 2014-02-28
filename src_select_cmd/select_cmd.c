@@ -6,7 +6,7 @@
 /*   By: jrenouf- <jrenouf-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/08 14:33:20 by jrenouf-          #+#    #+#             */
-/*   Updated: 2014/02/27 15:45:26 by lredoban         ###   ########.fr       */
+/*   Updated: 2014/02/28 18:31:35 by jrenouf-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,18 +42,15 @@ int						go_down(t_param *param, char *buf)
 	int					tmp_len;
 	int					j;
 
-	tmp_len = (LEN + P) / SIZE;
+	tmp_len = (LEN + P) / (SIZE - 1);
 	if (BUF == ALT_DOWN &&
-			((LEN + P) > (SIZE * tmp_len) && I <= tmp_len * SIZE))
+			((LEN + P) > ((SIZE - 1) * tmp_len) && I <= (tmp_len * (SIZE - 1))))
 	{
-		j = (I + P) % SIZE;
-		I = I + (SIZE - j) + 1;
-		tputs(tgetstr("do", NULL), 1, tputs_putchar);
+		j = SIZE - 1;
 		while (I < LEN && j > 0)
 		{
-			tputs(tgetstr("nd", NULL), 1, tputs_putchar);
+			go_right(param);
 			j--;
-			I++;
 		}
 		return (1);
 	}
@@ -64,14 +61,13 @@ int						go_up(t_param *param, char *buf)
 {
 	int					j;
 
-	j = 0;
-	if (BUF == ALT_UP && I > SIZE)
+	j = SIZE - 1;
+	if (BUF == ALT_UP && (P + I) > SIZE)
 	{
-		while (j <= SIZE)
+		while (j > 0 && I > 0)
 		{
-			tputs(tgetstr("le", NULL), 1, tputs_putchar);
-			I--;
-			j++;
+			go_left(param);
+			j--;
 		}
 		return (1);
 	}
@@ -82,15 +78,11 @@ void					extreme_end(t_param *param)
 {
 	while (I != LEN)
 	{
-		if ((I + P) % SIZE == 0)
-			tputs(tgetstr("do", NULL), 1, tputs_putchar);
-		else
-			tputs(tgetstr("nd", NULL), 1, tputs_putchar);
-		I++;
+		go_right(param);
 	}
 }
 
-static int			(*key_tab[])(t_param *, char *)=
+static int			(*key_tab[])(t_param *, char *) =
 {
 					char_insert,
 					char_del,
@@ -111,7 +103,7 @@ void					if_forest(t_param *param, char *buf)
 	while (key_tab[i] != NULL)
 	{
 		if ((key_tab[i])(param, buf))
-			return ;
+			break ;
 		i += 1;
 	}
 	if (BUF == RETURN)
