@@ -6,7 +6,7 @@
 /*   By: jrenouf- <jrenouf-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/08 14:32:42 by jrenouf-          #+#    #+#             */
-/*   Updated: 2014/03/03 14:29:40 by lredoban         ###   ########.fr       */
+/*   Updated: 2014/03/03 14:53:33 by lredoban         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # include "../libft/libft.h"
 
 # define RETURN		10
+# define TAB		9
 # define SPACE		32
 # define B_SPACE	127
 # define UP			4283163
@@ -66,6 +67,7 @@ int					word_jump_left(t_param *param, char *buf);
 int					word_jump_right(t_param *param, char *buf);
 int					go_down(t_param *param, char *buf);
 int					go_up(t_param *param, char *buf);
+int					tab_key(t_param *param, char *buf);
 int					set_term(void);
 int					unset_term(void);
 int					ft_prompt(char **env);
@@ -83,6 +85,7 @@ static const t_key	key_tab[] =
 					&word_jump_right,
 					&go_down,
 					&go_up,
+					&tab,
 					NULL
 };
 
