@@ -6,7 +6,7 @@
 /*   By: jrenouf- <jrenouf-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/08 14:32:42 by jrenouf-          #+#    #+#             */
-/*   Updated: 2014/02/27 14:44:41 by lredoban         ###   ########.fr       */
+/*   Updated: 2014/03/03 14:29:40 by lredoban         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,5 +70,20 @@ int					set_term(void);
 int					unset_term(void);
 int					ft_prompt(char **env);
 char				*select_cmd(int nb);
+
+typedef int			(*t_key)(t_param *, char *);
+
+static const t_key	key_tab[] =
+{
+					&char_insert,
+					&char_del,
+					&sideways,
+					&extreme_sideways,
+					&word_jump_left,
+					&word_jump_right,
+					&go_down,
+					&go_up,
+					NULL
+};
 
 #endif

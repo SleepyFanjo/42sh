@@ -6,7 +6,7 @@
 /*   By: jrenouf- <jrenouf-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/08 14:33:20 by jrenouf-          #+#    #+#             */
-/*   Updated: 2014/02/28 15:44:45 by lredoban         ###   ########.fr       */
+/*   Updated: 2014/03/03 14:29:45 by lredoban         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,19 +89,6 @@ void					extreme_end(t_param *param)
 		I++;
 	}
 }
-
-static int			(*key_tab[])(t_param *, char *)=
-{
-					char_insert,
-					char_del,
-					sideways,
-					extreme_sideways,
-					word_jump_left,
-					word_jump_right,
-					go_down,
-					go_up,
-					NULL
-};
 
 void					if_forest(t_param *param, char *buf)
 {
