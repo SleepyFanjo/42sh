@@ -6,7 +6,7 @@
 /*   By: jrenouf- <jrenouf-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/08 14:32:42 by jrenouf-          #+#    #+#             */
-/*   Updated: 2014/03/03 14:53:33 by lredoban         ###   ########.fr       */
+/*   Updated: 2014/03/03 15:04:14 by lredoban         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,10 @@ int					set_term(void);
 int					unset_term(void);
 int					ft_prompt(char **env);
 char				*select_cmd(int nb);
+void				go_left(t_param *param);
+void				go_right(t_param *param);
+void				write_str(t_param *param, char *str);
+void				refresh_screen(t_param *param, int mode);
 
 typedef int			(*t_key)(t_param *, char *);
 

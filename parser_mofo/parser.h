@@ -6,7 +6,7 @@
 /*   By: qchevrin <qchevrin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/24 11:16:46 by qchevrin          #+#    #+#             */
-/*   Updated: 2014/02/28 13:45:06 by qchevrin         ###   ########.fr       */
+/*   Updated: 2014/02/28 14:39:22 by qchevrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,11 @@ char		*q_strndup(char *str, int n, int inh);
 void		q_error(char *s1, char *s2, int mode);
 t_list		*q_create_obj(void *elem);
 int			q_add_in_list(t_list **list, void *elem);
-t_token		*q_create_token(char *str, int *i);
+t_token		*q_create_token(char *str, int *i, int *error);
 void		q_white_token(char *str, int *i);
 t_token		*q_utility_token(char *name);
 t_list		*q_lexer(char *str);
+//t_list		*q_parser(t_list *token_list)
 t_list		*q_rolex(t_list *list);
 void		q_free_list(t_list **list);
 
