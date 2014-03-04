@@ -6,7 +6,7 @@
 /*   By: qchevrin <qchevrin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/27 12:38:15 by qchevrin          #+#    #+#             */
-/*   Updated: 2014/03/04 10:50:50 by qchevrin         ###   ########.fr       */
+/*   Updated: 2014/03/04 10:56:08 by qchevrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,17 @@ static void	print_list(t_list *list)
 	}
 }
 
-int		main(int ac, char **av)
+int		main(void)
 {
 	t_list		*list;
+	char		*line;
 
 	list = NULL;
-	if (ac == 2)
-		list = q_lexer(ft_strdup(av[1]));
-	print_list(list);
+	while (get_next_line(0, &line))
+	{
+		list = q_lexer(line);
+		print_list(list);
+		q_free_list(&list);
+	}
 	return (0);
 }
