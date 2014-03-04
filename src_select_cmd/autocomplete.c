@@ -6,7 +6,7 @@
 /*   By: lredoban <lredoban@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 14:49:39 by lredoban          #+#    #+#             */
-/*   Updated: 2014/03/03 18:59:59 by lredoban         ###   ########.fr       */
+/*   Updated: 2014/03/04 12:25:22 by lredoban         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,21 @@ char					*l_get_token(t_list *list, char *type)
 	return (token->name);
 }
 
+static void				l_check_token(char type, char *s)
+{
+	int					i;
+
+	i = 0;
+	while (tok_tab[i] != NULL)
+	{
+		if (tok_tab[i](type, s))
+			break ;
+		i += 1;
+	}
+}
+
 int						ft_autocomplete(char *param)
 {
-	char				*s_cmp;
 	char				*s;
 	t_list				*list;
 	char				type;
@@ -86,24 +98,6 @@ int						ft_autocomplete(char *param)
 	list = q_lexer(param);
 	if(!(s = l_get_token(list, &type)))
 			return (0);
-	if (type == Q_LINK)
-	{
-		if (!ft_auto_dir(NULL, s_cmp))
-		{
-			ft_putendl("no result\n");
-			return (0);
-		}
-	}
-	else if(type == Q_ARG || type == Q_FILE)
-	{
-		s_cmp = ft_get_string(&s);
-		if (!ft_auto_dir(s, s_cmp))
-		{
-			ft_putendl("no result\n");
-			return (0);
-		}
-	}
-	else
-		ft_putendl("Commande ou Control pute negre");
+	l_check_token(type, s);
 	return (1);
 }
