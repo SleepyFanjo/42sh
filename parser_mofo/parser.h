@@ -6,7 +6,7 @@
 /*   By: qchevrin <qchevrin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/24 11:16:46 by qchevrin          #+#    #+#             */
-/*   Updated: 2014/03/04 10:30:31 by qchevrin         ###   ########.fr       */
+/*   Updated: 2014/03/04 11:33:23 by qchevrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 int			q_is_special_char(char *str, int i, int *end);
 int			q_count_normal(char *str, int *beg, int *end);
 int			q_count_token_len(char *str, int *beg, int *end, int *inh);
+void		q_clean_inhib(char *str);
+int			q_count_inhib(char *str, int *beg, int *end, int *inh);
 int			q_is_whitespace(char c);
 char		*q_strndup(char *str, int n, int inh);
 void		q_error(char *s1, char *s2, int mode);
