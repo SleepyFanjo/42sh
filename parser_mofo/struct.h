@@ -6,20 +6,29 @@
 /*   By: qchevrin <qchevrin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/24 16:02:14 by qchevrin          #+#    #+#             */
-/*   Updated: 2014/02/28 14:19:07 by qchevrin         ###   ########.fr       */
+/*   Updated: 2014/03/04 10:50:15 by qchevrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCT_H
 # define STRUCT_H
-# define Q_STR		(-1)
+/* Define for token (lexer) */
+# define Q_STR		(42)
 # define Q_CMD		(1)
 # define Q_ARG		(2)
 # define Q_FILE		(3)
 # define Q_LINK		(4)
 # define Q_CTRL		(5)
-
+# define Q_EXE		(6)
 # define Q_SPACE	(0)
+/* Define for next_cmd (parser) */
+# define Q_PIPE		(0)
+# define Q_AND		(1)
+# define Q_OR		(2)
+# define Q_SEP		(3)
+/* Define for (in/out)_mode (parser) */
+# define Q_SIMPLE	(0)
+# define Q_DOUBLE	(1)
 
 /*
 ** Q_LINK : Redirection '<' '>' '<<' '>>'
@@ -38,7 +47,7 @@ typedef struct		s_cmd
 	char			*file_out;
 	int				in_mode;
 	int				out_mode;
-	int				pipe_mode;
+	int				next_cmd;
 }					t_cmd;
 
 typedef struct		s_list

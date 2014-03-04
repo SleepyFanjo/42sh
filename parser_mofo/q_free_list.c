@@ -6,7 +6,7 @@
 /*   By: qchevrin <qchevrin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/27 15:33:33 by qchevrin          #+#    #+#             */
-/*   Updated: 2014/02/27 16:18:22 by qchevrin         ###   ########.fr       */
+/*   Updated: 2014/03/04 10:57:02 by qchevrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void		q_free_list(t_list **list)
 
 	if (*list == NULL)
 		return ;
+	cursor = *list;
 	next = cursor->next;
 	while (next != NULL)
 	{
@@ -34,4 +35,5 @@ void		q_free_list(t_list **list)
 	free(elem->name);
 	free(cursor->elem);
 	free(cursor);
+	*list = NULL;
 }
