@@ -6,7 +6,7 @@
 /*   By: qchevrin <qchevrin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/24 11:16:46 by qchevrin          #+#    #+#             */
-/*   Updated: 2014/03/04 11:33:23 by qchevrin         ###   ########.fr       */
+/*   Updated: 2014/03/04 12:10:44 by qchevrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,10 @@ t_cmd		*q_init_cmd(void);
 int			q_is_ctrl(t_token *elem);
 int			q_is_slash(char *str);
 int			q_add_in_cmd(t_token *elem, t_token *next, t_cmd *cmd);
+int			q_add_link(char *link, t_token *file, t_cmd *cmd);
+int			q_add_in_arg(char *str, t_cmd *cmd);
+char		**q_tabjoin(char **tab, char *str);
+void		q_free_tab(char **tab);
 void		q_free_list(t_list **list);
 
 
