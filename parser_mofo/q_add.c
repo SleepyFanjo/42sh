@@ -6,7 +6,7 @@
 /*   By: qchevrin <qchevrin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 17:01:53 by qchevrin          #+#    #+#             */
-/*   Updated: 2014/03/04 12:10:39 by qchevrin         ###   ########.fr       */
+/*   Updated: 2014/03/05 11:56:00 by qchevrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ int		q_add_in_arg(char *str, t_cmd *cmd)
 
 int		q_add_link(char *link, t_token *file, t_cmd *cmd)
 {
+	if (file == NULL)
+		return (q_file_error());
 	if (file->type != Q_FILE)
 	{
 		ft_putstr_fd("Error : elements after ", 2);
@@ -85,5 +87,18 @@ int		q_add_link(char *link, t_token *file, t_cmd *cmd)
 		if (link[1] == link[0])
 			cmd->out_mode = Q_DOUBLE;
 	}
+	return (0);
+}
+
+int		q_add_ctrl(char *str, t_cmd *cmd)
+{
+	if (!ft_strcmp(str, ";") || !ft_strcmp(str, "&"))
+		cmd->next_cmd = Q_SEP;
+	if (!ft_strcmp(str, "|"))
+		cmd->next_cmd = Q_PIPE;
+	if (!ft_strcmp(str, "&&"))
+		cmd->next_cmd = Q_AND;
+	if (!ft_strcmp(str, "||"))
+		cmd->next_cmd = Q_OR;
 	return (0);
 }

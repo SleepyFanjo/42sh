@@ -6,7 +6,7 @@
 /*   By: qchevrin <qchevrin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/24 11:16:46 by qchevrin          #+#    #+#             */
-/*   Updated: 2014/03/04 12:10:44 by qchevrin         ###   ########.fr       */
+/*   Updated: 2014/03/05 11:44:00 by qchevrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int			q_count_inhib(char *str, int *beg, int *end, int *inh);
 int			q_is_whitespace(char c);
 char		*q_strndup(char *str, int n, int inh);
 void		q_error(char *s1, char *s2, int mode);
+int			q_file_error(void);
 t_list		*q_create_obj(void *elem);
 int			q_add_in_list(t_list **list, void *elem);
 t_token		*q_create_token(char *str, int *i, int *error);
@@ -33,14 +34,18 @@ t_list		*q_rolex(t_list *list);
 t_list		*q_parser(t_list *token_list);
 t_cmd		*q_fill_cmd(t_list **token);
 t_cmd		*q_init_cmd(void);
+t_cmd		*q_check_cmd(t_cmd *cmd);
 int			q_is_ctrl(t_token *elem);
 int			q_is_slash(char *str);
 int			q_add_in_cmd(t_token *elem, t_token *next, t_cmd *cmd);
 int			q_add_link(char *link, t_token *file, t_cmd *cmd);
 int			q_add_in_arg(char *str, t_cmd *cmd);
+int			q_add_ctrl(char *str, t_cmd *cmd);
 char		**q_tabjoin(char **tab, char *str);
 void		q_free_tab(char **tab);
 void		q_free_list(t_list **list);
+void		q_free_cmd(t_list **cmd);
+void		q_free_elem(t_cmd *elem);
 
 
 /* ***** */

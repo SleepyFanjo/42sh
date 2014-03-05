@@ -1,39 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   q_free_list.c                                      :+:      :+:    :+:   */
+/*   q_check_cmd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qchevrin <qchevrin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/02/27 15:33:33 by qchevrin          #+#    #+#             */
-/*   Updated: 2014/03/05 12:06:17 by qchevrin         ###   ########.fr       */
+/*   Created: 2014/03/05 10:30:54 by qchevrin          #+#    #+#             */
+/*   Updated: 2014/03/05 12:05:52 by qchevrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <parser.h>
 
-void		q_free_list(t_list **list)
+t_cmd		*q_check_cmd(t_cmd *cmd)
 {
-	t_list		*cursor;
-	t_list		*next;
-	t_token		*elem;
+	t_token		*cat;
 
-	if (*list == NULL)
-		return ;
-	cursor = *list;
-	next = cursor->next;
-	while (next != NULL)
+	cat = q_utility_token(ft_strdup("cat"));
+	cat->type = Q_CMD;
+	if (cmd->cmd == NULL && (cmd->file_in != NULL || cmd->file_out != NULL))
+		q_add_in_cmd(cat, NULL, cmd);
+	if (cmd->next_cmd != -1 && cmd->cmd == NULL)
 	{
-		elem = (t_token *)cursor->elem;
-		free(elem->name);
-		free(cursor->elem);
-		free(cursor);
-		cursor = next;
-		next = cursor->next;
+		q_error("Syntax error:no command before a logical operator", NULL, 0);
+		free(cmd);
+		return (NULL);
 	}
-	elem = (t_token *)cursor->elem;
-	free(elem->name);
-	free(cursor->elem);
-	free(cursor);
-	*list = NULL;
+	free(cat->name);
+	free(cat);
+	return (cmd);
 }

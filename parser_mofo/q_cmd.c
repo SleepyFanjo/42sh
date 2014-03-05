@@ -6,11 +6,17 @@
 /*   By: qchevrin <qchevrin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 15:26:29 by qchevrin          #+#    #+#             */
-/*   Updated: 2014/03/04 12:10:42 by qchevrin         ###   ########.fr       */
+/*   Updated: 2014/03/05 11:54:09 by qchevrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <parser.h>
+
+int		q_file_error(void)
+{
+	ft_putendl_fd("Error : nothing after file redirection", 2);
+	return (1);
+}
 
 int		q_add_in_cmd(t_token *elem, t_token *next, t_cmd *cmd)
 {
@@ -22,7 +28,7 @@ int		q_add_in_cmd(t_token *elem, t_token *next, t_cmd *cmd)
 		return (q_add_in_arg(elem->name, cmd));
 	if (elem->type == Q_CTRL)
 		return (q_add_ctrl(elem->name, cmd));
-	if (elem->type == Q_CMD)
+	if (elem->type == Q_CMD || elem->type == Q_EXE)
 	{
 		cmd->cmd = ft_strdup(elem->name);
 		return (q_add_in_arg(elem->name, cmd));

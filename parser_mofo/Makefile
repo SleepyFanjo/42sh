@@ -6,7 +6,7 @@
 #    By: qchevrin <qchevrin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/12/03 12:33:25 by qchevrin          #+#    #+#              #
-#    Updated: 2014/03/04 11:24:35 by qchevrin         ###   ########.fr        #
+#    Updated: 2014/03/05 11:11:07 by qchevrin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,11 @@ SRC= main_test.c \
 	 q_utility_token.c \
 	 q_rolex.c \
 	 q_inhib.c \
+	 q_parser.c \
+	 q_free_cmd.c \
+	 q_cmd.c \
+	 q_check_cmd.c \
+	 q_add.c \
 	 tmp_prompt.c
 
 OBJ= $(SRC:.c=.o)
