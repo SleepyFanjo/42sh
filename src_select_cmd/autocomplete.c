@@ -6,13 +6,13 @@
 /*   By: lredoban <lredoban@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 14:49:39 by lredoban          #+#    #+#             */
-/*   Updated: 2014/03/04 12:25:22 by lredoban         ###   ########.fr       */
+/*   Updated: 2014/03/05 18:39:19 by lredoban         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "autocomplete.h"
 
-int						ft_auto_dir(char *s, char *s_cmp)
+int						ft_auto_dir(char *s, char *s_cmp, t_check check_it)
 {
 	DIR					*dir;
 	struct dirent		*ent;
@@ -21,13 +21,13 @@ int						ft_auto_dir(char *s, char *s_cmp)
 	if (!s)
 		s = ".";
 	if ((dir = opendir(s)) == NULL)
-	{
 		return (0);
-	}
 	len = strlen(s_cmp);
+ft_printf("s=%s s_cmp=%s \n", s, s_cmp);
 	while ((ent = readdir(dir)) != NULL)
 	{
-		if ((strncmp(s_cmp, ent->d_name, len)) == 0)
+		if (((strncmp(s_cmp, ent->d_name, len)) == 0)
+				&& check_it(s, ent, s_cmp))
 			ft_printf("%s%s ", dir, ent->d_name);
 	}
 	ft_putchar('\n');
@@ -50,7 +50,10 @@ char					*ft_get_string(char **s1)
 		if (dir[i] == '/')
 		{
 			s = ft_strdup(&dir[i + 1]);
-			ft_bzero(&dir[i], len - i);
+			if (i == 0)
+				ft_bzero(&dir[1], len + 1);
+			else
+				ft_bzero(&dir[i], len - i);
 			return (s);
 		}
 	}
