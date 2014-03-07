@@ -6,12 +6,12 @@
 #    By: qchevrin <qchevrin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/12/03 12:33:25 by qchevrin          #+#    #+#              #
-#    Updated: 2014/03/05 11:11:07 by qchevrin         ###   ########.fr        #
+#    Updated: 2014/03/07 15:36:56 by qchevrin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC= gcc
-CFLAGS= -Wall -Werror -Wextra
+CFLAGS= -Wall -Werror -Wextra -g
 SRC= main_test.c \
 	 q_count_token_len.c \
 	 q_lexer.c \
