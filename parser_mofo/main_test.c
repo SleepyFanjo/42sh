@@ -6,7 +6,7 @@
 /*   By: qchevrin <qchevrin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/27 12:38:15 by qchevrin          #+#    #+#             */
-/*   Updated: 2014/03/05 12:06:47 by qchevrin         ###   ########.fr       */
+/*   Updated: 2014/03/07 17:03:15 by qchevrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ static char	*q_get(char c)
 		return (ft_strdup("Redirection"));
 	if (c == Q_CTRL)
 		return (ft_strdup("Controle"));
+	if (c == Q_SPACE)
+		return (ft_strdup("Whitespace"));
 	return (ft_strdup("Unknown"));
 }
 
