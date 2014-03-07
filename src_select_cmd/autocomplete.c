@@ -6,13 +6,13 @@
 /*   By: lredoban <lredoban@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 14:49:39 by lredoban          #+#    #+#             */
-/*   Updated: 2014/03/05 18:39:19 by lredoban         ###   ########.fr       */
+/*   Updated: 2014/03/07 19:27:50 by lredoban         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "autocomplete.h"
 
-int						ft_auto_dir(char *s, char *s_cmp, t_check check_it)
+int						ft_auto_dir(char *s, char *s_cmp, t_check check_it, t_list *begin)
 {
 	DIR					*dir;
 	struct dirent		*ent;
@@ -23,12 +23,12 @@ int						ft_auto_dir(char *s, char *s_cmp, t_check check_it)
 	if ((dir = opendir(s)) == NULL)
 		return (0);
 	len = strlen(s_cmp);
-ft_printf("s=%s s_cmp=%s \n", s, s_cmp);
 	while ((ent = readdir(dir)) != NULL)
 	{
 		if (((strncmp(s_cmp, ent->d_name, len)) == 0)
 				&& check_it(s, ent, s_cmp))
-			ft_printf("%s%s ", dir, ent->d_name);
+			//ft_printf("%s%s ", dir, ent->d_name);
+			begin = l_add_to_list(begin, ent->d_name);
 	}
 	ft_putchar('\n');
 	closedir(dir);
@@ -62,32 +62,6 @@ char					*ft_get_string(char **s1)
 	return (s);
 }
 
-char					*l_get_token(t_list *list, char *type)
-{
-	t_token				*token;
-
-	if (list == NULL)
-		return (NULL);
-	while (list->next != NULL)
-		list = list->next;
-	token = list->elem;
-	*type = token->type;
-	return (token->name);
-}
-
-static void				l_check_token(char type, char *s)
-{
-	int					i;
-
-	i = 0;
-	while (tok_tab[i] != NULL)
-	{
-		if (tok_tab[i](type, s))
-			break ;
-		i += 1;
-	}
-}
-
 int						ft_autocomplete(char *param)
 {
 	char				*s;
@@ -100,7 +74,8 @@ int						ft_autocomplete(char *param)
 	type = -1;
 	list = q_lexer(param);
 	if(!(s = l_get_token(list, &type)))
-			return (0);
+		return (0);
 	l_check_token(type, s);
+	q_free_list(&list);
 	return (1);
 }

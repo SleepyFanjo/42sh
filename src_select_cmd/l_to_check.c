@@ -6,7 +6,7 @@
 /*   By: lredoban <lredoban@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/05 12:12:37 by lredoban          #+#    #+#             */
-/*   Updated: 2014/03/05 17:31:40 by lredoban         ###   ########.fr       */
+/*   Updated: 2014/03/07 14:55:09 by lredoban         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ int						l_is_exe(char *s, struct dirent *ent, char *s_cmp)
 	tmp = ft_strjoin(s, "/");
 	path = ft_strjoin(tmp, ent->d_name);
 	free(tmp);
-	if (access(path, X_OK) == 0 || l_is_dir(s, ent, s_cmp))
+	if ((access(path, X_OK) == 0 || l_is_dir(s, ent, s_cmp))
+			&& l_is_file(s, ent, s_cmp))
 	{
 		free(path);
 		return (1);
@@ -40,8 +41,11 @@ int						l_is_dir(char *s, struct dirent *ent, char *s_cmp)
 
 int						l_is_file(char *s, struct dirent *ent, char *s_cmp)
 {
+	if (!(ft_strcmp(ent->d_name,".")) || !(ft_strcmp(ent->d_name,"..")))
+		return (0);
+	if (s_cmp != NULL && *s_cmp == '\0' && ent->d_name[0] == '.')
+		return (0);
 	(void)s;
-	(void)ent;
 	(void)s_cmp;
 	return (1);
 }
