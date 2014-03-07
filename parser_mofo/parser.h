@@ -6,7 +6,7 @@
 /*   By: qchevrin <qchevrin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/24 11:16:46 by qchevrin          #+#    #+#             */
-/*   Updated: 2014/03/07 17:01:13 by qchevrin         ###   ########.fr       */
+/*   Updated: 2014/03/07 17:33:45 by qchevrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,9 @@ void		q_free_tab(char **tab);
 void		q_free_list(t_list **list);
 void		q_free_cmd(t_list **cmd);
 void		q_free_elem(t_cmd *elem);
+void		q_delete_whitespace(t_list **list);
+int			q_is_blank(void *elem);
+void		q_free_token(t_list *token);
 
 
 /* ***** */
