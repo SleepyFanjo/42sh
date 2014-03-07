@@ -6,12 +6,12 @@
 #    By: qchevrin <qchevrin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/12/03 12:33:25 by qchevrin          #+#    #+#              #
-#    Updated: 2014/02/27 18:00:32 by qchevrin         ###   ########.fr        #
+#    Updated: 2014/03/07 15:36:56 by qchevrin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC= gcc
-CFLAGS= -Wall -Werror -Wextra
+CFLAGS= -Wall -Werror -Wextra -g
 SRC= main_test.c \
 	 q_count_token_len.c \
 	 q_lexer.c \
@@ -19,6 +19,12 @@ SRC= main_test.c \
 	 q_free_list.c \
 	 q_utility_token.c \
 	 q_rolex.c \
+	 q_inhib.c \
+	 q_parser.c \
+	 q_free_cmd.c \
+	 q_cmd.c \
+	 q_check_cmd.c \
+	 q_add.c \
 	 tmp_prompt.c
 
 OBJ= $(SRC:.c=.o)
