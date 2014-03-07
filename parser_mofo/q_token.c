@@ -6,7 +6,7 @@
 /*   By: qchevrin <qchevrin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/24 16:12:57 by qchevrin          #+#    #+#             */
-/*   Updated: 2014/03/05 10:38:46 by qchevrin         ###   ########.fr       */
+/*   Updated: 2014/03/07 17:02:04 by qchevrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,31 @@ int			q_is_whitespace(char c)
 	return (c == ' ' || c == '\t' || c == '\n');
 }
 
-void		q_white_token(char *str, int *i)
+t_token		*q_white_token(char *str, int *i)
 {
+	t_token		*white;
+	int			k;
 	int			j;
 
 	j = *i;
+	if ((white = (t_token *)malloc(sizeof(t_token))) == NULL)
+		q_error("Error : can't malloc", NULL, 1);
+	white->type = Q_SPACE;
 	while (q_is_whitespace(str[j]))
 		j = j + 1;
-	*i = j;
+	if ((white->name = (char *)malloc(sizeof(char) * (j - *i + 3))) == NULL)
+		q_error("Error : can't malloc", NULL, 1);
+	j = *i;
+	k = 0;
+	while (q_is_whitespace(str[j]))
+	{
+		(white->name)[k] = str[j];
+		k = k + 1;
+		j = j + 1;
+	}
+	(white->name)[k] = '\0';
+	*i = j - 1;
+	return (white);
 }
 
 char		*q_strndup(char *str, int n, int inh)
@@ -62,10 +79,7 @@ t_token		*q_create_token(char *str, int *i, int *error)
 		return (NULL);
 	}
 	if (q_is_whitespace(str[j]))
-	{
-		q_white_token(str, i);
-		return (q_create_token(str, i, error));
-	}
+		return (q_white_token(str, i));
 	k = q_count_token_len(str, i, &j, &inh);
 	if (k == -1)
 		return (NULL);
