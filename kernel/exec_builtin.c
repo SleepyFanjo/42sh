@@ -6,7 +6,7 @@
 /*   By: vwatrelo <vwatrelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/10 14:41:29 by vwatrelo          #+#    #+#             */
-/*   Updated: 2014/03/10 16:49:06 by vwatrelo         ###   ########.fr       */
+/*   Updated: 2014/03/10 17:11:09 by vwatrelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,7 @@ static void	close_fd(t_cmd *cmd)
 	}
 	if (cmd->pipe_out != -1)
 	{
-		if (close(cmd->pipe_out) != -1)
-			ft_printf("%rUnable to close pipe_out\n");
+		close(cmd->pipe_out);
 	}
 }
 
@@ -65,8 +64,19 @@ int			exec_builtin(t_cmd *cmd)
 	}
 	if (ft_strcmp(cmd->cmd, "unsetenv") == 0)
 	{
-		ft_printf("BUILTIN\n");
 		my_unsetenv(cmd);
+		close_fd(cmd);
+		return (1);
+	}
+	if (ft_strcmp(cmd->cmd, "exit") == 0)
+	{
+		ft_exit(cmd, fd_builtin[OUT_B]);
+		close_fd(cmd);
+		return (1);
+	}
+	if (ft_strcmp(cmd->cmd, "echo") == 0)
+	{
+		ft_echo(cmd->arg, fd_builtin[OUT_B]);
 		close_fd(cmd);
 		return (1);
 	}

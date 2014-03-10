@@ -6,7 +6,7 @@
 /*   By: jrenouf- <jrenouf-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/26 15:24:23 by jrenouf-          #+#    #+#             */
-/*   Updated: 2014/02/27 15:06:29 by jrenouf-         ###   ########.fr       */
+/*   Updated: 2014/03/10 17:10:27 by vwatrelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,22 +132,15 @@ char				*ft_trans(char **arg, int i, int opt_E)
 	return (str);
 }
 
-void				ft_echo(char **arg)
+void				ft_echo(char **arg, int fd)
 {
 	int				*opt;
 	char			*str;
 
 	opt = check_opt(arg);
 	str = ft_trans(arg, opt[0], opt[2]);
-	ft_putstr(str);
+	ft_putstr_fd(str, fd);
 	if (opt[1] == 0)
-		ft_putendl("");
+		ft_putendl_fd("", fd);
 	free(str);
-}
-
-int					main(int ac, char **av)
-{
-	(void)ac;
-	ft_echo(av);
-	return (0);
 }

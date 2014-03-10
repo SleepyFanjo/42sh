@@ -6,7 +6,7 @@
 /*   By: vwatrelo <vwatrelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/07 15:38:46 by vwatrelo          #+#    #+#             */
-/*   Updated: 2014/03/10 15:16:00 by vwatrelo         ###   ########.fr       */
+/*   Updated: 2014/03/10 17:10:47 by vwatrelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,6 @@ int			main(void)
 	g_env = ft_cpytab(environ);
 	while ((line = tmp_prompt()))
 	{
-		if (ft_strcmp(line, "exit") == 0)
-			exit(0);
 		if (!(list = q_lexer(line)))
 			continue ;
 		if (!(cmd = q_parser(list)))

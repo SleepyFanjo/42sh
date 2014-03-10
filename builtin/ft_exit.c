@@ -6,11 +6,11 @@
 /*   By: qchevrin <qchevrin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/17 16:52:03 by qchevrin          #+#    #+#             */
-/*   Updated: 2014/02/01 14:05:47 by qchevrin         ###   ########.fr       */
+/*   Updated: 2014/03/10 17:03:52 by vwatrelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../includes/launch_cmd.h"
 #include <libft.h>
 
 static int	is_number(char *str)
@@ -27,20 +27,18 @@ static int	is_number(char *str)
 	return (1);
 }
 
-void		ft_exit(t_cmd *cmd)
+void		ft_exit(t_cmd *cmd, int fd)
 {
 	if ((cmd->arg)[1] == NULL)
 	{
-		ft_putendl("Bye, nice to meet you");
+		ft_putendl_fd("Bye, nice to meet you", fd);
 		exit(0);
 	}
 	else if (is_number((cmd->arg)[1]))
 	{
-		ft_putendl("Bye, nice to meet you :)");
+		ft_putendl_fd("Bye, nice to meet you :)", fd);
 		exit(ft_atoi((cmd->arg)[1]));
 	}
 	else
-	{
-		ft_putendl("Badly formed number bi*** !");
-	}
+		ft_putendl_fd("Badly formed number bi*** !", 1);
 }
