@@ -6,7 +6,7 @@
 /*   By: qchevrin <qchevrin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/27 15:45:30 by qchevrin          #+#    #+#             */
-/*   Updated: 2014/02/27 18:05:34 by qchevrin         ###   ########.fr       */
+/*   Updated: 2014/03/05 12:04:34 by qchevrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ t_token		*q_utility_token(char *name)
 
 	if ((token = (t_token *)malloc(sizeof(t_token))) == NULL)
 		q_error("Error : can't malloc", NULL, 1);
-	token->name = name;
+	token->name = ft_strdup(name);
 	token->type = q_get_utility(name);
 	return (token);
 }

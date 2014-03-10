@@ -6,7 +6,7 @@
 /*   By: qchevrin <qchevrin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/26 14:24:50 by qchevrin          #+#    #+#             */
-/*   Updated: 2014/02/27 18:06:32 by qchevrin         ###   ########.fr       */
+/*   Updated: 2014/03/04 11:24:03 by qchevrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,26 +59,11 @@ int			q_count_normal(char *str, int *beg, int *end)
 
 int			q_count_token_len(char *str, int *beg, int *end, int *inh)
 {
-	char	c;
 	int		k;
 
 	*inh = 0;
 	if (str[*beg] == '\"' || str[*beg] == '\'')
-	{
-		*inh = 1;
-		c = str[*beg];
-		*beg = *beg + 1;
-		while (str[*end + 1] != c || str[*end] == '\\')
-		{
-			if (str[*end] == '\0')
-				return (-1);
-			*end = *end + 1;
-		}
-		k = *end - *beg + 1;
-		if (str[*end + 1] == c)
-			*end = *end + 1;
-		return (k);
-	}
+		return (q_count_inhib(str, beg, end, inh));
 	if ((k = q_is_special_char(str, *beg, end)) > 0)
 		return (k);
 	else

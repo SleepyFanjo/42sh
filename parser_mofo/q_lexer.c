@@ -6,7 +6,7 @@
 /*   By: qchevrin <qchevrin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/24 15:56:39 by qchevrin          #+#    #+#             */
-/*   Updated: 2014/02/28 14:20:45 by qchevrin         ###   ########.fr       */
+/*   Updated: 2014/03/07 17:03:13 by qchevrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ t_list		*q_lexer(char *str)
 
 	i = 0;
 	list = NULL;
+	q_clean_inhib(str);
 	while (str[i] != '\0')
 	{
 		error = 0;
