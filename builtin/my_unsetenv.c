@@ -1,25 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_env.c                                        :+:      :+:    :+:   */
+/*   my_unsetenv.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vwatrelo <vwatrelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/03/10 16:12:40 by vwatrelo          #+#    #+#             */
-/*   Updated: 2014/03/10 16:41:34 by vwatrelo         ###   ########.fr       */
+/*   Created: 2014/03/10 16:43:16 by vwatrelo          #+#    #+#             */
+/*   Updated: 2014/03/10 16:50:01 by vwatrelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/launch_cmd.h"
 
-void	print_env(char **envp, int fd)
+void		my_unsetenv(t_cmd *cmd)
 {
-	int		i;
-
-	i = 0;
-	while (envp != NULL && envp[i] != NULL)
-	{
-		ft_putendl_fd(envp[i], fd);
-		i = i + 1;
-	}
+	delete_in_env(cmd, &g_env);
 }

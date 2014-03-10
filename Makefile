@@ -6,7 +6,7 @@
 #    By: qchevrin <qchevrin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/12/03 12:33:25 by qchevrin          #+#    #+#              #
-#    Updated: 2014/03/10 16:16:46 by vwatrelo         ###   ########.fr        #
+#    Updated: 2014/03/10 16:48:06 by vwatrelo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,8 @@ SRC= parser_mofo/q_count_token_len.c \
 	 builtin/modify_env.c \
 	 builtin/setenv.c \
 	 builtin/print_env.c \
+	 builtin/delete_in_env.c \
+	 builtin/my_unsetenv.c \
 	 kernel/dup_cmd.c \
 	 kernel/exec_cmd.c \
 	 kernel/get_double_fd_out.c \

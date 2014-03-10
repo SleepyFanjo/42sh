@@ -6,7 +6,7 @@
 /*   By: vwatrelo <vwatrelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/10 14:41:29 by vwatrelo          #+#    #+#             */
-/*   Updated: 2014/03/10 16:29:06 by vwatrelo         ###   ########.fr       */
+/*   Updated: 2014/03/10 16:49:06 by vwatrelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,14 @@ int			exec_builtin(t_cmd *cmd)
 	init_fd(fd_builtin, cmd);
 	if (ft_strcmp(cmd->cmd, "setenv") == 0)
 	{
-		ft_printf("BUILTIN\n");
 		my_setenv(cmd, fd_builtin);
+		close_fd(cmd);
+		return (1);
+	}
+	if (ft_strcmp(cmd->cmd, "unsetenv") == 0)
+	{
+		ft_printf("BUILTIN\n");
+		my_unsetenv(cmd);
 		close_fd(cmd);
 		return (1);
 	}
