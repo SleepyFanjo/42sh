@@ -6,7 +6,7 @@
 /*   By: qchevrin <qchevrin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/16 12:05:49 by qchevrin          #+#    #+#             */
-/*   Updated: 2014/03/11 14:24:41 by qchevrin         ###   ########.fr       */
+/*   Updated: 2014/03/11 15:18:01 by qchevrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char		**table_cpy(char **table)
 	while (table[i] != NULL)
 		i = i + 1;
 	if ((copy = (char **)malloc((i + 1) * sizeof(char *))) == NULL)
-		ft_error("Error: Can't malloc", NULL, 1);
+		q_error("Error: Can't malloc", NULL, 1);
 	i = 0;
 	while (table[i] != NULL)
 	{

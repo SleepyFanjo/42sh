@@ -6,7 +6,7 @@
 /*   By: vwatrelo <vwatrelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/10 13:36:35 by vwatrelo          #+#    #+#             */
-/*   Updated: 2014/03/10 17:06:56 by vwatrelo         ###   ########.fr       */
+/*   Updated: 2014/03/11 15:52:46 by qchevrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,7 @@ void		my_unsetenv(t_cmd *cmd);
 void		delete_in_env(t_cmd *cmd, char ***envp);
 void		ft_exit(t_cmd *cmd, int fd);
 void		ft_echo(char **arg, int fd);
+void		env(t_cmd *cmd, char **envp, int fd);
+char		**table_cpy(char **table);
 
 #endif

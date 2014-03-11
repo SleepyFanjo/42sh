@@ -6,7 +6,7 @@
 /*   By: vwatrelo <vwatrelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/15 12:16:19 by vwatrelo          #+#    #+#             */
-/*   Updated: 2014/03/10 13:54:29 by vwatrelo         ###   ########.fr       */
+/*   Updated: 2014/03/11 15:35:22 by qchevrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ char		*get_path(char *str, char **envp)
 	char		**path;
 
 	i = 0;
+	if (!envp)
+		return (NULL);
 	if ((tmp = type_cmd(str)) != NULL)
 		return (tmp);
 	while (envp[i] && ft_strncmp(envp[i], "PATH=", 5))
