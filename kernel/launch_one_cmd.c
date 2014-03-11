@@ -6,7 +6,7 @@
 /*   By: vwatrelo <vwatrelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/07 17:09:27 by vwatrelo          #+#    #+#             */
-/*   Updated: 2014/03/10 15:16:42 by vwatrelo         ###   ########.fr       */
+/*   Updated: 2014/03/11 16:45:00 by vwatrelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,15 @@ static int	connect_file(t_cmd *cmd)
 	return (0);
 }
 
-void		launch_one_cmd(t_cmd *cmd, t_cmd *next)
+int			launch_one_cmd(t_cmd *cmd, t_cmd *next)
 {
+	int		ret;
+
 	connect_file(cmd);
 	connect_pipe(cmd, next);
-	if (!exec_builtin(cmd))
-		launch_fork(cmd);
+	if (!(ret = exec_builtin(cmd)))
+	{
+		return (launch_fork(cmd));
+	}
+	return (ret);
 }

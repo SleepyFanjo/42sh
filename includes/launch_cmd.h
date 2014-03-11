@@ -6,7 +6,7 @@
 /*   By: vwatrelo <vwatrelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/10 13:36:35 by vwatrelo          #+#    #+#             */
-/*   Updated: 2014/03/11 15:52:46 by qchevrin         ###   ########.fr       */
+/*   Updated: 2014/03/11 16:44:50 by vwatrelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 
 extern char	**environ;
 char		**g_env;
+pid_t		g_pid;
 
 char		*get_path(char *str, char **envp);
 int			get_simple_fd_out(t_cmd *cmd);
@@ -31,8 +32,8 @@ int			get_double_fd_out(t_cmd *cmd);
 int			get_file_in(t_cmd *cmd);
 int			get_word_in(t_cmd *cmd);
 void		launch_cmd(t_list *cmd);
-void		launch_fork(t_cmd *cmd);
-void		launch_one_cmd(t_cmd *cmd, t_cmd *next);
+int			launch_fork(t_cmd *cmd);
+int			launch_one_cmd(t_cmd *cmd, t_cmd *next);
 int			add_in_env(t_cmd *cmd, char ***envp, int *fd_b);
 int			exec_builtin(t_cmd *cmd);
 void		modify_env(char ***envp, char *env);
@@ -44,5 +45,8 @@ void		ft_exit(t_cmd *cmd, int fd);
 void		ft_echo(char **arg, int fd);
 void		env(t_cmd *cmd, char **envp, int fd);
 char		**table_cpy(char **table);
+int			init_sig(void);
+void		kill_cmd(int sig);
+void		quit_term(int sig);
 
 #endif

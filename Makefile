@@ -6,7 +6,7 @@
 #    By: qchevrin <qchevrin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/12/03 12:33:25 by qchevrin          #+#    #+#              #
-#    Updated: 2014/03/11 15:17:26 by qchevrin         ###   ########.fr        #
+#    Updated: 2014/03/11 17:18:19 by vwatrelo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,9 @@ SRC= parser_mofo/q_count_token_len.c \
 	 src_select_cmd/refresh.c \
 	 src_select_cmd/term.c \
 	 src_select_cmd/select_cmd.c \
+	 signal/init_sig.c \
+	 signal/quit_term.c \
+	 signal/kill_cmd.c \
 	 builtin/add_in_env.c \
 	 builtin/modify_env.c \
 	 builtin/fucking_env.c \

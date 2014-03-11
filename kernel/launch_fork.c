@@ -6,7 +6,7 @@
 /*   By: vwatrelo <vwatrelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/07 19:48:06 by vwatrelo          #+#    #+#             */
-/*   Updated: 2014/03/10 13:24:38 by vwatrelo         ###   ########.fr       */
+/*   Updated: 2014/03/11 17:18:19 by vwatrelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,14 @@ static int	close_pipe_father(t_cmd *cmd)
 	return (res);
 }
 
-void		launch_fork(t_cmd *cmd)
+int		launch_fork(t_cmd *cmd)
 {
 	pid_t	pid;
 
 	if ((pid = fork()) < 0)
 	{
 		ft_printf("%rUnable to create fork\n");
-		return ;
+		return (-1);
 	}
 	if (pid == 0)
 	{
@@ -47,11 +47,16 @@ void		launch_fork(t_cmd *cmd)
 	}
 	else
 	{
+		g_pid = pid;
 		if (close_pipe_father(cmd))
 		{
 			ft_printf("%rUnable to close pipe\n");
 			kill(pid, SIGINT);
 		}
 		wait(&(cmd->return_val));
+		if (g_pid == -1)
+			return (-1);
+		g_pid = -1;
 	}
+	return (0);
 }
