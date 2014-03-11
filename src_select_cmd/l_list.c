@@ -6,7 +6,7 @@
 /*   By: lredoban <lredoban@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/07 18:53:21 by lredoban          #+#    #+#             */
-/*   Updated: 2014/03/07 19:50:41 by lredoban         ###   ########.fr       */
+/*   Updated: 2014/03/11 11:38:23 by lredoban         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void						l_print_list(t_list *list)
 {
 	while (list != NULL)
 	{
-//ft_putstr("on compare deux pointeur");
 		ft_printf("[%s]", (char *)list->elem);
 		list = list->next;
 	}
@@ -31,10 +30,8 @@ t_list						*l_add_to_list(t_list *list, char *data)
 	new = (t_list *)malloc(sizeof(t_list));
 	new->next = NULL;
 	new->elem = ft_strdup(data);
-//ft_printf("{%s}", new->elem);
 	if (!list)
 		return (new);
-//ft_putendl("@");
 	tmp = list;
 	while (tmp->next != NULL)
 		tmp = tmp->next;

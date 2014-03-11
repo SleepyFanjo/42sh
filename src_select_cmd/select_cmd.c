@@ -6,12 +6,12 @@
 /*   By: jrenouf- <jrenouf-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/08 14:33:20 by jrenouf-          #+#    #+#             */
-/*   Updated: 2014/03/03 15:03:59 by lredoban         ###   ########.fr       */
+/*   Updated: 2014/03/11 17:01:50 by lredoban         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "select_cmd.h"
-#include "autocomplete.h"  // seulement dans le fichier contenant la fonction tab_key
+//#include "autocomplete.h"  // seulement dans le fichier contenant la fonction tab_key
 
 int						tputs_putchar(int c)
 {
@@ -80,6 +80,7 @@ int						tab_key(t_param *param, char *buf)
 	if (BUF != TAB)
 		return (0);
 	ft_autocomplete(param);
+	(void)param;
 	return (1);
 }
 

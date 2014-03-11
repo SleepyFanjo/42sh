@@ -6,7 +6,7 @@
 /*   By: jrenouf- <jrenouf-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/08 14:32:42 by jrenouf-          #+#    #+#             */
-/*   Updated: 2014/03/03 15:04:14 by lredoban         ###   ########.fr       */
+/*   Updated: 2014/03/11 14:09:56 by lredoban         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,8 @@ void				go_right(t_param *param);
 void				write_str(t_param *param, char *str);
 void				refresh_screen(t_param *param, int mode);
 
+int					ft_autocomplete(t_param *param);
+
 typedef int			(*t_key)(t_param *, char *);
 
 static const t_key	key_tab[] =
@@ -89,7 +91,7 @@ static const t_key	key_tab[] =
 					&word_jump_right,
 					&go_down,
 					&go_up,
-					&tab,
+					&tab_key,
 					NULL
 };
 

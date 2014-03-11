@@ -6,7 +6,7 @@
 /*   By: jrenouf- <jrenouf-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/07 15:50:36 by jrenouf-          #+#    #+#             */
-/*   Updated: 2014/02/28 18:40:41 by jrenouf-         ###   ########.fr       */
+/*   Updated: 2014/03/11 18:28:46 by lredoban         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void					remalloc_cat(char **s1, char *s2)
 	str = (char *)malloc(sizeof(char) * len);
 	str = ft_strcpy(str, *s1);
 	str = ft_strcat(str, s2);
-	free(*s1);
+//	free(*s1);
 	*s1 = str;
 }
 
@@ -52,6 +52,8 @@ int						char_del(t_param *param, char *buf)
 {
 	if (BUF == DELETE || BUF == B_SPACE)
 	{
+//ft_printf("buf=|%x|%x|%x|%x|%x|\n", buf[0], buf[1], buf[2], buf[3], buf[4]);
+//	sleep(1);
 		if (BUF == DELETE && I < LEN)
 		{
 			tputs(tgetstr("dc", NULL), 1, tputs_putchar);

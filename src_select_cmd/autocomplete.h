@@ -6,7 +6,7 @@
 /*   By: lredoban <lredoban@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 14:49:57 by lredoban          #+#    #+#             */
-/*   Updated: 2014/03/07 19:28:08 by lredoban         ###   ########.fr       */
+/*   Updated: 2014/03/11 17:48:50 by lredoban         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,23 +16,26 @@
 # include <dirent.h>
 # include "../libft/libft.h"
 # include "../parser_mofo/parser.h"
+# include "select_cmd.h"
 
-char				**lova_envp; // a savoir comment en gere ca
+char				*lova_envp; // a savoir comment en gere ca
 
-int						ft_autocomplete(char *s);
+int						ft_autocomplete(t_param *param);
+
+t_param *par; //en attendan le singleton
 
 /*
 **   l_search.c
 */
-int						l_search_file(char type, char *s, t_list *begin);
-int						l_search_dir(char type, char *s, t_list *begin);
-int						l_search_cmd(char type, char *s, t_list *begin);
-int						l_search_exe(char type, char *s, t_list *begin);
-int						l_search_link(char type, char *s, t_list *begin);
+int						l_search_file(char type, char *s, t_list **begin);
+int						l_search_dir(char type, char *s, t_list **begin);
+int						l_search_cmd(char type, char *s, t_list **begin);
+int						l_search_exe(char type, char *s, t_list **begin);
+int						l_search_link(char type, char *s, t_list **begin);
 
 char					*ft_get_string(char **s1);
 
-typedef int				(*t_tok_func)(char type, char *s, t_list *begin);
+typedef int				(*t_tok_func)(char type, char *s, t_list **begin);
 
 static const t_tok_func	tok_tab[] =
 {
@@ -60,12 +63,12 @@ static const t_check	to_check[] =
 						&l_is_file
 };
 
-int						ft_auto_dir(char *s, char *s_cmp, t_check check_it, t_list *begin);
+int						ft_auto_dir(char *s, char *s_cmp, t_check check_it, t_list **begin);
 
 /*
 **   l_path.c
 */
-int						ft_checkpath(char *s, t_list *begin);
+int						ft_checkpath(char *s, t_list **begin);
 
 /*
 **   l_tok_game.c
@@ -76,7 +79,13 @@ void					l_check_token(char type, char *s);
 /*
 **   l_list.c
 */
-void						l_print_list(t_list *list);
-t_list						*l_add_to_list(t_list *list, char *data);
+void					l_print_list(t_list *list);
+t_list					*l_add_to_list(t_list *list, char *data);
 
+
+/*
+**   tok_game for the moment
+*/
+void					del_word(char *s);
+void					insert_word(char *s);
 #endif
