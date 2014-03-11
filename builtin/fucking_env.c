@@ -6,7 +6,7 @@
 /*   By: qchevrin <qchevrin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/17 17:40:21 by qchevrin          #+#    #+#             */
-/*   Updated: 2014/03/10 16:41:43 by vwatrelo         ###   ########.fr       */
+/*   Updated: 2014/03/11 14:55:29 by qchevrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,19 +31,36 @@ static void	exec_cmd(char *cmd, char **arg, char **envp)
 	pid_t	pid;
 	char	**path;
 
-	path = get_path(envp);
+	path = get_path(cmd, envp);
 	if ((pid = fork()) == -1)
 	{
 		ft_error("Fork you !", NULL, 0);
 		return ;
 	}
 	if (pid == 0)
-		execve(get_cmd_input(path, cmd), arg, envp);
+		execve(path, arg, envp);
 	else
 		wait(NULL);
 }
 
-void		fucking_env(t_cmd *cmd, char **envp)
+static void	free_table(char ***table)
+{
+	char	**copy;
+	int		i;
+
+	copy = *table;
+	i = 0;
+	while (copy && copy[i])
+	{
+		free(copy[i]);
+		i = i + 1;
+	}
+	if (copy)
+		free(copy);
+	*table = NULL;
+}
+
+void		env(t_cmd *cmd, char **envp)
 {
 	int		i;
 
