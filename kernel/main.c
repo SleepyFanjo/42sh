@@ -6,7 +6,7 @@
 /*   By: vwatrelo <vwatrelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/07 15:38:46 by vwatrelo          #+#    #+#             */
-/*   Updated: 2014/03/12 19:35:42 by lredoban         ###   ########.fr       */
+/*   Updated: 2014/03/12 19:43:48 by lredoban         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ int			main(void)
 		if (!(cmd = q_parser(list)))
 			continue ;
 		launch_cmd(cmd);
-		q_free_list(&list);
 		q_free_cmd(&cmd);
 	}
 	return (0);
