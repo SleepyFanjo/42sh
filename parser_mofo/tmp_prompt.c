@@ -6,7 +6,7 @@
 /*   By: qchevrin <qchevrin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/27 15:27:25 by qchevrin          #+#    #+#             */
-/*   Updated: 2014/03/12 18:38:47 by lredoban         ###   ########.fr       */
+/*   Updated: 2014/03/12 18:52:34 by lredoban         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,14 +58,18 @@ static char	*get_pwd(void)
 	int		i;
 	char	**tmp;
 	char	*pwd;
+	int		n;
 
 	i = 0;
 	tmp = g_env;
+	n = 4;
 	while (tmp[i] != NULL)
 	{
 		if (!ft_strncmp("PWD=", tmp[i], 4))
 		{
-			pwd = home_sweet_home(ft_strdup(&tmp[i][4]));
+			if (!ft_strncmp("/Volumes/Data", &tmp[i][n], 13))
+				n += 13;
+			pwd = home_sweet_home(ft_strdup(&tmp[i][n]));
 			return (pwd);
 		}
 		i++;
