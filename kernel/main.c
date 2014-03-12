@@ -6,7 +6,7 @@
 /*   By: vwatrelo <vwatrelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/07 15:38:46 by vwatrelo          #+#    #+#             */
-/*   Updated: 2014/03/12 19:09:49 by qchevrin         ###   ########.fr       */
+/*   Updated: 2014/03/12 19:35:38 by qchevrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,4 +57,5 @@ int			main(void)
 		launch_cmd(cmd);
 		q_free_cmd(&cmd);
 	}
+	return (0);
 }
