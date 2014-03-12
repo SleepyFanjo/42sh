@@ -6,7 +6,7 @@
 /*   By: qchevrin <qchevrin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/19 11:00:08 by qchevrin          #+#    #+#             */
-/*   Updated: 2014/02/27 18:13:51 by lredoban         ###   ########.fr       */
+/*   Updated: 2014/03/12 18:13:06 by qchevrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,5 +73,6 @@ void	ft_putendl_fd(char const *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
 int		get_next_line(int const fd, char **line);
 char	*ft_str_realloc_cat(char **s1, char *s2);
+void	*j_malloc(size_t byte);
 
 #endif

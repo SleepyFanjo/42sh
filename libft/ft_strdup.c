@@ -6,7 +6,7 @@
 /*   By: qchevrin <qchevrin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/20 10:05:21 by qchevrin          #+#    #+#             */
-/*   Updated: 2014/01/14 16:22:50 by qchevrin         ###   ########.fr       */
+/*   Updated: 2014/03/12 18:11:17 by qchevrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char	*ft_strdup(const char *s1)
 {
 	char	*res;
 
-	if ((res = (char *) malloc((ft_strlen(s1) + 1) * sizeof(char))) == NULL)
+	if ((res = (char *)j_malloc((ft_strlen(s1) + 1) * sizeof(char))) == NULL)
 	{
 		return (NULL);
 	}
