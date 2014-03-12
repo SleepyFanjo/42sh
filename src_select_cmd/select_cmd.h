@@ -6,7 +6,7 @@
 /*   By: jrenouf- <jrenouf-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/08 14:32:42 by jrenouf-          #+#    #+#             */
-/*   Updated: 2014/03/12 17:18:06 by jrenouf-         ###   ########.fr       */
+/*   Updated: 2014/03/12 17:52:34 by jrenouf-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@
 # include <signal.h>
 # include "../libft/libft.h"
 
+# define C_C		3
+# define C_D		4
 # define TAB		9
 # define RETURN		10
 # define SPACE		32
@@ -34,8 +36,6 @@
 # define LEFT		4479771
 # define END		4610843
 # define HOME		4741915
-# define ALT_UP		1096489755
-# define ALT_DOWN	1113266971
 # define ALT_LEFT	1146821403
 # define ALT_RIGHT	1130044187
 # define DELETE		2117294875

@@ -6,7 +6,7 @@
 /*   By: jrenouf- <jrenouf-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/08 14:33:20 by jrenouf-          #+#    #+#             */
-/*   Updated: 2014/03/12 17:24:13 by jrenouf-         ###   ########.fr       */
+/*   Updated: 2014/03/12 17:52:33 by jrenouf-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,21 @@ void					extreme_end(t_param *param)
 		tputs(tgetstr("nd", NULL), 1, tputs_putchar);
 		I++;
 	}
+}
+
+char					*ft_end_sig(t_param *param, char *buf)
+{
+	if (BUF == C_D)
+	{
+		free(STR);
+		return (ft_strdup("exit"));
+	}
+	if (BUF == C_C)
+	{
+		free(STR);
+		return (ft_strdup(""));
+	}
+	return (NULL);
 }
 
 static int				(*key_tab[])(t_param *, char *) =
@@ -74,6 +89,8 @@ char					*select_cmd(int nb, char *str)
 		ft_bzero(buf, 5);
 		if (read(0, buf, 4) < 0)
 			return (NULL);
+		if (BUF == C_C || BUF == C_D)
+			return (ft_end_sig(&p, buf));
 		if_forest(&p, buf);
 	}
 	unset_term();

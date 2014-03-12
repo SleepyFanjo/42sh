@@ -6,7 +6,7 @@
 /*   By: jrenouf- <jrenouf-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/08 15:23:26 by jrenouf-          #+#    #+#             */
-/*   Updated: 2014/03/12 17:18:08 by jrenouf-         ###   ########.fr       */
+/*   Updated: 2014/03/12 17:38:22 by jrenouf-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int						set_term(void)
 	tcgetattr(0, &term);
 	term.c_lflag &= ~(ICANON);
 	term.c_lflag &= ~(ECHO);
-	term.c_lflag &= ~(ECHO);
+	term.c_lflag &= ~(ISIG);
 	term.c_cc[VMIN] = 1;
 	term.c_cc[VTIME] = 0;
 	tcsetattr(0, TCSADRAIN, &term);
@@ -35,6 +35,7 @@ int						unset_term(void)
 	tcgetattr(0, &term);
 	term.c_lflag |= ICANON;
 	term.c_lflag |= ECHO;
+	term.c_lflag |= ISIG;
 	tcsetattr(0, TCSADRAIN, &term);
 	return (0);
 }
