@@ -6,11 +6,11 @@
 #    By: qchevrin <qchevrin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/12/03 12:33:25 by qchevrin          #+#    #+#              #
-#    Updated: 2014/03/12 18:22:12 by vwatrelo         ###   ########.fr        #
+#    Updated: 2014/03/12 19:32:46 by qchevrin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CC= clang
+CC= gcc
 CFLAGS= -Wall -Werror -Wextra -g
 SRC= parser_mofo/q_count_token_len.c \
 	 parser_mofo/q_lexer.c \
