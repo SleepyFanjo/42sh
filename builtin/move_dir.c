@@ -6,11 +6,11 @@
 /*   By: qchevrin <qchevrin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/16 12:25:46 by qchevrin          #+#    #+#             */
-/*   Updated: 2014/03/04 14:22:30 by vwatrelo         ###   ########.fr       */
+/*   Updated: 2014/03/12 15:19:10 by lredoban         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../includes/launch_cmd.h"
 #include <libft.h>
 #include <unistd.h>
 #include <stdlib.h>
@@ -78,23 +78,23 @@ static char	*get_env(char **envp, char *env)
 
 void		move_dir(t_cmd *cmd, char ***envp)
 {
-	char	buf[RD_SIZE + 1];
+	char	buf[BUFF_SIZE + 1];
 
 	if ((cmd->arg)[1] == NULL || !ft_strcmp(cmd->arg[1], "~"))
 	{
 		if (chdir(get_env(*envp, "HOME")) == -1)
-			ft_error("Error: Can't reach home directory", NULL, 0);
+			ft_putendl_fd("Error: Can't reach home directory", 0);
 	}
 	else if (!ft_strcmp(cmd->arg[1], "-"))
 	{
 		if (chdir(get_env(*envp, "OLD_PWD")) == -1)
-			ft_error("Error: Can't reach old pwd", NULL, 0);
+			ft_putendl_fd("Error: Can't reach old pwd", 0);
 		modify_pwd(get_env(*envp, "OLD_PWD"), get_env(*envp, "PWD"), envp);
 	}
 	else
 	{
 		if (chdir(cmd->arg[1]) == -1)
-			ft_error("Error: Can't reach ", cmd->arg[1], 0);
-		modify_pwd(getcwd(buf, RD_SIZE), get_env(*envp, "PWD"), envp);
+			ft_putendl_fd("Error: Can't reach directory", 0);
+		modify_pwd(getcwd(buf, BUFF_SIZE), get_env(*envp, "PWD"), envp);
 	}
 }
