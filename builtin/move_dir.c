@@ -6,7 +6,7 @@
 /*   By: qchevrin <qchevrin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/16 12:25:46 by qchevrin          #+#    #+#             */
-/*   Updated: 2014/03/12 15:19:10 by lredoban         ###   ########.fr       */
+/*   Updated: 2014/03/12 18:27:57 by lredoban         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static void	modify_pwd(char	*pwd, char *old_pwd, char ***envp)
 	int		i;
 
 	new_pwd = ft_strdup("PWD=");
-	new_old_pwd = ft_strdup("OLD_PWD=");
+	new_old_pwd = ft_strdup("OLDPWD=");
 	ft_str_realloc_cat(&new_pwd, pwd);
 	ft_str_realloc_cat(&new_old_pwd, old_pwd);
 	i = find_env("PWD", *envp);
@@ -48,7 +48,7 @@ static void	modify_pwd(char	*pwd, char *old_pwd, char ***envp)
 		(*envp)[i] = new_pwd;
 	else
 		modify_env(envp, new_pwd);
-	i = find_env("OLD_PWD", *envp);
+	i = find_env("OLDPWD", *envp);
 	if (i != -1)
 		(*envp)[i] = new_old_pwd;
 	else
@@ -80,21 +80,25 @@ void		move_dir(t_cmd *cmd, char ***envp)
 {
 	char	buf[BUFF_SIZE + 1];
 
-	if ((cmd->arg)[1] == NULL || !ft_strcmp(cmd->arg[1], "~"))
+	if ((cmd->arg)[1] == NULL)
 	{
 		if (chdir(get_env(*envp, "HOME")) == -1)
 			ft_putendl_fd("Error: Can't reach home directory", 0);
+		else
+			modify_pwd(get_env(*envp, "HOME"), get_env(*envp, "PWD"), envp);
 	}
 	else if (!ft_strcmp(cmd->arg[1], "-"))
 	{
-		if (chdir(get_env(*envp, "OLD_PWD")) == -1)
+		if (chdir(get_env(*envp, "OLDPWD")) == -1)
 			ft_putendl_fd("Error: Can't reach old pwd", 0);
-		modify_pwd(get_env(*envp, "OLD_PWD"), get_env(*envp, "PWD"), envp);
+		else
+			modify_pwd(get_env(*envp, "OLDPWD"), get_env(*envp, "PWD"), envp);
 	}
 	else
 	{
 		if (chdir(cmd->arg[1]) == -1)
 			ft_putendl_fd("Error: Can't reach directory", 0);
-		modify_pwd(getcwd(buf, BUFF_SIZE), get_env(*envp, "PWD"), envp);
+		else
+			modify_pwd(getcwd(buf, BUFF_SIZE), get_env(*envp, "PWD"), envp);
 	}
 }

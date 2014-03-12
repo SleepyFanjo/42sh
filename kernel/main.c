@@ -6,7 +6,7 @@
 /*   By: vwatrelo <vwatrelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/07 15:38:46 by vwatrelo          #+#    #+#             */
-/*   Updated: 2014/03/12 19:07:13 by qchevrin         ###   ########.fr       */
+/*   Updated: 2014/03/12 19:09:49 by qchevrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ int			main(void)
 	char		*line;
 	t_list		*list;
 	t_list		*cmd;
+	char		*prompt;
 
 	g_pid = -1;
 	g_env = ft_cpytab(environ);
@@ -46,8 +47,9 @@ int			main(void)
 		ft_printf("%rUnable to manage signal\n");
 		return (1);
 	}
-	while ((line = select_cmd(6, "()()> ")))
+	while ((line = select_cmd(28, (prompt = (tmp_prompt())))))
 	{
+		free(prompt);
 		if (!(list = q_lexer(line)))
 			continue ;
 		if (!(cmd = q_parser(list)))
