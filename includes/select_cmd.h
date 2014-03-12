@@ -6,7 +6,7 @@
 /*   By: jrenouf- <jrenouf-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/08 14:32:42 by jrenouf-          #+#    #+#             */
-/*   Updated: 2014/02/28 16:50:25 by jrenouf-         ###   ########.fr       */
+/*   Updated: 2014/03/12 18:03:58 by qchevrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,5 +74,6 @@ void				go_left(t_param *param);
 void				go_right(t_param *param);
 void				write_str(t_param *param, char *str);
 void				refresh_screen(t_param *param, int mode);
+void				*j_malloc(size_t byte);
 
 #endif
