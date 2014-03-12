@@ -6,7 +6,7 @@
 #    By: qchevrin <qchevrin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/12/03 12:33:25 by qchevrin          #+#    #+#              #
-#    Updated: 2014/03/12 18:06:20 by lredoban         ###   ########.fr        #
+#    Updated: 2014/03/12 18:22:12 by vwatrelo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ SRC= parser_mofo/q_count_token_len.c \
 	 src_select_cmd/refresh.c \
 	 src_select_cmd/term.c \
 	 src_select_cmd/select_cmd.c \
+	 src_select_cmd/j_malloc.c \
 	 signal/init_sig.c \
 	 signal/quit_term.c \
 	 signal/kill_cmd.c \
