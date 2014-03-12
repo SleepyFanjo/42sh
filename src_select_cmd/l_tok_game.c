@@ -6,7 +6,7 @@
 /*   By: lredoban <lredoban@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/07 18:34:13 by lredoban          #+#    #+#             */
-/*   Updated: 2014/03/12 12:35:56 by lredoban         ###   ########.fr       */
+/*   Updated: 2014/03/12 13:40:05 by lredoban         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,5 +147,6 @@ void					l_check_token(char type, char *s)
 		l_tab_loop(begin, ft_strlen(s));
 	else
 		char_insert(par, "\x9\0\0\0\0");
-//	ft_printf("%s%s", par->str, begin->elem);
+	l_del_list(&begin);
+	//	ft_printf("%s%s", par->str, begin->elem);
 }

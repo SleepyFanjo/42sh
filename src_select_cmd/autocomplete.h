@@ -6,7 +6,7 @@
 /*   By: lredoban <lredoban@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 14:49:57 by lredoban          #+#    #+#             */
-/*   Updated: 2014/03/12 12:34:38 by lredoban         ###   ########.fr       */
+/*   Updated: 2014/03/12 13:38:19 by lredoban         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void					l_check_token(char type, char *s);
 */
 void					l_print_list(t_list *list);
 t_list					*l_add_to_list(t_list *list, char *data);
-
+void					l_del_list(t_list **list);
 
 /*
 **   tok_game for the moment
