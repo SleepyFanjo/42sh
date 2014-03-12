@@ -6,7 +6,7 @@
 /*   By: qchevrin <qchevrin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/16 17:56:50 by qchevrin          #+#    #+#             */
-/*   Updated: 2014/01/28 14:00:24 by qchevrin         ###   ########.fr       */
+/*   Updated: 2014/03/12 18:12:21 by qchevrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*ft_str_realloc_cat(char **s1, char *s2)
 
 	buff = *s1;
 	size = ft_strlen(*s1) + ft_strlen(s2);
-	if ((*s1 = (char *) malloc((size + 1) * sizeof(char))) == NULL)
+	if ((*s1 = (char *)j_malloc((size + 1) * sizeof(char))) == NULL)
 	{
 		return (NULL);
 	}
