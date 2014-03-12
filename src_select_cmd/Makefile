@@ -6,7 +6,7 @@
 #    By: jrenouf- <jrenouf-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/12/19 16:24:28 by jrenouf-          #+#    #+#              #
-#    Updated: 2014/03/12 17:28:26 by jrenouf-         ###   ########.fr        #
+#    Updated: 2014/03/12 18:09:56 by jrenouf-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ SRC = main.c \
 	  move.c \
 	  refresh.c \
 	  select_cmd.c \
+	  j_malloc.c \
 	  term.c
 
 OBJ = $(SRC:.c=.o)
