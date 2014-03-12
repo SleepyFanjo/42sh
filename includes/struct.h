@@ -6,7 +6,7 @@
 /*   By: qchevrin <qchevrin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/24 16:02:14 by qchevrin          #+#    #+#             */
-/*   Updated: 2014/03/10 16:08:47 by vwatrelo         ###   ########.fr       */
+/*   Updated: 2014/03/12 17:06:28 by qchevrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ typedef struct		s_token
 {
 	char			*name;
 	char			type;
+	char			is_inhib;
 }					t_token;
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: qchevrin <qchevrin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/24 16:12:57 by qchevrin          #+#    #+#             */
-/*   Updated: 2014/03/07 17:02:04 by qchevrin         ###   ########.fr       */
+/*   Updated: 2014/03/12 17:08:40 by qchevrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,5 +85,5 @@ t_token		*q_create_token(char *str, int *i, int *error)
 		return (NULL);
 	name = q_strndup(str + *i, k, inh);
 	*i = j;
-	return (q_utility_token(name));
+	return (q_utility_token(name, inh));
 }

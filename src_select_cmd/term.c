@@ -6,7 +6,7 @@
 /*   By: jrenouf- <jrenouf-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/08 15:23:26 by jrenouf-          #+#    #+#             */
-/*   Updated: 2014/02/26 11:44:48 by qchevrin         ###   ########.fr       */
+/*   Updated: 2014/03/12 17:18:08 by jrenouf-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,9 @@ int						set_term(void)
 	tcgetattr(0, &term);
 	term.c_lflag &= ~(ICANON);
 	term.c_lflag &= ~(ECHO);
+	term.c_lflag &= ~(ECHO);
 	term.c_cc[VMIN] = 1;
-	term.c_cc[VTIME] = 1; /* Il faut mettre VTIME a 0 */
+	term.c_cc[VTIME] = 0;
 	tcsetattr(0, TCSADRAIN, &term);
 	return (0);
 }
@@ -36,4 +37,43 @@ int						unset_term(void)
 	term.c_lflag |= ECHO;
 	tcsetattr(0, TCSADRAIN, &term);
 	return (0);
+}
+
+int						get_lenmax(void)
+{
+	int				len;
+	struct winsize	size;
+
+	ioctl(1, TIOCGWINSZ, &size);
+	len = size.ws_col - 1;
+	return (len);
+}
+
+void					init_param(t_param *param, int nb, char *str)
+{
+	I = 0;
+	P = nb;
+	LEN = 0;
+	LEN_MAX = get_lenmax();
+	STR = ft_strdup("");
+	P_LINE = ft_strdup(str);
+}
+
+t_param					*save_param(t_param *param)
+{
+	static t_param		*p = NULL;
+
+	if (param == NULL)
+		return (p);
+	else
+	{
+		if (p == NULL)
+			p = (t_param *)malloc(sizeof(t_param));
+		p->i = I;
+		p->len = LEN;
+		p->p_line = P_LINE;
+		p->str = STR;
+		p->prompt = P;
+	}
+	return (p);
 }
