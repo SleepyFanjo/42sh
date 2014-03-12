@@ -6,7 +6,7 @@
 /*   By: jrenouf- <jrenouf-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/07 15:50:36 by jrenouf-          #+#    #+#             */
-/*   Updated: 2014/02/28 18:40:41 by jrenouf-         ###   ########.fr       */
+/*   Updated: 2014/03/12 17:28:31 by jrenouf-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,13 +85,8 @@ int						char_insert(t_param *param, char *buf)
 			ft_putstr(buf);
 			I++;
 			LEN++;
-			if ((P + I) % (SIZE - 1) == 0)
-				tputs(tgetstr("do", NULL), 1, tputs_putchar);
 		}
-		if (I == LEN)
-			refresh_screen(param, 0);
-		else
-			refresh_screen(param, 1);
+		refresh_screen(param, 1);
 		return (1);
 	}
 	return (0);
