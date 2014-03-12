@@ -6,7 +6,7 @@
 #    By: qchevrin <qchevrin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/12/03 12:33:25 by qchevrin          #+#    #+#              #
-#    Updated: 2014/03/11 17:18:19 by vwatrelo         ###   ########.fr        #
+#    Updated: 2014/03/12 15:40:25 by lredoban         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,9 @@ SRC= parser_mofo/q_count_token_len.c \
 	 builtin/my_unsetenv.c \
 	 builtin/ft_exit.c \
 	 builtin/ft_echo.c \
+	 builtin/echo_opt.c \
 	 builtin/find_builtin.c \
+	 builtin/move_dir.c \
 	 kernel/dup_cmd.c \
 	 kernel/exec_cmd.c \
 	 kernel/get_double_fd_out.c \
