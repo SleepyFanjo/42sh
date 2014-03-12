@@ -6,7 +6,7 @@
 /*   By: qchevrin <qchevrin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/27 15:45:30 by qchevrin          #+#    #+#             */
-/*   Updated: 2014/03/12 17:23:12 by qchevrin         ###   ########.fr       */
+/*   Updated: 2014/03/12 17:52:28 by qchevrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,25 +27,75 @@ char		q_get_utility(char *str)
 	return (Q_STR);
 }
 
+static char	*realloc_tilde(char *home, char *str, int i)
+{
+	char	*ret;
+	int		len;
+
+	len = ft_strlen(home) + ft_strlen(str);
+	if ((ret = (char *)malloc(sizeof(char) * len)) == NULL)
+		q_error("Error : can't malloc", NULL, 1);
+	len = 0;
+	while (len <= i)
+	{
+		ret[len] = str[len];
+		len = len + 1;
+	}
+	ret[i] = '\0';
+	ft_strcat(ret, home);
+	return (ft_strcat(ret, str + len));
+}
+
+
+static char	*tilde(char *str)
+{
+	int		i;
+	int		j;
+
+	i = 0;
+	while (str[i] != '~')
+	{
+		if (str[i] == '\0')
+			return (str);
+		i = i + 1;
+	}
+	j = 0;
+	while (g_env != NULL && g_env[j] != NULL)
+	{
+		if (!ft_strncmp(g_env[j], "HOME", 4))
+			return (realloc_tilde(g_env[j] + 5, str, i));
+		j = j + 1;
+	}
+	return (str);
+}
+
 static char	*eval_token_name(char *token_name)
 {
 	int		i;
+	int		j;
+	int		len;
 	char	*ret;
 
-	if (token_name == NULL || token_name[0] != '$')
+	if (token_name == NULL)
 		return (token_name);
+	j = 0;
+	while (token_name[j] != '$' && token_name[j] != '\0')
+		j = j + 1;
+	if (token_name[j] == '\0')
+		return (tilde(token_name));
+	len = ft_strlen(token_name + j + 1);
 	i = 0;
 	while (g_env != NULL && g_env[i] != NULL)
 	{
-		if (!ft_strncmp(token_name + 1, g_env[i], ft_strlen(token_name + 1)))
+		if (!ft_strncmp(token_name + j + 1, g_env[i], len))
 		{
-			ret = ft_strdup(g_env[i] + ft_strlen(token_name));
+			ret = ft_strdup(g_env[i] + len - 1);
 			free(token_name);
 			return (ret);
 		}
 		i = i + 1;
 	}
-	return (token_name);
+	return (tilde(token_name));
 }
 
 
