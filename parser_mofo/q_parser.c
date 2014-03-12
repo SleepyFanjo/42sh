@@ -6,7 +6,7 @@
 /*   By: qchevrin <qchevrin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 14:02:59 by qchevrin          #+#    #+#             */
-/*   Updated: 2014/03/12 17:09:34 by qchevrin         ###   ########.fr       */
+/*   Updated: 2014/03/12 19:06:58 by qchevrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,18 +85,22 @@ void		q_delete_whitespace(t_list **list)
 t_list		*q_parser(t_list *token_list)
 {
 	t_list	*list;
+	t_list	*token;
 	int		error;
 
 	list = NULL;
 	q_delete_whitespace(&token_list);
+	token = token_list;
 	while (token_list != NULL)
 	{
 		error = q_add_in_list(&list, (void *)q_fill_cmd(&token_list));
 		if (error)
 		{
+			q_free_list(&token);
 			q_free_cmd(&list);
 			return (NULL);
 		}
 	}
+	q_free_list(&token);
 	return (list);
 }
