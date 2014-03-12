@@ -1,26 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   init_sig.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qchevrin <qchevrin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vwatrelo <vwatrelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/11/20 10:05:21 by qchevrin          #+#    #+#             */
-/*   Updated: 2014/03/12 18:11:17 by qchevrin         ###   ########.fr       */
+/*   Created: 2014/03/11 16:26:41 by vwatrelo          #+#    #+#             */
+/*   Updated: 2014/03/11 17:18:20 by vwatrelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <stdlib.h>
+#include "../includes/launch_cmd.h"
 
-char	*ft_strdup(const char *s1)
+int		init_sig(void)
 {
-	char	*res;
-
-	if ((res = (char *)j_malloc((ft_strlen(s1) + 1) * sizeof(char))) == NULL)
-	{
-		return (NULL);
-	}
-	res = ft_strcpy(res, s1);
-	return (res);
+	signal(SIGHUP, quit_term);
+	signal(SIGINT, kill_cmd);
+	signal(SIGQUIT, kill_cmd);
+	signal(SIGKILL, kill_cmd);
+	signal(SIGTSTP, kill_cmd);
+	signal(SIGCONT, kill_cmd);
+	return (0);
 }

@@ -6,11 +6,11 @@
 /*   By: qchevrin <qchevrin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/28 18:13:01 by qchevrin          #+#    #+#             */
-/*   Updated: 2014/01/18 15:46:16 by qchevrin         ###   ########.fr       */
+/*   Updated: 2014/03/11 14:16:22 by qchevrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../includes/launch_cmd.h"
 #include <libft.h>
 
 static int	env_comp(char *s1, char *s2)
@@ -34,7 +34,7 @@ static void	add_new_entry(char ***envp, char *entry)
 	while ((*envp) != NULL && (*envp)[i] != NULL)
 		i = i + 1;
 	if ((buff = (char **) malloc((i + 2) * sizeof(char *))) == NULL)
-		ft_error("Error : can't malloc", NULL, 1);
+		ft_printf("Allocaation fail\n");
 	i = 0;
 	while ((*envp) != NULL && (*envp)[i] != NULL)
 	{

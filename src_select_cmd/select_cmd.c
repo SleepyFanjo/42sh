@@ -6,7 +6,7 @@
 /*   By: jrenouf- <jrenouf-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/08 14:33:20 by jrenouf-          #+#    #+#             */
-/*   Updated: 2014/03/11 17:01:50 by lredoban         ###   ########.fr       */
+/*   Updated: 2014/03/12 19:00:53 by lredoban         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,77 +19,29 @@ int						tputs_putchar(int c)
 	return (1);
 }
 
-int						get_lenmax(void)
-{
-	int				len;
-	struct winsize	size;
-
-	ioctl(1, TIOCGWINSZ, &size);
-	len = size.ws_col - 1;
-	return (len);
-}
-
-void					init_param(t_param *param, int nb)
-{
-	I = 0;
-	P = nb;
-	LEN = 0;
-	LEN_MAX = 100000;
-	STR = ft_strdup("");
-}
-
-int						go_down(t_param *param, char *buf)
-{
-	int					tmp_len;
-	int					j;
-
-	tmp_len = (LEN + P) / (SIZE - 1);
-	if (BUF == ALT_DOWN &&
-			((LEN + P) > ((SIZE - 1) * tmp_len) && I <= (tmp_len * (SIZE - 1))))
-	{
-		j = SIZE - 1;
-		while (I < LEN && j > 0)
-		{
-			go_right(param);
-			j--;
-		}
-		return (1);
-	}
-	return (0);
-}
-
-int						go_up(t_param *param, char *buf)
-{
-	int					j;
-
-	j = SIZE - 1;
-	if (BUF == ALT_UP && (P + I) > SIZE)
-	{
-		while (j > 0 && I > 0)
-		{
-			go_left(param);
-			j--;
-		}
-		return (1);
-	}
-	return (0);
-}
-
-int						tab_key(t_param *param, char *buf)
-{
-	if (BUF != TAB)
-		return (0);
-	ft_autocomplete(param);
-	(void)param;
-	return (1);
-}
 
 void					extreme_end(t_param *param)
 {
 	while (I != LEN)
 	{
-		go_right(param);
+		tputs(tgetstr("nd", NULL), 1, tputs_putchar);
+		I++;
 	}
+}
+
+char					*ft_end_sig(t_param *param, char *buf)
+{
+	if (BUF == C_D)
+	{
+		free(STR);
+		return (ft_strdup("exit"));
+	}
+	if (BUF == C_C)
+	{
+		free(STR);
+		return (ft_strdup(""));
+	}
+	return (NULL);
 }
 
 void					if_forest(t_param *param, char *buf)
@@ -97,6 +49,9 @@ void					if_forest(t_param *param, char *buf)
 	int					i;
 
 	i = 0;
+	LEN_MAX = get_lenmax();
+	if (LEN >= LEN_MAX)
+		return ;
 	while (key_tab[i] != NULL)
 	{
 		if ((key_tab[i])(param, buf))
@@ -105,22 +60,27 @@ void					if_forest(t_param *param, char *buf)
 	}
 	if (BUF == RETURN)
 		extreme_end(param);
+	save_param(param);
 }
 
-char					*select_cmd(int nb)
+char					*select_cmd(int nb, char *str)
 {
 	t_param				p;
 	char				buf[5];
 
 	if (set_term() < 0)
 		return (NULL);
-	init_param(&p, nb);
+	signal(SIGWINCH, &sc_clear);
+	init_param(&p, nb, str);
 	ft_bzero(buf, 5);
+	ft_putstr(str);
 	while (BUF != RETURN)
 	{
-		p.size = get_lenmax();
 		ft_bzero(buf, 5);
-		read(0, buf, 4);
+		if (read(0, buf, 4) < 0)
+			return (NULL);
+		if (BUF == C_C || BUF == C_D)
+			return (ft_end_sig(&p, buf));
 		if_forest(&p, buf);
 	}
 	unset_term();

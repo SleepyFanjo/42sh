@@ -6,13 +6,11 @@
 /*   By: qchevrin <qchevrin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/18 15:57:08 by qchevrin          #+#    #+#             */
-/*   Updated: 2014/01/18 16:32:55 by qchevrin         ###   ########.fr       */
+/*   Updated: 2014/03/11 14:16:32 by qchevrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
-#include <libft.h>
-
+#include "../includes/launch_cmd.h"
 
 static int	match(char *s1, char *s2)
 {
@@ -82,7 +80,7 @@ void		delete_in_env(t_cmd *cmd, char ***envp)
 
 	if (cmd->arg[1] == NULL)
 	{
-		ft_error("Error: Too few arguments", NULL, 0);
+		ft_printf("Error: Too few arguments\n");
 		return ;
 	}
 	i = 1;

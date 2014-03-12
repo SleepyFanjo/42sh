@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   get_file_in.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qchevrin <qchevrin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vwatrelo <vwatrelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/11/20 10:05:21 by qchevrin          #+#    #+#             */
-/*   Updated: 2014/03/12 18:11:17 by qchevrin         ###   ########.fr       */
+/*   Created: 2014/03/07 17:48:13 by vwatrelo          #+#    #+#             */
+/*   Updated: 2014/03/10 12:15:18 by vwatrelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <stdlib.h>
+#include "launch_cmd.h"
 
-char	*ft_strdup(const char *s1)
+int		get_file_in(t_cmd *cmd)
 {
-	char	*res;
+	int		fd;
 
-	if ((res = (char *)j_malloc((ft_strlen(s1) + 1) * sizeof(char))) == NULL)
-	{
-		return (NULL);
-	}
-	res = ft_strcpy(res, s1);
-	return (res);
+	if (cmd->file_in == NULL)
+		return (-1);
+	if ((fd = open(cmd->file_in, O_RDONLY)) < 0)
+		return (-1);
+	cmd->fd_in = fd;
+	return (0);
 }

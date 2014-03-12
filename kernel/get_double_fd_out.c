@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   get_double_fd_out.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qchevrin <qchevrin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vwatrelo <vwatrelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/11/20 10:05:21 by qchevrin          #+#    #+#             */
-/*   Updated: 2014/03/12 18:11:17 by qchevrin         ###   ########.fr       */
+/*   Created: 2014/03/07 19:30:42 by vwatrelo          #+#    #+#             */
+/*   Updated: 2014/03/10 14:10:32 by vwatrelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <stdlib.h>
+#include "launch_cmd.h"
 
-char	*ft_strdup(const char *s1)
+int		get_double_fd_out(t_cmd *cmd)
 {
-	char	*res;
+	int		fd;
 
-	if ((res = (char *)j_malloc((ft_strlen(s1) + 1) * sizeof(char))) == NULL)
-	{
-		return (NULL);
-	}
-	res = ft_strcpy(res, s1);
-	return (res);
+	if (cmd->file_out == NULL)
+		return (-1);
+	if ((fd = open(cmd->file_out, O_WRONLY | O_CREAT | O_APPEND, 0644)) < 0)
+		return (-1);
+	cmd->fd_out = fd;
+	return (0);
 }

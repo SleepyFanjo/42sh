@@ -6,34 +6,22 @@
 /*   By: qchevrin <qchevrin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/18 15:39:43 by qchevrin          #+#    #+#             */
-/*   Updated: 2014/01/18 15:52:35 by qchevrin         ###   ########.fr       */
+/*   Updated: 2014/03/10 16:16:20 by vwatrelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
-#include <libft.h>
+#include "../includes/launch_cmd.h"
 
 static char	*get_variable(char **arg)
 {
 	char		*env;
 
 	env = ft_strdup(arg[1]);
-	ft_str_realloc_cat(&env, "=");
+	if ((ft_str_realloc_cat(&env, "=")) == NULL)
+		return (NULL);
 	if (arg[2] != NULL)
 		ft_str_realloc_cat(&env, arg[2]);
 	return (env);
-}
-
-static void	print_env(char **env)
-{
-	int		i;
-
-	i = 0;
-	while (env != NULL && env[i] != NULL)
-	{
-		ft_putendl(env[i]);
-		i = i + 1;
-	}
 }
 
 static int	verify_name(char *str)
@@ -45,7 +33,7 @@ static int	verify_name(char *str)
 	{
 		if (str[i] == '=')
 		{
-			ft_error("Error: Syntax error", NULL, 0);
+			ft_printf("%rSyntax error: %s\n", str);
 			return (1);
 		}
 		i = i + 1;
@@ -53,26 +41,31 @@ static int	verify_name(char *str)
 	return (0);
 }
 
-void		add_in_env(t_cmd *cmd, char ***envp)
+int		add_in_env(t_cmd *cmd, char ***envp, int *fd_b)
 {
 	char		*env;
 	int			i;
 
 	if (cmd->arg[1] == NULL)
 	{
-		print_env(*envp);
-		return ;
+		print_env(*envp, fd_b[OUT_B]);
+		return (0);
 	}
 	i = 0;
 	while (cmd->arg[i] != NULL)
 		i = i + 1;
 	if (i > 3)
 	{
-		ft_error("Error : Too many arguments", NULL, 0);
-		return ;
+		ft_printf("%rError : Too many arguments\n");
+		return (1);
 	}
 	if (verify_name(cmd->arg[1]) == 1)
-		return ;
-	env = get_variable(cmd->arg);
+		return (1);
+	if ((env = get_variable(cmd->arg)) == NULL)
+	{
+		ft_printf("Allocation fail\n");
+		return (1);
+	}
 	modify_env(envp, env);
+	return (0);
 }

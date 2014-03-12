@@ -6,7 +6,7 @@
 /*   By: qchevrin <qchevrin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 15:26:29 by qchevrin          #+#    #+#             */
-/*   Updated: 2014/03/07 17:11:06 by qchevrin         ###   ########.fr       */
+/*   Updated: 2014/03/10 13:53:36 by vwatrelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,8 @@ t_cmd	*q_init_cmd(void)
 	cmd->in_mode = -1;
 	cmd->out_mode = -1;
 	cmd->next_cmd = -1;
+	cmd->pipe_out = -1;
+	cmd->fd_in = -1;
+	cmd->fd_out = -1;
 	return (cmd);
 }

@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   exec_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qchevrin <qchevrin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vwatrelo <vwatrelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/11/20 10:05:21 by qchevrin          #+#    #+#             */
-/*   Updated: 2014/03/12 18:11:17 by qchevrin         ###   ########.fr       */
+/*   Created: 2014/03/10 10:48:25 by vwatrelo          #+#    #+#             */
+/*   Updated: 2014/03/10 14:03:41 by vwatrelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <stdlib.h>
+#include "launch_cmd.h"
 
-char	*ft_strdup(const char *s1)
+int		exec_cmd(t_cmd *cmd)
 {
-	char	*res;
+	char	*path;
 
-	if ((res = (char *)j_malloc((ft_strlen(s1) + 1) * sizeof(char))) == NULL)
+	if ((path = get_path(cmd->cmd, g_env)) == NULL)
 	{
-		return (NULL);
+		ft_printf("%rCommand not found: %s\n", cmd->cmd);
+		exit(-1);
 	}
-	res = ft_strcpy(res, s1);
-	return (res);
+	execve(path, cmd->arg, g_env);
+	return (0);
 }

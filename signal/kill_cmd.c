@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   kill_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qchevrin <qchevrin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vwatrelo <vwatrelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/11/20 10:05:21 by qchevrin          #+#    #+#             */
-/*   Updated: 2014/03/12 18:11:17 by qchevrin         ###   ########.fr       */
+/*   Created: 2014/03/11 16:34:00 by vwatrelo          #+#    #+#             */
+/*   Updated: 2014/03/11 16:57:02 by vwatrelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <stdlib.h>
+#include "../includes/launch_cmd.h"
 
-char	*ft_strdup(const char *s1)
+void		kill_cmd(int sig)
 {
-	char	*res;
+	extern int		g_pid;
 
-	if ((res = (char *)j_malloc((ft_strlen(s1) + 1) * sizeof(char))) == NULL)
+	if (g_pid != -1)
 	{
-		return (NULL);
+		kill(g_pid, sig);
+		ft_putchar('\n');
+		g_pid = -1;
 	}
-	res = ft_strcpy(res, s1);
-	return (res);
+	signal(sig, &kill_cmd);
 }

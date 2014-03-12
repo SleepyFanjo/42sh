@@ -6,7 +6,7 @@
 /*   By: jrenouf- <jrenouf-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/07 15:50:36 by jrenouf-          #+#    #+#             */
-/*   Updated: 2014/03/12 13:55:33 by lredoban         ###   ########.fr       */
+/*   Updated: 2014/03/12 18:56:43 by lredoban         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void					remalloc_cat(char **s1, char *s2)
 	char				*str;
 
 	len = ft_strlen(*s1) + ft_strlen(s2) + 1;
-	str = (char *)malloc(sizeof(char) * len);
+	str = (char *)j_malloc(sizeof(char) * len);
 	str = ft_strcpy(str, *s1);
 	str = ft_strcat(str, s2);
 //	free(*s1);
@@ -85,13 +85,8 @@ int						char_insert(t_param *param, char *buf)
 			ft_putstr(buf);
 			I++;
 			LEN++;
-			if ((P + I) % (SIZE - 1) == 0)
-				tputs(tgetstr("do", NULL), 1, tputs_putchar);
 		}
-		if (I == LEN)
-			refresh_screen(param, 0);
-		else
-			refresh_screen(param, 1);
+		refresh_screen(param, 1);
 		return (1);
 	}
 	return (0);

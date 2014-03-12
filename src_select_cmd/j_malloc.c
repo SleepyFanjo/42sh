@@ -1,31 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnew.c                                        :+:      :+:    :+:   */
+/*   j_malloc.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qchevrin <qchevrin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/11/21 10:51:48 by qchevrin          #+#    #+#             */
-/*   Updated: 2014/03/12 18:11:39 by qchevrin         ###   ########.fr       */
+/*   Created: 2014/03/12 17:59:55 by qchevrin          #+#    #+#             */
+/*   Updated: 2014/03/12 18:09:42 by jrenouf-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
-#include <stdlib.h>
-#include "libft.h"
+#include "select_cmd.h"
 
-char	*ft_strnew(size_t size)
+void				*j_malloc(size_t byte)
 {
-	char	*ptr;
+	void			*ret;
 
-	if ((ptr = (char *)j_malloc(size * sizeof(char))) == NULL)
+	if ((ret = malloc(byte)) == NULL)
 	{
-		return (NULL);
+		if ((ret = malloc(byte)) == NULL)
+		{
+			ft_putendl("Error : can't malloc");
+			exit(1);
+		}
 	}
-	while (size > 0)
-	{
-		ptr[size - 1] = '\0';
-		size = size - 1;
-	}
-	return (ptr);
+	return (ret);
 }
