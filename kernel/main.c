@@ -6,7 +6,7 @@
 /*   By: vwatrelo <vwatrelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/07 15:38:46 by vwatrelo          #+#    #+#             */
-/*   Updated: 2014/03/11 16:54:43 by vwatrelo         ###   ########.fr       */
+/*   Updated: 2014/03/12 18:09:19 by vwatrelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,9 @@ int			main(void)
 	if (init_sig() < 0)
 	{
 		ft_printf("%rUnable to manage signal\n");
-		perror("dasds");
 		return (1);
 	}
-	while ((line = tmp_prompt()))
+	while ((line = select_cmd("()()> ", 6)))
 	{
 		if (!(list = q_lexer(line)))
 			continue ;
