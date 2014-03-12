@@ -6,7 +6,7 @@
 /*   By: jrenouf- <jrenouf-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/08 14:32:42 by jrenouf-          #+#    #+#             */
-/*   Updated: 2014/03/12 17:52:34 by jrenouf-         ###   ########.fr       */
+/*   Updated: 2014/03/12 18:08:24 by jrenouf-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,5 +80,6 @@ void				sc_clear(int sig);
 int					get_lenmax(void);
 t_param				*save_param(t_param *param);
 void				init_param(t_param *param, int nb, char *str);
+void				*j_malloc(size_t byte);
 
 #endif
