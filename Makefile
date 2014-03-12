@@ -6,7 +6,7 @@
 #    By: qchevrin <qchevrin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/12/03 12:33:25 by qchevrin          #+#    #+#              #
-#    Updated: 2014/03/12 15:40:25 by lredoban         ###   ########.fr        #
+#    Updated: 2014/03/12 18:06:20 by lredoban         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,7 +60,7 @@ SRC= parser_mofo/q_count_token_len.c \
 
 INCLUDES=-I includes/
 OBJ= $(SRC:.c=.o)
-NAME= test
+NAME= 42sh
 LIB=-L/usr/lib -ltermcap -L./libft -lft
 DIR_LFT= libft
 
