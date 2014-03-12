@@ -6,12 +6,11 @@
 /*   By: lredoban <lredoban@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/07 18:53:21 by lredoban          #+#    #+#             */
-/*   Updated: 2014/03/12 13:38:39 by lredoban         ###   ########.fr       */
+/*   Updated: 2014/03/12 19:32:25 by lredoban         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../parser_mofo/parser.h" //creer un list.h et utiliser des fction lists dans la libft
-
+#include "parser.h"
 void						l_del_list(t_list **list)
 {
 	t_list					*tmp;

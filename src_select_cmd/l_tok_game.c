@@ -6,7 +6,7 @@
 /*   By: lredoban <lredoban@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/07 18:34:13 by lredoban          #+#    #+#             */
-/*   Updated: 2014/03/12 13:40:05 by lredoban         ###   ########.fr       */
+/*   Updated: 2014/03/12 19:28:35 by lredoban         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,9 @@ static void				l_tab_loop(t_list *begin, int len)
 {
 	t_list				*tmp;
 	char				buf[5];
+	t_param				*par;
 
+	par = l_save_param(NULL);
 	tmp = begin;
 	ft_bzero(buf, 5);
 	while (BUF == TAB || *buf == '\0')
@@ -85,6 +87,7 @@ static void				l_tab_loop(t_list *begin, int len)
 		char_insert(par, buf);
 	else
 		char_insert(par, "\x20\0\0\0\0");
+	l_save_param(par);
 }
 
 /*void					del_word(char *s)
@@ -113,7 +116,9 @@ void					insert_word(char *s, int former_len)
 	int					i;
 	int					len;
 	char				*buf;
+	t_param				*par;
 
+	par = l_save_param(NULL);
 	i = 0;
 	len = ft_strlen(s);
 	buf = (char *)malloc(sizeof(char));
@@ -127,6 +132,7 @@ void					insert_word(char *s, int former_len)
 		i += 1;
 	}
 	free(buf);
+	l_save_param(par);
 }
 
 void					l_check_token(char type, char *s)

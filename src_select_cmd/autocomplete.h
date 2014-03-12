@@ -6,7 +6,7 @@
 /*   By: lredoban <lredoban@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 14:49:57 by lredoban          #+#    #+#             */
-/*   Updated: 2014/03/12 13:38:19 by lredoban         ###   ########.fr       */
+/*   Updated: 2014/03/12 19:34:44 by lredoban         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include <dirent.h>
 # include "../libft/libft.h"
-# include "../parser_mofo/parser.h"
+# include "parser.h"
 # include "select_cmd.h"
 
 char				*lova_envp; // a savoir comment en gere ca
@@ -63,6 +63,7 @@ static const t_check	to_check[] =
 };
 
 int						ft_auto_dir(char *s, char *s_cmp, t_check check_it, t_list **begin);
+t_param					*l_save_param(t_param *param);
 
 /*
 **   l_path.c

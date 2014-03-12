@@ -6,12 +6,11 @@
 /*   By: jrenouf- <jrenouf-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/08 14:33:20 by jrenouf-          #+#    #+#             */
-/*   Updated: 2014/03/12 19:00:53 by lredoban         ###   ########.fr       */
+/*   Updated: 2014/03/12 19:08:49 by lredoban         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "select_cmd.h"
-//#include "autocomplete.h"  // seulement dans le fichier contenant la fonction tab_key
 
 int						tputs_putchar(int c)
 {
