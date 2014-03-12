@@ -6,7 +6,7 @@
 /*   By: lredoban <lredoban@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/04 11:53:05 by lredoban          #+#    #+#             */
-/*   Updated: 2014/03/11 15:12:15 by lredoban         ###   ########.fr       */
+/*   Updated: 2014/03/12 12:31:38 by lredoban         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,19 +48,11 @@ int							l_search_link(char type, char *s, t_list **begin)
 	return (1);
 }
 
-int							l_search_dir(char type, char *s, t_list **begin)
-{
-	//ft_putendl("Looking for directories:");
-	(void)s;
-	(void)type;
-	(void)begin;
-	return (0);
-}
-
 int							l_search_cmd(char type, char *s, t_list **begin)
 {
 	if (type != Q_CMD && type != Q_CTRL)
 		return (0);
+	(void)type;
 	ft_checkpath(s, begin);
 	ft_putchar('\n');
 	return (1);

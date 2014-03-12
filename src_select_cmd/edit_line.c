@@ -6,7 +6,7 @@
 /*   By: jrenouf- <jrenouf-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/07 15:50:36 by jrenouf-          #+#    #+#             */
-/*   Updated: 2014/03/11 18:28:46 by lredoban         ###   ########.fr       */
+/*   Updated: 2014/03/12 12:04:27 by lredoban         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,6 @@ int						char_del(t_param *param, char *buf)
 {
 	if (BUF == DELETE || BUF == B_SPACE)
 	{
-//ft_printf("buf=|%x|%x|%x|%x|%x|\n", buf[0], buf[1], buf[2], buf[3], buf[4]);
-//	sleep(1);
 		if (BUF == DELETE && I < LEN)
 		{
 			tputs(tgetstr("dc", NULL), 1, tputs_putchar);

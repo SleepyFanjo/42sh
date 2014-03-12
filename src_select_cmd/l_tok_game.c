@@ -6,7 +6,7 @@
 /*   By: lredoban <lredoban@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/07 18:34:13 by lredoban          #+#    #+#             */
-/*   Updated: 2014/03/11 18:35:32 by lredoban         ###   ########.fr       */
+/*   Updated: 2014/03/12 12:35:56 by lredoban         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,19 +52,26 @@ char					*l_get_token(t_list *list, char *type)
 	return (ret);
 }
 
-/*static void				l_tab_loop(t_list *begin)
+void					print_tmp(char *s, int former_len)
+{
+	ft_putstr(&s[former_len]);
+}
+
+static void				l_tab_loop(t_list *begin, int len)
 {
 	t_list				*tmp;
 	char				buf[5];
 
 	tmp = begin;
 	ft_bzero(buf, 5);
-	while (BUF == TAB)
+	while (BUF == TAB || *buf == '\0')
 	{
-		ft_putstr(tmp->elem);
+		refresh_screen(par, 0);
+		ft_putstr(par->str);
+		print_tmp(tmp->elem, len);
 		ft_bzero(buf, 5);
 		if (read(0, buf, 4) == -1)
-			break ;  // exit?
+			exit(27) ;
 		if (BUF == TAB)
 		{
 			if (tmp->next != NULL)
@@ -73,28 +80,35 @@ char					*l_get_token(t_list *list, char *type)
 				tmp = begin;
 		}
 	}
+	insert_word(tmp->elem, len);
 	if (BUF != RETURN)
 		char_insert(par, buf);
-	char_insert(par, " ");
-}*/
+	else
+		char_insert(par, "\x20\0\0\0\0");
+}
 
-void					del_word(char *s)
+/*void					del_word(char *s)
 {
 	int					len;
 int	fd;
 fd = open("toto", O_WRONLY | O_TRUNC | O_CREAT);
 
-ft_putendl_fd("on est al\n", fd);
+ft_putstr_fd("chaine=", fd);
+ft_putendl_fd(s, fd);
 
 	len = ft_strlen(s);
-	while (len >= 0)
+	while (len > 0)
 	{
+ft_putstr_fd("len", fd);
+ft_putnbr_fd(len, fd);
+ft_putendl_fd("", fd);
 		char_del(par, "\x7b\x0\x0\x0\0");
+	sleep(1);
 		len--;
 	}
-}
+}*/
 
-void					insert_word(char *s)
+void					insert_word(char *s, int former_len)
 {
 	int					i;
 	int					len;
@@ -104,6 +118,7 @@ void					insert_word(char *s)
 	len = ft_strlen(s);
 	buf = (char *)malloc(sizeof(char));
 //ft_printf("%s len=%d\n", s, len);
+	i += former_len;
 	while (i < len)
 	{
 	//	buf = ft_strdup("");
@@ -118,16 +133,19 @@ void					l_check_token(char type, char *s)
 {
 	int					i;
 	t_list				*begin;
+	int					ret;
 
 	i = 0;
 	begin = NULL;
 	while (tok_tab[i] != NULL)
 	{
-		if (tok_tab[i](type, s, &begin))
+		if ((ret = tok_tab[i](type, s, &begin)))
 			break ;
 		i += 1;
 	}
-//	l_tab_loop(begin);
+	if (ret)
+		l_tab_loop(begin, ft_strlen(s));
+	else
+		char_insert(par, "\x9\0\0\0\0");
 //	ft_printf("%s%s", par->str, begin->elem);
-	insert_word(begin->elem);
 }

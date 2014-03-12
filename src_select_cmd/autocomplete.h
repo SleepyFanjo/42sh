@@ -6,7 +6,7 @@
 /*   By: lredoban <lredoban@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 14:49:57 by lredoban          #+#    #+#             */
-/*   Updated: 2014/03/11 17:48:50 by lredoban         ###   ########.fr       */
+/*   Updated: 2014/03/12 12:34:38 by lredoban         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,9 @@ typedef int				(*t_tok_func)(char type, char *s, t_list **begin);
 static const t_tok_func	tok_tab[] =
 {
 						&l_search_file,
-						&l_search_dir,
-						&l_search_cmd,
 						&l_search_exe,
 						&l_search_link,
+						&l_search_cmd,
 						NULL
 };
 
@@ -86,6 +85,5 @@ t_list					*l_add_to_list(t_list *list, char *data);
 /*
 **   tok_game for the moment
 */
-void					del_word(char *s);
-void					insert_word(char *s);
+void					insert_word(char *s, int former_len);
 #endif

@@ -6,7 +6,7 @@
 /*   By: lredoban <lredoban@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/25 14:55:25 by lredoban          #+#    #+#             */
-/*   Updated: 2014/03/11 17:53:20 by lredoban         ###   ########.fr       */
+/*   Updated: 2014/03/12 11:17:31 by lredoban         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,9 @@ static void			ft_clear(char **str)
 
 static void			ft_check_builtin(char *s, t_list **begin)
 {
-	static char		*builtin[6] =
+	static char		*builtin[7] =
 	{
-		"cd", "setenv", "unsetenv",
-		"env", "echo",
+		"cd", "echo", "env", "exit", "setenv", "unsetenv",
 		NULL
 	};
 	int				i;
@@ -86,6 +85,5 @@ int					ft_checkpath(char *s, t_list **begin)
 	ft_process(tmp, s, i, begin);
 	ft_clear(tmp);
 	free(path);
-	del_word(s);
 	return (0);
 }

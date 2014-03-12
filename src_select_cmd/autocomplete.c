@@ -6,7 +6,7 @@
 /*   By: lredoban <lredoban@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 14:49:39 by lredoban          #+#    #+#             */
-/*   Updated: 2014/03/11 18:31:47 by lredoban         ###   ########.fr       */
+/*   Updated: 2014/03/12 12:35:07 by lredoban         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ int						ft_auto_dir(char *s, char *s_cmp, t_check check_it, t_list **begin)
 				&& check_it(s, ent, s_cmp))
 			*begin = l_add_to_list(*begin, ent->d_name);
 	}
-	del_word(s_cmp);
 	ft_putchar('\n');
 	closedir(dir);
 	return (1);
