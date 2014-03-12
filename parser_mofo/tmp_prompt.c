@@ -6,7 +6,7 @@
 /*   By: qchevrin <qchevrin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/27 15:27:25 by qchevrin          #+#    #+#             */
-/*   Updated: 2014/03/12 17:45:03 by lredoban         ###   ########.fr       */
+/*   Updated: 2014/03/12 18:38:47 by lredoban         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,9 +85,6 @@ char		*tmp_prompt(void)
 		ft_putstr("]\n\033[0m");
 		free(pwd);
 	}
-	ft_putstr("\033[32m");
-	ft_putstr("THE Fuckin' $hell (.)(.) #> ");
-	ft_putstr("\033[0m");
-	get_next_line(0, &line);
+	line = ft_strdup("\033[32mTHE Fuckin' $hell (.)(.) #> \033[0m");
 	return (line);
 }
