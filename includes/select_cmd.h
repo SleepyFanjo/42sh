@@ -6,7 +6,7 @@
 /*   By: jrenouf- <jrenouf-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/08 14:32:42 by jrenouf-          #+#    #+#             */
-/*   Updated: 2014/03/12 18:08:24 by jrenouf-         ###   ########.fr       */
+/*   Updated: 2014/03/13 15:56:00 by jrenouf-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,17 @@
 # define LEN_MAX	param->len_max
 # define STR		param->str
 
+# define H_STR		param->history->str
+# define H_NEXT		param->history->next
+# define H_PREV		param->history->prev
+
+typedef struct			s_history
+{
+	char				*str;
+	struct s_history	*next;
+	struct s_history	*prev;
+}						t_history;
+
 typedef struct		s_param
 {
 	int				i;
@@ -57,6 +68,7 @@ typedef struct		s_param
 	int				prompt;
 	char			*p_line;
 	char			*str;
+	t_history		*history;
 }					t_param;
 
 int					tputs_putchar(int c);
@@ -74,12 +86,13 @@ int					ft_prompt(char **env);
 char				*select_cmd(int nb, char *str);
 void				go_left(t_param *param);
 void				go_right(t_param *param);
-void				write_str(t_param *param);
+void				write_str(char *p_line, char *str);
 void				refresh_screen(t_param *param, int mode);
 void				sc_clear(int sig);
 int					get_lenmax(void);
 t_param				*save_param(t_param *param);
 void				init_param(t_param *param, int nb, char *str);
 void				*j_malloc(size_t byte);
+void				exleft(int tmp);
 
 #endif

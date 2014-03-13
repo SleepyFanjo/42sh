@@ -6,11 +6,11 @@
 /*   By: jrenouf- <jrenouf-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/08 14:33:20 by jrenouf-          #+#    #+#             */
-/*   Updated: 2014/03/12 19:11:25 by qchevrin         ###   ########.fr       */
+/*   Updated: 2014/03/13 15:39:09 by jrenouf-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "select_cmd.h"
+#include "../includes/select_cmd.h"
 
 int						tputs_putchar(int c)
 {
@@ -33,11 +33,13 @@ char					*ft_end_sig(t_param *param, char *buf)
 	if (BUF == C_D)
 	{
 		free(STR);
+		write(1, "\n", 1);
 		return (ft_strdup("exit"));
 	}
 	if (BUF == C_C)
 	{
 		free(STR);
+		write(1, "\n", 1);
 		return (ft_strdup(""));
 	}
 	return (NULL);

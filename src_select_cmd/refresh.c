@@ -6,40 +6,58 @@
 /*   By: jrenouf- <jrenouf-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 16:23:20 by jrenouf-          #+#    #+#             */
-/*   Updated: 2014/03/12 17:11:32 by jrenouf-         ###   ########.fr       */
+/*   Updated: 2014/03/13 15:17:34 by jrenouf-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "select_cmd.h"
+#include "../includes/select_cmd.h"
+
+void					exleft(int tmp)
+{
+	while (tmp > 0)
+	{
+		tputs(tgetstr("le", NULL), 1, tputs_putchar);
+		tmp--;
+	}
+	tputs(tgetstr("cd", NULL), 1, tputs_putchar);
+}
 
 void					sc_clear(int sig)
 {
 	t_param				*param;
+	int					tmp;
 
 	param = save_param(NULL);
 	LEN_MAX = get_lenmax();
-	if (I + P >=  LEN_MAX)
+	tmp = I + P;
+	if (LEN + P >=  LEN_MAX)
 	{
-		tputs(tgetstr("cl", NULL), 1, tputs_putchar);
-		ft_putstr("> too small..");
+		exleft(I + P);
+		ft_putstr("> window too small..");
 	}
 	else
 	{
-		tputs(tgetstr("cl", NULL), 1, tputs_putchar);
-		write_str(param);
+		exleft(I + P);
+		write_str(P_LINE, STR);
+		tmp = LEN;
+		while (tmp > I)
+		{
+			tputs(tgetstr("le", NULL), 1, tputs_putchar);
+			tmp--;
+		}
 	}
 	signal(sig, &sc_clear);
 }
 
-void					write_str(t_param *param)
+void					write_str(char *p_line, char *str)
 {
 	int					i;
 
 	i = 0;
-	ft_putstr(P_LINE);
-	while (STR[i] != '\0')
+	ft_putstr(p_line);
+	while (str[i] != '\0')
 	{
-		write(1, STR + i, 1);
+		write(1, str + i, 1);
 		i++;
 	}
 }
@@ -56,7 +74,7 @@ void					refresh_screen(t_param *param, int mode)
 		tputs(tgetstr("le", NULL), 1, tputs_putchar);
 		tmp--;
 	}
-	write_str(param);
+	write_str(P_LINE, STR);
 	if (mode == 1)
 	{
 		write(1, " ", 1);
