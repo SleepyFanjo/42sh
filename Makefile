@@ -6,7 +6,7 @@
 #    By: qchevrin <qchevrin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/12/03 12:33:25 by qchevrin          #+#    #+#              #
-#    Updated: 2014/03/13 19:47:30 by vwatrelo         ###   ########.fr        #
+#    Updated: 2014/03/13 20:05:37 by vwatrelo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -73,7 +73,7 @@ $(NAME): $(OBJ)
 	@(cd $(DIR_LFT) ; make)
 	$(CC) -o $(NAME) $(OBJ) $(LIB)
 
-%.o: %.c libft/libft.a
+%.o: %.c
 	$(CC) -c $(CFLAGS) $(INCLUDES) -o $@ $< -I./ -I$(DIR_LFT)
 
 clean:
