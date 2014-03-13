@@ -6,7 +6,7 @@
 /*   By: jrenouf- <jrenouf-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/08 14:33:20 by jrenouf-          #+#    #+#             */
-/*   Updated: 2014/03/13 15:39:09 by jrenouf-         ###   ########.fr       */
+/*   Updated: 2014/03/13 17:30:42 by jrenouf-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ static int				(*key_tab[])(t_param *, char *) =
 						extreme_sideways,
 						word_jump_left,
 						word_jump_right,
+						s_history,
 						NULL
 };
 
@@ -75,7 +76,7 @@ void					if_forest(t_param *param, char *buf)
 	save_param(param);
 }
 
-char					*select_cmd(int nb, char *str)
+char					*select_cmd(int nb, char *str, t_history *h)
 {
 	t_param				p;
 	char				buf[5];
@@ -83,7 +84,7 @@ char					*select_cmd(int nb, char *str)
 	if (set_term() < 0)
 		return (NULL);
 	signal(SIGWINCH, &sc_clear);
-	init_param(&p, nb, str);
+	init_param(&p, nb, str, h);
 	ft_bzero(buf, 5);
 	ft_putstr(str);
 	while (BUF != RETURN)
