@@ -6,7 +6,7 @@
 /*   By: qchevrin <qchevrin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 17:01:53 by qchevrin          #+#    #+#             */
-/*   Updated: 2014/03/07 17:03:33 by qchevrin         ###   ########.fr       */
+/*   Updated: 2014/03/13 20:56:35 by vwatrelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ char	**q_tabjoin(char **tab, char *str)
 
 int		q_add_in_arg(char *str, t_cmd *cmd)
 {
+	char		**tmp;
+
 	if (cmd->arg == NULL)
 	{
 		if ((cmd->arg = (char **)malloc(sizeof(char *) * 2)) == NULL)
@@ -58,7 +60,9 @@ int		q_add_in_arg(char *str, t_cmd *cmd)
 		(cmd->arg)[1] = NULL;
 		return (0);
 	}
+	tmp = cmd->arg;
 	cmd->arg = q_tabjoin(cmd->arg, str);
+	free(tmp);
 	return (0);
 }
 
