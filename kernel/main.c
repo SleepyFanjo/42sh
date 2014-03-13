@@ -6,7 +6,7 @@
 /*   By: vwatrelo <vwatrelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/07 15:38:46 by vwatrelo          #+#    #+#             */
-/*   Updated: 2014/03/13 16:59:34 by qchevrin         ###   ########.fr       */
+/*   Updated: 2014/03/13 17:39:19 by vwatrelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,35 @@ static char		**ft_cpytab(char **src)
 	return (table);
 }
 
+static void		sub_shell(char *str)
+{
+	if (!(list = q_lexer(line)))
+		exit(1);
+	if (!(cmd = q_parser(list)))
+		exit(1);
+	launch_cmd(cmd);
+	q_free_cmd(&cmd);
+	exit(0);
+}
+
+static void		fucking_fucking_norm(char **history, char *line, char *prompt)
+{
+	t_list		*list;
+	t_list		*cmd;
+
+	add_in_history(history, line);
+	free(prompt);
+	if (!(list = q_lexer(line)))
+		return ;
+	if (!(cmd = q_parser(list)))
+		return ;
+	launch_cmd(cmd);
+	q_free_cmd(&cmd);
+}
+
 int				main(void)
 {
 	char		*line;
-	t_list		*list;
-	t_list		*cmd;
 	t_history	*history;
 	char		*prompt;
 
@@ -49,16 +73,12 @@ int				main(void)
 		ft_printf("%rUnable to manage signal\n");
 		return (1);
 	}
+	if (argc > 1)
+		sub_shell(argv[1]);
 	while ((line = select_cmd(28, (prompt = (tmp_prompt()), history))))
 	{
-		add_in_history(&history, line);
-		free(prompt);
-		if (!(list = q_lexer(line)))
-			continue ;
-		if (!(cmd = q_parser(list)))
-			continue ;
-		launch_cmd(cmd);
-		q_free_cmd(&cmd);
+		fucking_fucking_norm(&history, line, prompt);
+		free(line);
 	}
 	return (0);
 }
