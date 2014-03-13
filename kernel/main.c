@@ -6,7 +6,7 @@
 /*   By: vwatrelo <vwatrelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/07 15:38:46 by vwatrelo          #+#    #+#             */
-/*   Updated: 2014/03/12 19:35:38 by qchevrin         ###   ########.fr       */
+/*   Updated: 2014/03/13 14:55:45 by vwatrelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static char		**ft_cpytab(char **src)
 	return (table);
 }
 
-int			main(void)
+int				main(void)
 {
 	char		*line;
 	t_list		*list;
