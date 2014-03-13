@@ -6,7 +6,7 @@
 /*   By: qchevrin <qchevrin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/21 10:51:48 by qchevrin          #+#    #+#             */
-/*   Updated: 2014/03/12 18:11:39 by qchevrin         ###   ########.fr       */
+/*   Updated: 2014/03/13 20:31:37 by vwatrelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	*ft_strnew(size_t size)
 {
 	char	*ptr;
 
-	if ((ptr = (char *)j_malloc(size * sizeof(char))) == NULL)
+	if ((ptr = (char *)j_malloc((size + 1) * sizeof(char))) == NULL)
 	{
 		return (NULL);
 	}
