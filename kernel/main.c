@@ -6,7 +6,7 @@
 /*   By: vwatrelo <vwatrelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/07 15:38:46 by vwatrelo          #+#    #+#             */
-/*   Updated: 2014/03/13 16:59:34 by qchevrin         ###   ########.fr       */
+/*   Updated: 2014/03/13 17:41:46 by jrenouf-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int				main(void)
 		ft_printf("%rUnable to manage signal\n");
 		return (1);
 	}
-	while ((line = select_cmd(28, (prompt = (tmp_prompt()), history))))
+	while ((line = select_cmd(28, (prompt = tmp_prompt()), history)))
 	{
 		add_in_history(&history, line);
 		free(prompt);

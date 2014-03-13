@@ -6,11 +6,12 @@
 /*   By: qchevrin <qchevrin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/13 16:59:41 by qchevrin          #+#    #+#             */
-/*   Updated: 2014/03/13 17:16:28 by qchevrin         ###   ########.fr       */
+/*   Updated: 2014/03/13 17:43:33 by jrenouf-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <history.h>
+#include <libft.h>
 
 static t_history	*new_history_elem(char *str)
 {
@@ -56,7 +57,7 @@ void				add_in_history(t_history **history, char *str)
 			return ;
 		while (cursor->next != NULL)
 			cursor = cursor->next;
-		free(history->str);
-		free(history);
+		free(cursor->str);
+		free(cursor);
 	}
 }
