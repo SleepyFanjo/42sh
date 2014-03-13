@@ -6,13 +6,13 @@
 /*   By: jrenouf- <jrenouf-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/08 15:23:26 by jrenouf-          #+#    #+#             */
-/*   Updated: 2014/03/12 17:38:22 by jrenouf-         ###   ########.fr       */
+/*   Updated: 2014/03/13 17:27:04 by jrenouf-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "select_cmd.h"
+#include "../includes/select_cmd.h"
 
-int						set_term(void)
+int					set_term(void)
 {
 	struct termios		term;
 
@@ -50,7 +50,8 @@ int						get_lenmax(void)
 	return (len);
 }
 
-void					init_param(t_param *param, int nb, char *str)
+void					init_param(t_param *param, int nb, char *str,
+									t_history *h)
 {
 	I = 0;
 	P = nb;
@@ -58,6 +59,7 @@ void					init_param(t_param *param, int nb, char *str)
 	LEN_MAX = get_lenmax();
 	STR = ft_strdup("");
 	P_LINE = ft_strdup(str);
+	HISTORY = h;
 }
 
 t_param					*save_param(t_param *param)

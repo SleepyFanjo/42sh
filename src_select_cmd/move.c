@@ -6,11 +6,11 @@
 /*   By: jrenouf- <jrenouf-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/07 15:34:00 by jrenouf-          #+#    #+#             */
-/*   Updated: 2014/03/12 17:21:23 by jrenouf-         ###   ########.fr       */
+/*   Updated: 2014/03/13 14:34:28 by jrenouf-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "select_cmd.h"
+#include "../includes/select_cmd.h"
 
 int						sideways(t_param *param, char *buf)
 {
