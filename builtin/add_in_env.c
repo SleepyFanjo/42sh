@@ -6,7 +6,7 @@
 /*   By: qchevrin <qchevrin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/18 15:39:43 by qchevrin          #+#    #+#             */
-/*   Updated: 2014/03/10 16:16:20 by vwatrelo         ###   ########.fr       */
+/*   Updated: 2014/03/13 15:10:43 by vwatrelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static int	verify_name(char *str)
 	return (0);
 }
 
-int		add_in_env(t_cmd *cmd, char ***envp, int *fd_b)
+int			add_in_env(t_cmd *cmd, char ***envp, int *fd_b)
 {
 	char		*env;
 	int			i;
