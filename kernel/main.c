@@ -6,7 +6,7 @@
 /*   By: vwatrelo <vwatrelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/07 15:38:46 by vwatrelo          #+#    #+#             */
-/*   Updated: 2014/03/13 17:46:17 by jrenouf-         ###   ########.fr       */
+/*   Updated: 2014/03/13 20:11:53 by vwatrelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,10 @@ static char		**ft_cpytab(char **src)
 
 static void		sub_shell(char *str)
 {
-	if (!(list = q_lexer(line)))
+	t_list	*list;
+	t_list	*cmd;
+
+	if (!(list = q_lexer(str)))
 		exit(1);
 	if (!(cmd = q_parser(list)))
 		exit(1);
@@ -44,7 +47,7 @@ static void		sub_shell(char *str)
 	exit(0);
 }
 
-static void		fucking_fucking_norm(char **history, char *line, char *prompt)
+static void		fucking_fucking_norm(t_history **history, char *line, char *prompt)
 {
 	t_list		*list;
 	t_list		*cmd;
@@ -59,7 +62,7 @@ static void		fucking_fucking_norm(char **history, char *line, char *prompt)
 	q_free_cmd(&cmd);
 }
 
-int				main(void)
+int				main(int argc, char **argv)
 {
 	char		*line;
 	t_history	*history;
@@ -75,10 +78,9 @@ int				main(void)
 	}
 	if (argc > 1)
 		sub_shell(argv[1]);
-	while ((line = select_cmd(28, (prompt = (tmp_prompt()), history))))
+	while ((line = select_cmd(28, (prompt = tmp_prompt()), history)))
 	{
 		fucking_fucking_norm(&history, line, prompt);
-		free(line);
 	}
 	return (0);
 }
