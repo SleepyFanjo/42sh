@@ -6,7 +6,7 @@
 /*   By: qchevrin <qchevrin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/13 16:59:41 by qchevrin          #+#    #+#             */
-/*   Updated: 2014/03/13 17:08:28 by qchevrin         ###   ########.fr       */
+/*   Updated: 2014/03/13 17:16:28 by qchevrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,28 @@ static t_history	*new_history_elem(char *str)
 	history = (t_history *)j_malloc(sizeof(t_history));
 	history->next = NULL;
 	history->prev = NULL;
-	history->str = str;
+	history->str = ft_strdup(str);
 	return (history);
+}
+
+static int			history_len(t_history *history)
+{
+	int			i;
+
+	i = 0;
+	while (history)
+	{
+		history = history->next;
+		i = i + 1;
+	}
+	return (i);
 }
 
 void				add_in_history(t_history **history, char *str)
 {
 	t_history	*cursor;
-	if (str == NULL)
+
+	if (str == NULL || MAX_H_LEN <= 0)
 		return ;
 	if (*history == NULL)
 	{
@@ -36,4 +50,13 @@ void				add_in_history(t_history **history, char *str)
 	cursor = (*history);
 	*history = new_history_elem(str);
 	(*history)->next = cursor;
+	if (history_len(*history) > MAX_H_LEN + 1)
+	{
+		if ((cursor = *history) == NULL)
+			return ;
+		while (cursor->next != NULL)
+			cursor = cursor->next;
+		free(history->str);
+		free(history);
+	}
 }
