@@ -6,7 +6,7 @@
 /*   By: lredoban <lredoban@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/07 18:34:13 by lredoban          #+#    #+#             */
-/*   Updated: 2014/03/12 19:28:35 by lredoban         ###   ########.fr       */
+/*   Updated: 2014/03/13 17:36:38 by lredoban         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,90 +52,77 @@ char					*l_get_token(t_list *list, char *type)
 	return (ret);
 }
 
-void					print_tmp(char *s, int former_len)
-{
-	ft_putstr(&s[former_len]);
-}
-
-static void				l_tab_loop(t_list *begin, int len)
+static void				l_tab_loop(t_list *begin, t_param *param)
 {
 	t_list				*tmp;
 	char				buf[5];
-	t_param				*par;
 
-	par = l_save_param(NULL);
 	tmp = begin;
+l_print_list(begin);
 	ft_bzero(buf, 5);
-	while (BUF == TAB || *buf == '\0')
+	insert_word(begin->elem, param);
+	while ((begin->next != NULL) && (BUF == TAB || *buf == '\0'))
 	{
-		refresh_screen(par, 0);
-		ft_putstr(par->str);
-		print_tmp(tmp->elem, len);
+int	fd;
+fd = open("toto", O_WRONLY | O_TRUNC | O_CREAT, 0644);
+ft_putstr_fd("into the while =[", fd);
+ft_putstr_fd(tmp->elem, fd);
+ft_putstr_fd("]\n", fd);
+
+
+
 		ft_bzero(buf, 5);
 		if (read(0, buf, 4) == -1)
 			exit(27) ;
 		if (BUF == TAB)
 		{
+			del_word(tmp->elem, param);
 			if (tmp->next != NULL)
 				tmp = tmp->next;
 			else
 				tmp = begin;
+			insert_word(tmp->elem, param);
 		}
 	}
-	insert_word(tmp->elem, len);
 	if (BUF != RETURN)
-		char_insert(par, buf);
+		char_insert(param, buf);
 	else
-		char_insert(par, "\x20\0\0\0\0");
-	l_save_param(par);
+		char_insert(param, "\x20\0\0\0\0");
 }
 
-/*void					del_word(char *s)
+void					del_word(char *s, t_param *param)
 {
 	int					len;
-int	fd;
-fd = open("toto", O_WRONLY | O_TRUNC | O_CREAT);
-
-ft_putstr_fd("chaine=", fd);
-ft_putendl_fd(s, fd);
 
 	len = ft_strlen(s);
 	while (len > 0)
 	{
-ft_putstr_fd("len", fd);
-ft_putnbr_fd(len, fd);
-ft_putendl_fd("", fd);
-		char_del(par, "\x7b\x0\x0\x0\0");
-	sleep(1);
+		char_del(param, "\x7f\x0\x0\x0\0");
 		len--;
 	}
-}*/
+}
 
-void					insert_word(char *s, int former_len)
+void					insert_word(char *s, t_param *param)
 {
 	int					i;
 	int					len;
 	char				*buf;
-	t_param				*par;
 
-	par = l_save_param(NULL);
 	i = 0;
 	len = ft_strlen(s);
 	buf = (char *)malloc(sizeof(char));
 //ft_printf("%s len=%d\n", s, len);
-	i += former_len;
 	while (i < len)
 	{
 	//	buf = ft_strdup("");
 		buf[0] = s[i];
-		char_insert(par, buf);
+		char_insert(param, buf);
 		i += 1;
 	}
 	free(buf);
-	l_save_param(par);
 }
 
-void					l_check_token(char type, char *s)
+void					l_check_token(char type, char *s, t_param *param)
 {
 	int					i;
 	t_list				*begin;
@@ -145,14 +132,13 @@ void					l_check_token(char type, char *s)
 	begin = NULL;
 	while (tok_tab[i] != NULL)
 	{
-		if ((ret = tok_tab[i](type, s, &begin)))
+		if ((ret = tok_tab[i](type, s, &begin, param)))
 			break ;
 		i += 1;
 	}
 	if (ret)
-		l_tab_loop(begin, ft_strlen(s));
+		l_tab_loop(begin, param);
 	else
-		char_insert(par, "\x9\0\0\0\0");
+		char_insert(param, "\x9\0\0\0\0");
 	l_del_list(&begin);
-	//	ft_printf("%s%s", par->str, begin->elem);
 }

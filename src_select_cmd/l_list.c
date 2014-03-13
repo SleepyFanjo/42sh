@@ -6,7 +6,7 @@
 /*   By: lredoban <lredoban@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/07 18:53:21 by lredoban          #+#    #+#             */
-/*   Updated: 2014/03/12 19:32:25 by lredoban         ###   ########.fr       */
+/*   Updated: 2014/03/13 13:56:47 by lredoban         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,23 @@ void						l_del_list(t_list **list)
 	}
 }
 
+
+# include <fcntl.h>
 void						l_print_list(t_list *list)
 {
+int	fd;
+fd = open("list", O_WRONLY | O_TRUNC | O_CREAT, 0644);
+
+
 	while (list != NULL)
 	{
-		ft_printf("[%s]", (char *)list->elem);
+ft_putstr_fd("[", fd);
+ft_putstr_fd((char *)list->elem, fd);
+ft_putstr_fd("]", fd);
+
 		list = list->next;
 	}
-	ft_putendl("");
+	ft_putendl_fd("", fd);
 }
 
 t_list						*l_add_to_list(t_list *list, char *data)

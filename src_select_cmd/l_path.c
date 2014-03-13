@@ -6,7 +6,7 @@
 /*   By: lredoban <lredoban@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/25 14:55:25 by lredoban          #+#    #+#             */
-/*   Updated: 2014/03/12 11:17:31 by lredoban         ###   ########.fr       */
+/*   Updated: 2014/03/13 14:50:50 by lredoban         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ static void			ft_process(char **tmp, char *s, int i, t_list **begin)
 	}
 }
 
-int					ft_checkpath(char *s, t_list **begin)
+int					ft_checkpath(char *s, t_list **begin, t_param *param)
 {
 	char			*path;
 	char			**tmp;
@@ -78,12 +78,11 @@ int					ft_checkpath(char *s, t_list **begin)
 
 	i = 0;
 	ft_check_builtin(s, begin);
-	if ((ft_strncmp(lova_envp, "PATH=", 5)) != 0)
-		return (0);
-	path = ft_strdup(&lova_envp[4]);
+	if ((path = get_env(g_env, "PATH")) == NULL)
+	   return (0);
 	tmp = ft_strsplit(path, ':');
 	ft_process(tmp, s, i, begin);
 	ft_clear(tmp);
-	free(path);
+	del_word(s, param);
 	return (0);
 }
