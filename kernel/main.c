@@ -6,7 +6,7 @@
 /*   By: vwatrelo <vwatrelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/07 15:38:46 by vwatrelo          #+#    #+#             */
-/*   Updated: 2014/03/13 20:11:53 by vwatrelo         ###   ########.fr       */
+/*   Updated: 2014/03/13 20:12:30 by vwatrelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,6 @@ int				main(int argc, char **argv)
 	if (argc > 1)
 		sub_shell(argv[1]);
 	while ((line = select_cmd(28, (prompt = tmp_prompt()), history)))
-	{
 		fucking_fucking_norm(&history, line, prompt);
-	}
 	return (0);
 }
