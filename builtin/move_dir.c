@@ -6,7 +6,7 @@
 /*   By: qchevrin <qchevrin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/16 12:25:46 by qchevrin          #+#    #+#             */
-/*   Updated: 2014/03/12 18:27:57 by lredoban         ###   ########.fr       */
+/*   Updated: 2014/03/13 15:11:10 by vwatrelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static int	find_env(char *env, char **envp)
 	return (-1);
 }
 
-static void	modify_pwd(char	*pwd, char *old_pwd, char ***envp)
+static void	modify_pwd(char *pwd, char *old_pwd, char ***envp)
 {
 	char	*new_pwd;
 	char	*new_old_pwd;

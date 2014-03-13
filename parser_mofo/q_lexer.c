@@ -6,11 +6,19 @@
 /*   By: qchevrin <qchevrin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/24 15:56:39 by qchevrin          #+#    #+#             */
-/*   Updated: 2014/03/12 18:24:50 by qchevrin         ###   ########.fr       */
+/*   Updated: 2014/03/13 17:05:16 by qchevrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <parser.h>
+#include <select_cmd.h>
+
+static void	q_cat_str(char **str, char *line)
+{
+	ft_str_realloc_cat(str, "\n");
+	ft_str_realloc_cat(str, line);
+	free(line);
+}
 
 void		q_error(char *s1, char *s2, int mode)
 {
@@ -61,6 +69,7 @@ t_list		*q_lexer(char *str)
 	t_list	*list;
 	int		error;
 	int		fail;
+	char	*line;
 	int		i;
 
 	i = 0;
@@ -75,7 +84,9 @@ t_list		*q_lexer(char *str)
 			if (error)
 				return (q_rolex(list));
 			q_free_list(&list);
-			return (q_lexer(ft_str_realloc_cat(&str, tmp_prompt())));
+			line = select_cmd(3, " > ", NULL);
+			q_cat_str(&str, line);
+			return (q_lexer(str));
 		}
 		i = i + 1;
 	}
