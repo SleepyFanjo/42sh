@@ -6,17 +6,19 @@
 /*   By: qchevrin <qchevrin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 14:02:59 by qchevrin          #+#    #+#             */
-/*   Updated: 2014/03/12 19:06:58 by qchevrin         ###   ########.fr       */
+/*   Updated: 2014/03/14 15:12:26 by qchevrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <parser.h>
 
-t_cmd		*q_fill_cmd(t_list **token_list)
+t_cmd		*q_fill_cmd(t_list **token_list, char *argv)
 {
 	t_cmd	*cmd;
 	t_token	*elem;
 
+	if (*token_list != NULL && is_subshell((*token_list)->elem))
+		return (q_shell_cmd((*token_list)->elem, argv, token_list));
 	cmd = q_init_cmd();
 	while (*token_list != NULL)
 	{
@@ -69,7 +71,7 @@ void		q_delete_whitespace(t_list **list)
 	}
 	*list = cursor;
 	next = cursor;
-	while (cursor->next != NULL)
+	while (cursor != NULL && cursor->next != NULL)
 	{
 		next = cursor->next;
 		if (q_is_blank(next->elem))
@@ -82,7 +84,7 @@ void		q_delete_whitespace(t_list **list)
 	}
 }
 
-t_list		*q_parser(t_list *token_list)
+t_list		*q_parser(t_list *token_list, char *argv)
 {
 	t_list	*list;
 	t_list	*token;
@@ -93,7 +95,7 @@ t_list		*q_parser(t_list *token_list)
 	token = token_list;
 	while (token_list != NULL)
 	{
-		error = q_add_in_list(&list, (void *)q_fill_cmd(&token_list));
+		error = q_add_in_list(&list, (void *)q_fill_cmd(&token_list, argv));
 		if (error)
 		{
 			q_free_list(&token);

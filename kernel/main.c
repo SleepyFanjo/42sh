@@ -6,11 +6,11 @@
 /*   By: vwatrelo <vwatrelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/07 15:38:46 by vwatrelo          #+#    #+#             */
-/*   Updated: 2014/03/13 20:47:05 by vwatrelo         ###   ########.fr       */
+/*   Updated: 2014/03/14 15:48:40 by qchevrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/launch_cmd.h"
+#include <launch_cmd.h>
 
 static char		**ft_cpytab(char **src)
 {
@@ -33,30 +33,29 @@ static char		**ft_cpytab(char **src)
 	return (table);
 }
 
-static void		sub_shell(char *str)
+static void		sub_shell(char *str, char *argv)
 {
 	t_list	*list;
 	t_list	*cmd;
 
 	if (!(list = q_lexer(str)))
 		exit(1);
-	if (!(cmd = q_parser(list)))
+	if (!(cmd = q_parser(list, argv)))
 		exit(1);
 	launch_cmd(cmd);
 	q_free_cmd(&cmd);
 	exit(0);
 }
 
-static void		fucking_fucking_norm(t_history **history, char *line, char *prompt)
+static void		fucking_norm(t_history **history, char *line, char *argv)
 {
 	t_list		*list;
 	t_list		*cmd;
 
 	add_in_history(history, line);
-	free(prompt);
 	if (!(list = q_lexer(line)))
 		return ;
-	if (!(cmd = q_parser(list)))
+	if (!(cmd = q_parser(list, argv)))
 		return ;
 	launch_cmd(cmd);
 	q_free_cmd(&cmd);
@@ -77,8 +76,11 @@ int				main(int argc, char **argv)
 		return (1);
 	}
 	if (argc > 1)
-		sub_shell(argv[1]);
+		sub_shell(ft_strdup(argv[1]), argv[0]);
 	while ((line = select_cmd(28, (prompt = tmp_prompt()), history)))
-		fucking_fucking_norm(&history, line, prompt);
+	{
+		free(prompt);
+		fucking_norm(&history, line, argv[0]);
+	}
 	return (0);
 }
