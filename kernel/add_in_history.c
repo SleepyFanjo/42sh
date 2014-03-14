@@ -6,7 +6,7 @@
 /*   By: qchevrin <qchevrin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/13 16:59:41 by qchevrin          #+#    #+#             */
-/*   Updated: 2014/03/13 17:43:33 by jrenouf-         ###   ########.fr       */
+/*   Updated: 2014/03/14 14:42:37 by qchevrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ void				add_in_history(t_history **history, char *str)
 	cursor = (*history);
 	*history = new_history_elem(str);
 	(*history)->next = cursor;
+	cursor->prev = (*history);
 	if (history_len(*history) > MAX_H_LEN + 1)
 	{
 		if ((cursor = *history) == NULL)
