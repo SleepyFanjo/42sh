@@ -6,7 +6,7 @@
 /*   By: lredoban <lredoban@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 14:49:39 by lredoban          #+#    #+#             */
-/*   Updated: 2014/03/14 18:35:52 by lredoban         ###   ########.fr       */
+/*   Updated: 2014/03/14 19:33:58 by lredoban         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int						ft_auto_dir(char *s, char *s_cmp, t_check check_it, t_list **begin, t_p
 	DIR					*dir;
 	struct dirent		*ent;
 	int					len;
+	char				*tmp;
 
 	if (!s)
 		s = ".";
@@ -27,7 +28,12 @@ int						ft_auto_dir(char *s, char *s_cmp, t_check check_it, t_list **begin, t_p
 	{
 		if (((strncmp(s_cmp, ent->d_name, len)) == 0)
 				&& check_it(s, ent, s_cmp))
-			*begin = l_add_to_list(*begin,ent->d_name);
+		{
+			tmp = ft_strdup(ent->d_name);
+			if (ent->d_type == DT_DIR)
+				tmp = ft_str_realloc_cat(&tmp, "/");
+			*begin = l_add_to_list(*begin, tmp);
+		}
 	}
 	closedir(dir);
 	if (*begin != NULL)

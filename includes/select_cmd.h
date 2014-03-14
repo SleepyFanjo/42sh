@@ -6,7 +6,7 @@
 /*   By: jrenouf- <jrenouf-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/08 14:32:42 by jrenouf-          #+#    #+#             */
-/*   Updated: 2014/03/14 18:56:15 by lredoban         ###   ########.fr       */
+/*   Updated: 2014/03/14 19:05:16 by lredoban         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,7 @@ static const t_key	key_tab[] =
 					&extreme_sideways,
 					&word_jump_left,
 					&word_jump_right,
+					&s_history,
 					&tab_key,
 					NULL
 };

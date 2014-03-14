@@ -6,11 +6,7 @@
 #    By: qchevrin <qchevrin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/12/03 12:33:25 by qchevrin          #+#    #+#              #
-<<<<<<< HEAD
-#    Updated: 2014/03/12 19:44:38 by lredoban         ###   ########.fr        #
-=======
-#    Updated: 2014/03/14 18:13:32 by qchevrin         ###   ########.fr        #
->>>>>>> cb36f1b8423ce272f8debdce10c9f2177eaddecd
+#    Updated: 2014/03/14 18:59:45 by lredoban         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,16 +33,13 @@ SRC= parser_mofo/q_count_token_len.c \
 	 src_select_cmd/term.c \
 	 src_select_cmd/select_cmd.c \
 	 src_select_cmd/j_malloc.c \
-<<<<<<< HEAD
 	 src_select_cmd/autocomplete.c \
 	 src_select_cmd/l_list.c \
 	 src_select_cmd/l_path.c \
 	 src_select_cmd/l_search.c \
 	 src_select_cmd/l_to_check.c \
 	 src_select_cmd/l_tok_game.c \
-=======
 	 src_select_cmd/select_history.c \
->>>>>>> cb36f1b8423ce272f8debdce10c9f2177eaddecd
 	 signal/init_sig.c \
 	 signal/quit_term.c \
 	 signal/kill_cmd.c \
@@ -102,9 +95,6 @@ fclean: clean
 	rm -rf $(NAME)
 
 re: fclean all
-<<<<<<< HEAD
 
 .PHONY: clean fclean re all
 # DO NOT DELETE
-=======
->>>>>>> cb36f1b8423ce272f8debdce10c9f2177eaddecd

@@ -6,7 +6,7 @@
 /*   By: lredoban <lredoban@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/07 18:34:13 by lredoban          #+#    #+#             */
-/*   Updated: 2014/03/14 18:44:57 by lredoban         ###   ########.fr       */
+/*   Updated: 2014/03/14 19:49:06 by lredoban         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ static void				l_tab_loop(t_list *begin, t_param *param)
 {
 	t_list				*tmp;
 	char				buf[5];
+	char			*tmp2;
 
 	tmp = begin;
 l_print_list(begin);
@@ -73,17 +74,18 @@ ft_putstr_fd("]\n", fd);
 				exit (0);
 			if (TAB == BUF)
 			{
-			del_word(tmp->elem, param, &STR);
-			if (tmp->next != NULL)
-				tmp = tmp->next;
-			else
-				tmp = begin;
-			insert_word(tmp->elem, param, &STR);
+				del_word(tmp->elem, param, &STR);
+				if (tmp->next != NULL)
+					tmp = tmp->next;
+				else
+					tmp = begin;
+				insert_word(tmp->elem, param, &STR);
 			}
 	}
+	tmp2 = tmp->elem;
 	if (BUF != RETURN && begin->next != NULL)
 		char_insert(param, buf);
-	else
+	else if (tmp2[ft_strlen(tmp2) - 1] != '/')
 		char_insert(param, "\x20\0\0\0\0");
 	refresh_screen(param, 0);
 
@@ -118,6 +120,7 @@ void					del_word(char *s, t_param *param, char **old)
 	int					len;
 	char				*tmp;
 //tant que le tab n'est gerer que a la fin;
+	exleft(I + P);
 	len = ft_strlen(s);
 	I -= len;
 	LEN -= len;
@@ -157,8 +160,8 @@ void					insert_word(char *s, t_param *param, char **old)
 	tmp = ft_strcpy(tmp, STR);
 	tmp = ft_strcat(tmp, s);
 	free(*old);
-	*old = tmp; 
-	refresh_screen(param, 0);
+	*old = tmp;
+	write_str(P_LINE, *old);
 int	fd2;
 fd2 = open("tata", O_WRONLY | O_TRUNC | O_CREAT, 0644);
 ft_putstr_fd("param->str =[", fd2);
