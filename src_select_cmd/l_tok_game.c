@@ -6,7 +6,7 @@
 /*   By: lredoban <lredoban@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/07 18:34:13 by lredoban          #+#    #+#             */
-/*   Updated: 2014/03/14 19:58:16 by lredoban         ###   ########.fr       */
+/*   Updated: 2014/03/14 20:29:04 by lredoban         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ char					*l_get_token(t_list *list, char *type)
 	t_token				*token;
 	t_list				*prev;
 	char				*ret;
-
 
 	if (list == NULL)
 		return (NULL);
@@ -56,7 +55,7 @@ static void				l_tab_loop(t_list *begin, t_param *param)
 {
 	t_list				*tmp;
 	char				buf[5];
-	char			*tmp2;
+	char				*tmp2;
 
 	tmp = begin;
 	ft_bzero(buf, 5);
@@ -89,6 +88,7 @@ void					del_word(char *s, t_param *param, char **old)
 	int					len;
 	char				*tmp;
 //tant que le tab n'est gerer que a la fin;
+
 	exleft(I + P);
 	len = ft_strlen(s);
 	I -= len;
@@ -105,6 +105,7 @@ void					insert_word(char *s, t_param *param, char **old)
 	int					len;
 	char				*tmp;
 //tant que le tab n'est gerer que a la fin;
+
 	len = ft_strlen(s);
 	I += len;
 	LEN += len;

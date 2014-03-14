@@ -6,7 +6,7 @@
 /*   By: lredoban <lredoban@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/04 11:53:05 by lredoban          #+#    #+#             */
-/*   Updated: 2014/03/13 14:54:03 by lredoban         ###   ########.fr       */
+/*   Updated: 2014/03/14 20:26:01 by lredoban         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int			l_search_exe(char type, char *s, t_list **begin, t_param *param)
 {
 	char	*s_cmp;
 
-	if(type != Q_EXE)
+	if (type != Q_EXE)
 		return (0);
 	s_cmp = ft_get_string(&s);
 	if (!ft_auto_dir(s, s_cmp, to_check[0], begin, param))

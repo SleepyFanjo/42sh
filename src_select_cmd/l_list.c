@@ -6,7 +6,7 @@
 /*   By: lredoban <lredoban@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/07 18:53:21 by lredoban          #+#    #+#             */
-/*   Updated: 2014/03/14 20:11:37 by lredoban         ###   ########.fr       */
+/*   Updated: 2014/03/14 20:24:50 by lredoban         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void						l_del_list(t_list **list)
 
 	if (*list == NULL)
 		return ;
-	while(tmp != NULL)
+	while (tmp != NULL)
 	{
 		free(tmp->elem);
 		tmp = tmp->next;

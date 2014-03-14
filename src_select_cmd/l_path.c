@@ -6,7 +6,7 @@
 /*   By: lredoban <lredoban@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/25 14:55:25 by lredoban          #+#    #+#             */
-/*   Updated: 2014/03/14 18:39:17 by lredoban         ###   ########.fr       */
+/*   Updated: 2014/03/14 20:25:44 by lredoban         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static void			ft_check_builtin(char *s, t_list **begin)
 
 static void			ft_process(char **tmp, char *s, int i, t_list **begin)
 {
-	DIR         	*dir;
+	DIR				*dir;
 	struct dirent   *ent;
 
 	while (tmp[i] != NULL)
@@ -79,7 +79,7 @@ int					ft_checkpath(char *s, t_list **begin, t_param *param)
 	i = 0;
 	ft_check_builtin(s, begin);
 	if ((path = get_env(g_env, "PATH")) == NULL)
-	   return (0);
+		return (0);
 	tmp = ft_strsplit(path, ':');
 	ft_process(tmp, s, i, begin);
 	ft_clear(tmp);
