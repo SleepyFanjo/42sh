@@ -6,7 +6,7 @@
 /*   By: vwatrelo <vwatrelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/10 14:41:29 by vwatrelo          #+#    #+#             */
-/*   Updated: 2014/03/14 15:37:17 by qchevrin         ###   ########.fr       */
+/*   Updated: 2014/03/14 16:03:43 by qchevrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,49 +53,52 @@ static void	close_fd(t_cmd *cmd)
 
 static int	exec_builtin_2(t_cmd *cmd, int *fd_builtin)
 {
+	int		ret;
+
 	if (ft_strcmp(cmd->cmd, "echo") == 0)
 	{
-		ft_echo(cmd->arg, fd_builtin[OUT_B]);
+		ret = ft_echo(cmd->arg, fd_builtin[OUT_B]);
 		close_fd(cmd);
-		return (1);
+		return (ret);
 	}
 	if (ft_strcmp(cmd->cmd, "env") == 0)
 	{
-		env(cmd, table_cpy(g_env), fd_builtin[OUT_B]);
+		ret = env(cmd, table_cpy(g_env), fd_builtin[OUT_B]);
 		close_fd(cmd);
-		return (1);
+		return (ret);
 	}
 	if (ft_strcmp(cmd->cmd, "cd") == 0)
 	{
-		move_dir(cmd, &g_env);
+		ret = move_dir(cmd, &g_env);
 		close_fd(cmd);
-		return (1);
+		return (ret);
 	}
-	return (0);
+	return (-1);
 }
 
 int			exec_builtin(t_cmd *cmd)
 {
 	int		fd_builtin[2];
+	int		ret;
 
 	init_fd(fd_builtin, cmd);
 	if (ft_strcmp(cmd->cmd, "setenv") == 0)
 	{
-		my_setenv(cmd, fd_builtin);
+		ret = my_setenv(cmd, fd_builtin);
 		close_fd(cmd);
-		return (1);
+		return (ret);
 	}
 	if (ft_strcmp(cmd->cmd, "unsetenv") == 0)
 	{
-		my_unsetenv(cmd);
+		ret = my_unsetenv(cmd);
 		close_fd(cmd);
 		return (1);
 	}
 	if (ft_strcmp(cmd->cmd, "exit") == 0)
 	{
-		ft_exit(cmd, fd_builtin[OUT_B]);
+		ret = ft_exit(cmd, fd_builtin[OUT_B]);
 		close_fd(cmd);
-		return (1);
+		return (ret);
 	}
 	return (exec_builtin_2(cmd, fd_builtin));
 }

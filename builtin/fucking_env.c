@@ -6,7 +6,7 @@
 /*   By: qchevrin <qchevrin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/17 17:40:21 by qchevrin          #+#    #+#             */
-/*   Updated: 2014/03/11 15:34:50 by qchevrin         ###   ########.fr       */
+/*   Updated: 2014/03/14 16:07:54 by qchevrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,26 +26,29 @@ static int	is_cmd(char *str)
 	return (1);
 }
 
-static void	exec_arg(char *cmd, char **arg, char **envp)
+static int	exec_arg(char *cmd, char **arg, char **envp)
 {
 	pid_t	pid;
 	char	*path;
+	int		stat;
 
 	path = get_path(cmd, envp);
+	stat = 0;
 	if (path == NULL)
 	{
 		q_error("Can't find path, sorry :(", NULL, 0);
-		return ;
+		return (1);
 	}
 	if ((pid = fork()) == -1)
 	{
 		q_error("Fork you !", NULL, 0);
-		return ;
+		return (1);
 	}
 	if (pid == 0)
 		execve(path, arg, envp);
 	else
-		wait(NULL);
+		wait(&stat);
+	return (stat);
 }
 
 static void	free_table(char ***table)
@@ -65,11 +68,13 @@ static void	free_table(char ***table)
 	*table = NULL;
 }
 
-void		env(t_cmd *cmd, char **envp, int fd)
+int			env(t_cmd *cmd, char **envp, int fd)
 {
 	int		i;
+	int		ret;
 
 	i = 1;
+	ret = 0;
 	if ((cmd->arg)[1] != NULL && !ft_strcmp((cmd->arg)[i], "-i"))
 	{
 		free_table(&envp);
@@ -78,7 +83,7 @@ void		env(t_cmd *cmd, char **envp, int fd)
 	if ((cmd->arg)[1] == NULL)
 	{
 		print_env(envp, fd);
-		return ;
+		return (0);
 	}
 	while ((cmd->arg)[i] != NULL && !is_cmd((cmd->arg)[i]))
 	{
@@ -88,6 +93,7 @@ void		env(t_cmd *cmd, char **envp, int fd)
 	if ((cmd->arg)[i] == NULL)
 		print_env(envp, fd);
 	else
-		exec_arg((cmd->arg)[i], cmd->arg + i, envp);
+		ret = exec_arg((cmd->arg)[i], cmd->arg + i, envp);
 	free_table(&envp);
+	return (ret);
 }
