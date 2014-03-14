@@ -6,7 +6,7 @@
 /*   By: vwatrelo <vwatrelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/10 13:36:35 by vwatrelo          #+#    #+#             */
-/*   Updated: 2014/03/12 17:23:58 by qchevrin         ###   ########.fr       */
+/*   Updated: 2014/03/14 16:12:58 by qchevrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,13 @@ int			exec_builtin(t_cmd *cmd);
 void		modify_env(char ***envp, char *env);
 int			my_setenv(t_cmd *cmd, int *fd_b);
 void		print_env(char **envp, int fd);
-void		my_unsetenv(t_cmd *cmd);
-void		delete_in_env(t_cmd *cmd, char ***envp);
-void		ft_exit(t_cmd *cmd, int fd);
-void		ft_echo(char **arg, int fd);
+int			my_unsetenv(t_cmd *cmd);
+int			delete_in_env(t_cmd *cmd, char ***envp);
+int			ft_exit(t_cmd *cmd, int fd);
+int			ft_echo(char **arg, int fd);
 int			*check_opt(char **arg);
-void		env(t_cmd *cmd, char **envp, int fd);
-void		move_dir(t_cmd *cmd, char ***envp);
+int			env(t_cmd *cmd, char **envp, int fd);
+int			move_dir(t_cmd *cmd, char ***envp);
 char		**table_cpy(char **table);
 int			init_sig(void);
 void		kill_cmd(int sig);
