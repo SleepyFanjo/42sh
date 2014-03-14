@@ -6,7 +6,7 @@
 /*   By: jrenouf- <jrenouf-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/13 15:19:19 by jrenouf-          #+#    #+#             */
-/*   Updated: 2014/03/13 17:30:44 by jrenouf-         ###   ########.fr       */
+/*   Updated: 2014/03/14 16:13:55 by jrenouf-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,49 +14,56 @@
 
 void					change_str(t_param *param, char *s)
 {
-	int					tmp;
-
 	free(STR);
 	STR = ft_strdup(s);
 	LEN = ft_strlen(s);
 	exleft(I + P);
 	write_str(P_LINE, s);
-	if (I > LEN)
-		I = LEN;
+	I = LEN;
+}
+
+void					change_up(t_param *param)
+{
+	if (param->hist_f == 0)
+	{
+		param->save_str = ft_strdup(STR);
+		change_str(param, H_STR);
+		param->hist_f = 1;
+	}
 	else
 	{
-		tmp = LEN;
-		while (tmp > I)
-		{
-			tputs(tgetstr("le", NULL), 1, tputs_putchar);
-			tmp--;
-		}
+		if (H_NEXT != NULL)
+			HISTORY = H_NEXT;
+		change_str(param, H_STR);
+	}
+}
+
+void					change_down(t_param *param)
+{
+	if (H_PREV == NULL)
+	{
+		change_str(param, param->save_str);
+		free(param->save_str);
+		param->hist_f = 0;
+	}
+	else
+	{
+		HISTORY = H_PREV;
+		change_str(param, H_STR);
 	}
 }
 
 int						s_history(t_param *param, char *buf)
 {
-	static int			first = 0;
-
-	if ((BUF == UP || BUF == DOWN) && HISTORY != NULL)
+	if (BUF == UP || BUF == DOWN)
 	{
-		if (BUF == UP && H_NEXT != NULL)
+		if (BUF == UP && HISTORY != NULL)
 		{
-			if (first == 0)
-				param->save_str = ft_strdup(STR);
-			change_str(param, H_STR);
-			HISTORY = H_NEXT;
-			first = 1;
+			change_up(param);
 		}
-		else if (BUF == DOWN && first != 0)
+		else if (BUF == DOWN && param->hist_f != 0)
 		{
-			if (H_PREV == NULL)
-				change_str(param, param->save_str);
-			else
-			{
-				HISTORY = H_PREV;
-				change_str(param, H_STR);
-			}
+			change_down(param);
 		}
 		return (1);
 	}

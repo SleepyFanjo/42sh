@@ -6,7 +6,7 @@
 /*   By: jrenouf- <jrenouf-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/08 15:23:26 by jrenouf-          #+#    #+#             */
-/*   Updated: 2014/03/13 17:27:04 by jrenouf-         ###   ########.fr       */
+/*   Updated: 2014/03/14 15:47:33 by jrenouf-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int					set_term(void)
 	return (0);
 }
 
-int						unset_term(void)
+char				*unset_term(void)
 {
 	struct termios		term;
 
@@ -37,7 +37,7 @@ int						unset_term(void)
 	term.c_lflag |= ECHO;
 	term.c_lflag |= ISIG;
 	tcsetattr(0, TCSADRAIN, &term);
-	return (0);
+	return (NULL);
 }
 
 int						get_lenmax(void)
@@ -57,6 +57,7 @@ void					init_param(t_param *param, int nb, char *str,
 	P = nb;
 	LEN = 0;
 	LEN_MAX = get_lenmax();
+	param->hist_f = 0;
 	STR = ft_strdup("");
 	P_LINE = ft_strdup(str);
 	HISTORY = h;
