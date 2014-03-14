@@ -6,7 +6,7 @@
 /*   By: vwatrelo <vwatrelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/07 19:48:06 by vwatrelo          #+#    #+#             */
-/*   Updated: 2014/03/11 17:18:19 by vwatrelo         ###   ########.fr       */
+/*   Updated: 2014/03/14 15:58:55 by qchevrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,27 @@ static int	close_pipe_father(t_cmd *cmd)
 	return (res);
 }
 
-int		launch_fork(t_cmd *cmd)
+static int	father(t_cmd *cmd, pid_t pid)
+{
+	g_pid = pid;
+	if (close_pipe_father(cmd))
+	{
+		ft_printf("%rUnable to close pipe\n");
+		kill(pid, SIGINT);
+	}
+	wait(&(cmd->return_val));
+	if (g_pid == -1)
+		return (-1);
+	g_pid = -1;
+	return (0);
+}
+
+int			launch_fork(t_cmd *cmd)
 {
 	pid_t	pid;
+	int		ret;
 
+	ret = 0;
 	if ((pid = fork()) < 0)
 	{
 		ft_printf("%rUnable to create fork\n");
@@ -46,17 +63,6 @@ int		launch_fork(t_cmd *cmd)
 		exit(1);
 	}
 	else
-	{
-		g_pid = pid;
-		if (close_pipe_father(cmd))
-		{
-			ft_printf("%rUnable to close pipe\n");
-			kill(pid, SIGINT);
-		}
-		wait(&(cmd->return_val));
-		if (g_pid == -1)
-			return (-1);
-		g_pid = -1;
-	}
-	return (0);
+		ret = father(cmd, pid);
+	return (ret);
 }

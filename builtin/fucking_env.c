@@ -6,7 +6,7 @@
 /*   By: qchevrin <qchevrin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/17 17:40:21 by qchevrin          #+#    #+#             */
-/*   Updated: 2014/03/11 15:34:50 by qchevrin         ###   ########.fr       */
+/*   Updated: 2014/03/14 18:12:51 by qchevrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,26 +26,29 @@ static int	is_cmd(char *str)
 	return (1);
 }
 
-static void	exec_arg(char *cmd, char **arg, char **envp)
+static int	exec_arg(char *cmd, char **arg, char **envp)
 {
 	pid_t	pid;
 	char	*path;
+	int		stat;
 
 	path = get_path(cmd, envp);
+	stat = 0;
 	if (path == NULL)
 	{
 		q_error("Can't find path, sorry :(", NULL, 0);
-		return ;
+		return (1);
 	}
 	if ((pid = fork()) == -1)
 	{
 		q_error("Fork you !", NULL, 0);
-		return ;
+		return (1);
 	}
 	if (pid == 0)
 		execve(path, arg, envp);
 	else
-		wait(NULL);
+		wait(&stat);
+	return (stat);
 }
 
 static void	free_table(char ***table)
@@ -65,29 +68,31 @@ static void	free_table(char ***table)
 	*table = NULL;
 }
 
-void		env(t_cmd *cmd, char **envp, int fd)
+int			env(t_cmd *cmd, char **envp, int fd)
 {
-	int		i;
+	int		i[2];
 
-	i = 1;
-	if ((cmd->arg)[1] != NULL && !ft_strcmp((cmd->arg)[i], "-i"))
+	i[0] = 1;
+	i[1] = 0;
+	if ((cmd->arg)[1] != NULL && !ft_strcmp((cmd->arg)[i[0]], "-i"))
 	{
 		free_table(&envp);
-		i = i + 1;
+		i[0] = i[0] + 1;
 	}
 	if ((cmd->arg)[1] == NULL)
 	{
 		print_env(envp, fd);
-		return ;
+		return (0);
 	}
-	while ((cmd->arg)[i] != NULL && !is_cmd((cmd->arg)[i]))
+	while ((cmd->arg)[i[0]] != NULL && !is_cmd((cmd->arg)[i[0]]))
 	{
-		modify_env(&envp, (cmd->arg)[i]);
-		i = i + 1;
+		modify_env(&envp, (cmd->arg)[i[0]]);
+		i[0] = i[0] + 1;
 	}
-	if ((cmd->arg)[i] == NULL)
+	if ((cmd->arg)[i[0]] == NULL)
 		print_env(envp, fd);
 	else
-		exec_arg((cmd->arg)[i], cmd->arg + i, envp);
+		i[1] = exec_arg((cmd->arg)[i[0]], cmd->arg + i[0], envp);
 	free_table(&envp);
+	return (i[1]);
 }

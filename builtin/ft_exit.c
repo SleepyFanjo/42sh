@@ -6,7 +6,7 @@
 /*   By: qchevrin <qchevrin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/17 16:52:03 by qchevrin          #+#    #+#             */
-/*   Updated: 2014/03/10 17:03:52 by vwatrelo         ###   ########.fr       */
+/*   Updated: 2014/03/14 18:10:01 by qchevrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static int	is_number(char *str)
 	return (1);
 }
 
-void		ft_exit(t_cmd *cmd, int fd)
+int			ft_exit(t_cmd *cmd, int fd)
 {
 	if ((cmd->arg)[1] == NULL)
 	{
@@ -41,4 +41,5 @@ void		ft_exit(t_cmd *cmd, int fd)
 	}
 	else
 		ft_putendl_fd("Badly formed number bi*** !", 1);
+	return (1);
 }

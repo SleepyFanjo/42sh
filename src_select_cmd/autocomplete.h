@@ -6,7 +6,7 @@
 /*   By: lredoban <lredoban@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 14:49:57 by lredoban          #+#    #+#             */
-/*   Updated: 2014/03/13 14:04:08 by lredoban         ###   ########.fr       */
+/*   Updated: 2014/03/14 15:46:08 by lredoban         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,8 @@ void		l_del_list(t_list **list);
 /*
 **   tok_game for the moment
 */
-void		insert_word(char *s, t_param *param);
-void		del_word(char *s, t_param *param);
+void		insert_word(char *s, t_param *param, char **old);
+void		del_word(char *s, t_param *param, char **old);
 
 /*
 **  move_dir.c

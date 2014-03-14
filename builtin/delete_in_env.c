@@ -6,7 +6,7 @@
 /*   By: qchevrin <qchevrin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/18 15:57:08 by qchevrin          #+#    #+#             */
-/*   Updated: 2014/03/11 14:16:32 by qchevrin         ###   ########.fr       */
+/*   Updated: 2014/03/14 16:03:05 by qchevrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,14 +74,14 @@ static void	env_match(char *str, char ***envp)
 	}
 }
 
-void		delete_in_env(t_cmd *cmd, char ***envp)
+int			delete_in_env(t_cmd *cmd, char ***envp)
 {
 	int		i;
 
 	if (cmd->arg[1] == NULL)
 	{
-		ft_printf("Error: Too few arguments\n");
-		return ;
+		ft_printf("%rError: Too few arguments\n");
+		return (1);
 	}
 	i = 1;
 	while ((cmd->arg)[i] != NULL)
@@ -89,4 +89,5 @@ void		delete_in_env(t_cmd *cmd, char ***envp)
 		env_match((cmd->arg)[i], envp);
 		i = i + 1;
 	}
+	return (0);
 }

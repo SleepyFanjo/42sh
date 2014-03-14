@@ -6,12 +6,12 @@
 #    By: qchevrin <qchevrin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/11/19 15:05:33 by qchevrin          #+#    #+#              #
-#    Updated: 2014/02/27 18:11:55 by lredoban         ###   ########.fr        #
+#    Updated: 2014/03/13 20:30:26 by vwatrelo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC=gcc
-CFLAGS=-Wall -Wextra -Werror
+CFLAGS=-Wall -Wextra -Werror -g
 NAME=libft.a
 SRC=ft_memset.c \
 	ft_bzero.c \
@@ -81,11 +81,11 @@ OBJ=$(SRC:.c=.o)
 
 all : $(NAME)
 
-$(NAME) :
-	$(CC) -c $(SRC) $(CFLAGS)
+$(NAME): $(OBJ)
 	ar -q $(NAME) $(OBJ)
 	ranlib $(NAME)
-
+%.o: %.c
+	$(CC) -c $(CFLAGS) -o $@ $<
 clean :
 	rm -rf $(OBJ)
 

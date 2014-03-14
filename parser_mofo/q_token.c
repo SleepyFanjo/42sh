@@ -6,7 +6,7 @@
 /*   By: qchevrin <qchevrin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/24 16:12:57 by qchevrin          #+#    #+#             */
-/*   Updated: 2014/03/12 17:08:40 by qchevrin         ###   ########.fr       */
+/*   Updated: 2014/03/14 11:39:28 by qchevrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ char		*q_strndup(char *str, int n, int inh)
 t_token		*q_create_token(char *str, int *i, int *error)
 {
 	char		*name;
+	t_token		*tmp;
 	int			inh;
 	int			k;
 	int			j;
@@ -80,10 +81,14 @@ t_token		*q_create_token(char *str, int *i, int *error)
 	}
 	if (q_is_whitespace(str[j]))
 		return (q_white_token(str, i));
+	if (str[*i] == '(')
+		return (q_subshell(str, i));
 	k = q_count_token_len(str, i, &j, &inh);
 	if (k == -1)
 		return (NULL);
 	name = q_strndup(str + *i, k, inh);
 	*i = j;
-	return (q_utility_token(name, inh));
+	tmp = q_utility_token(name, inh);
+	free(name);
+	return (tmp);
 }

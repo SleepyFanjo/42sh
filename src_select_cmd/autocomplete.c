@@ -6,7 +6,7 @@
 /*   By: lredoban <lredoban@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 14:49:39 by lredoban          #+#    #+#             */
-/*   Updated: 2014/03/13 17:30:40 by lredoban         ###   ########.fr       */
+/*   Updated: 2014/03/14 18:35:52 by lredoban         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ int						ft_auto_dir(char *s, char *s_cmp, t_check check_it, t_list **begin, t_p
 			*begin = l_add_to_list(*begin,ent->d_name);
 	}
 	closedir(dir);
-	del_word(s_cmp, param);
+	if (*begin != NULL)
+		del_word(s_cmp, param, &STR);
 	return (1);
 }
 
@@ -78,11 +79,11 @@ int						ft_autocomplete(t_param *param)
 
 	type = -1;
 
-	if (!param->str)
+	if (!param->str || I != LEN)
 		return (0);
+	list = NULL;
 	if (ft_strcmp(param->str, ""))
 	{
-		list = NULL;
 		tmp = ft_strdup(param->str);
 		list = q_lexer(tmp);
 		if(!(s = l_get_token(list, &type)))
@@ -91,6 +92,7 @@ int						ft_autocomplete(t_param *param)
 	else
 		s = ft_strdup("");
 	l_check_token(type, s, param);
-	q_free_list(&list);
+	if (list != NULL)
+		q_free_list(&list);
 	return (1);
 }

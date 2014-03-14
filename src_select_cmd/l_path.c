@@ -6,7 +6,7 @@
 /*   By: lredoban <lredoban@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/25 14:55:25 by lredoban          #+#    #+#             */
-/*   Updated: 2014/03/13 14:50:50 by lredoban         ###   ########.fr       */
+/*   Updated: 2014/03/14 18:39:17 by lredoban         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ int					ft_checkpath(char *s, t_list **begin, t_param *param)
 	tmp = ft_strsplit(path, ':');
 	ft_process(tmp, s, i, begin);
 	ft_clear(tmp);
-	del_word(s, param);
+	if (*begin != NULL)
+		del_word(s, param, &STR);
 	return (0);
 }

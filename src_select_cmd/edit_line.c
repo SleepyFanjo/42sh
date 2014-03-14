@@ -6,11 +6,11 @@
 /*   By: jrenouf- <jrenouf-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/07 15:50:36 by jrenouf-          #+#    #+#             */
-/*   Updated: 2014/03/13 17:39:08 by lredoban         ###   ########.fr       */
+/*   Updated: 2014/03/14 18:55:16 by lredoban         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "select_cmd.h"
+#include "../includes/select_cmd.h"
 
 void					remalloc_cat(char **s1, char *s2)
 {

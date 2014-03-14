@@ -6,7 +6,7 @@
 /*   By: qchevrin <qchevrin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/05 10:30:54 by qchevrin          #+#    #+#             */
-/*   Updated: 2014/03/12 17:10:56 by qchevrin         ###   ########.fr       */
+/*   Updated: 2014/03/14 14:49:06 by qchevrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,11 @@
 t_cmd		*q_check_cmd(t_cmd *cmd)
 {
 	t_token		*cat;
+	char		*str;
 
-	cat = q_utility_token(ft_strdup("cat"), 0);
+	str = ft_strdup("cat");
+	cat = q_utility_token(str, 0);
+	free(str);
 	cat->type = Q_CMD;
 	if (cmd->cmd == NULL && (cmd->file_in != NULL || cmd->file_out != NULL))
 		q_add_in_cmd(cat, NULL, cmd);

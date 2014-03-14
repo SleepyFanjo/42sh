@@ -6,7 +6,7 @@
 /*   By: vwatrelo <vwatrelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/07 17:09:27 by vwatrelo          #+#    #+#             */
-/*   Updated: 2014/03/11 16:45:00 by vwatrelo         ###   ########.fr       */
+/*   Updated: 2014/03/14 16:18:14 by qchevrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 static int	connect_pipe(t_cmd *cmd, t_cmd *next)
 {
 	int		fd_pipe[2];
+
 	if (next == NULL)
 		return (-1);
 	if (cmd->next_cmd == Q_PIPE)
@@ -52,9 +53,10 @@ int			launch_one_cmd(t_cmd *cmd, t_cmd *next)
 
 	connect_file(cmd);
 	connect_pipe(cmd, next);
-	if (!(ret = exec_builtin(cmd)))
+	if ((ret = exec_builtin(cmd)) == -1)
 	{
 		return (launch_fork(cmd));
 	}
-	return (ret);
+	cmd->return_val = ret;
+	return (0);
 }

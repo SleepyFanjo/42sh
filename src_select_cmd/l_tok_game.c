@@ -6,7 +6,7 @@
 /*   By: lredoban <lredoban@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/07 18:34:13 by lredoban          #+#    #+#             */
-/*   Updated: 2014/03/13 17:36:38 by lredoban         ###   ########.fr       */
+/*   Updated: 2014/03/14 18:44:57 by lredoban         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,66 +60,113 @@ static void				l_tab_loop(t_list *begin, t_param *param)
 	tmp = begin;
 l_print_list(begin);
 	ft_bzero(buf, 5);
-	insert_word(begin->elem, param);
-	while ((begin->next != NULL) && (BUF == TAB || *buf == '\0'))
-	{
+	buf[0] = '\x9';
 int	fd;
 fd = open("toto", O_WRONLY | O_TRUNC | O_CREAT, 0644);
+	insert_word(begin->elem, param, &STR);
+	while (begin->next != NULL && BUF == TAB)
+	{
 ft_putstr_fd("into the while =[", fd);
 ft_putstr_fd(tmp->elem, fd);
 ft_putstr_fd("]\n", fd);
-
-
-
-		ft_bzero(buf, 5);
-		if (read(0, buf, 4) == -1)
-			exit(27) ;
-		if (BUF == TAB)
-		{
-			del_word(tmp->elem, param);
+			if ((read(0, buf, 5) == -1))
+				exit (0);
+			if (TAB == BUF)
+			{
+			del_word(tmp->elem, param, &STR);
 			if (tmp->next != NULL)
 				tmp = tmp->next;
 			else
 				tmp = begin;
-			insert_word(tmp->elem, param);
-		}
+			insert_word(tmp->elem, param, &STR);
+			}
 	}
-	if (BUF != RETURN)
+	if (BUF != RETURN && begin->next != NULL)
 		char_insert(param, buf);
 	else
 		char_insert(param, "\x20\0\0\0\0");
+	refresh_screen(param, 0);
+
+close(fd);
 }
 
-void					del_word(char *s, t_param *param)
+/*static void				l_tab_loop(t_list *begin, t_param *param)
+{
+	t_list				*tmp;
+	char				buf[5];
+
+	insert_word(begin->elem, param, &STR);
+	tmp = begin;
+	ft_bzero(buf, 5);
+	while (BUF != RETURN)
+	{
+		ft_bzero(buf, 5);
+		if (read(0, buf, 4) < 0)
+		 	exit (0);
+		del_word(tmp->elem, param, &STR);
+		if (tmp->next == NULL)
+			tmp = begin;
+		else
+			tmp = tmp->next;
+		insert_word(begin->elem, param, &STR);
+	}
+	char_insert(param, "\x20\0\0\0\0");
+}*/
+
+void					del_word(char *s, t_param *param, char **old)
 {
 	int					len;
-
+	char				*tmp;
+//tant que le tab n'est gerer que a la fin;
 	len = ft_strlen(s);
-	while (len > 0)
-	{
-		char_del(param, "\x7f\x0\x0\x0\0");
-		len--;
-	}
+	I -= len;
+	LEN -= len;
+	len = ft_strlen(STR) - len;
+	tmp = ft_strnew(len + 1);
+	tmp = ft_strncpy(tmp, STR, len);
+	free(*old);
+	*old = tmp;
+int	fd2;
+fd2 = open("tata", O_WRONLY | O_TRUNC | O_CREAT, 0644);
+ft_putstr_fd("param->str =[", fd2);
+ft_putstr_fd(STR, fd2);
+ft_putstr_fd("] ", fd2);
+ft_putstr_fd("len =[", fd2);
+ft_putnbr_fd(len, fd2);
+ft_putstr_fd("] ", fd2);
+ft_putstr_fd("LEN =[", fd2);
+ft_putnbr_fd(LEN, fd2);
+ft_putstr_fd("] ", fd2);
+ft_putstr_fd("I =[", fd2);
+ft_putnbr_fd(I, fd2);
+ft_putstr_fd("]\n", fd2);
+
+
 }
 
-void					insert_word(char *s, t_param *param)
+void					insert_word(char *s, t_param *param, char **old)
 {
-	int					i;
 	int					len;
-	char				*buf;
-
-	i = 0;
+	char				*tmp;
+//tant que le tab n'est gerer que a la fin;
 	len = ft_strlen(s);
-	buf = (char *)malloc(sizeof(char));
-//ft_printf("%s len=%d\n", s, len);
-	while (i < len)
-	{
-	//	buf = ft_strdup("");
-		buf[0] = s[i];
-		char_insert(param, buf);
-		i += 1;
-	}
-	free(buf);
+	I += len;
+	LEN += len;
+	len = ft_strlen(STR) + len;
+	tmp = ft_strnew(len + 1);
+	tmp = ft_strcpy(tmp, STR);
+	tmp = ft_strcat(tmp, s);
+	free(*old);
+	*old = tmp; 
+	refresh_screen(param, 0);
+int	fd2;
+fd2 = open("tata", O_WRONLY | O_TRUNC | O_CREAT, 0644);
+ft_putstr_fd("param->str =[", fd2);
+ft_putstr_fd(STR, fd2);
+ft_putstr_fd("]\n", fd2);
+ft_putstr_fd("len =[", fd2);
+ft_putnbr_fd(len, fd2);
+ft_putstr_fd("]\n", fd2);
 }
 
 void					l_check_token(char type, char *s, t_param *param)
@@ -135,6 +182,11 @@ void					l_check_token(char type, char *s, t_param *param)
 		if ((ret = tok_tab[i](type, s, &begin, param)))
 			break ;
 		i += 1;
+	}
+	if (begin == NULL)
+	{
+		tputs(tgetstr("bl", NULL), 1, tputs_putchar);
+		return ;
 	}
 	if (ret)
 		l_tab_loop(begin, param);

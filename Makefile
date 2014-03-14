@@ -6,7 +6,11 @@
 #    By: qchevrin <qchevrin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/12/03 12:33:25 by qchevrin          #+#    #+#              #
+<<<<<<< HEAD
 #    Updated: 2014/03/12 19:44:38 by lredoban         ###   ########.fr        #
+=======
+#    Updated: 2014/03/14 18:13:32 by qchevrin         ###   ########.fr        #
+>>>>>>> cb36f1b8423ce272f8debdce10c9f2177eaddecd
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,18 +29,24 @@ SRC= parser_mofo/q_count_token_len.c \
 	 parser_mofo/q_check_cmd.c \
 	 parser_mofo/q_add.c \
 	 parser_mofo/tmp_prompt.c \
+	 parser_mofo/q_subshell.c \
+	 parser_mofo/q_shell_cmd.c \
 	 src_select_cmd/edit_line.c \
 	 src_select_cmd/move.c \
 	 src_select_cmd/refresh.c \
 	 src_select_cmd/term.c \
 	 src_select_cmd/select_cmd.c \
 	 src_select_cmd/j_malloc.c \
+<<<<<<< HEAD
 	 src_select_cmd/autocomplete.c \
 	 src_select_cmd/l_list.c \
 	 src_select_cmd/l_path.c \
 	 src_select_cmd/l_search.c \
 	 src_select_cmd/l_to_check.c \
 	 src_select_cmd/l_tok_game.c \
+=======
+	 src_select_cmd/select_history.c \
+>>>>>>> cb36f1b8423ce272f8debdce10c9f2177eaddecd
 	 signal/init_sig.c \
 	 signal/quit_term.c \
 	 signal/kill_cmd.c \
@@ -63,6 +73,7 @@ SRC= parser_mofo/q_count_token_len.c \
 	 kernel/launch_fork.c \
 	 kernel/launch_one_cmd.c \
 	 kernel/exec_builtin.c \
+	 kernel/add_in_history.c \
 	 kernel/main.c
 
 INCLUDES=-I includes/
@@ -70,6 +81,8 @@ OBJ= $(SRC:.c=.o)
 NAME= 42sh
 LIB=-L/usr/lib -ltermcap -L./libft -lft
 DIR_LFT= libft
+
+.PHONY: clean fclean re all
 
 all: $(NAME)
 
@@ -89,6 +102,9 @@ fclean: clean
 	rm -rf $(NAME)
 
 re: fclean all
+<<<<<<< HEAD
 
 .PHONY: clean fclean re all
 # DO NOT DELETE
+=======
+>>>>>>> cb36f1b8423ce272f8debdce10c9f2177eaddecd

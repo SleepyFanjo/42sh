@@ -6,7 +6,7 @@
 /*   By: qchevrin <qchevrin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/16 12:25:46 by qchevrin          #+#    #+#             */
-/*   Updated: 2014/03/13 14:03:20 by lredoban         ###   ########.fr       */
+/*   Updated: 2014/03/14 18:56:40 by lredoban         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static int	find_env(char *env, char **envp)
 	return (-1);
 }
 
-static void	modify_pwd(char	*pwd, char *old_pwd, char ***envp)
+static void	modify_pwd(char *pwd, char *old_pwd, char ***envp)
 {
 	char	*new_pwd;
 	char	*new_old_pwd;
@@ -76,29 +76,36 @@ char		*get_env(char **envp, char *env)
 	return (c);
 }
 
-void		move_dir(t_cmd *cmd, char ***envp)
+static int	dir_error(char *str)
+{
+	ft_putendl_fd(str, 2);
+	return (1);
+}
+
+int			move_dir(t_cmd *cmd, char ***envp)
 {
 	char	buf[BUFF_SIZE + 1];
 
 	if ((cmd->arg)[1] == NULL)
 	{
 		if (chdir(get_env(*envp, "HOME")) == -1)
-			ft_putendl_fd("Error: Can't reach home directory", 0);
+			return (dir_error("Error: Can't reach home directory"));
 		else
 			modify_pwd(get_env(*envp, "HOME"), get_env(*envp, "PWD"), envp);
 	}
 	else if (!ft_strcmp(cmd->arg[1], "-"))
 	{
 		if (chdir(get_env(*envp, "OLDPWD")) == -1)
-			ft_putendl_fd("Error: Can't reach old pwd", 0);
+			return (dir_error("Error: Can't reach old pwd"));
 		else
 			modify_pwd(get_env(*envp, "OLDPWD"), get_env(*envp, "PWD"), envp);
 	}
 	else
 	{
 		if (chdir(cmd->arg[1]) == -1)
-			ft_putendl_fd("Error: Can't reach directory", 0);
+			return (dir_error("Error: Can't reach directory"));
 		else
 			modify_pwd(getcwd(buf, BUFF_SIZE), get_env(*envp, "PWD"), envp);
 	}
+	return (0);
 }

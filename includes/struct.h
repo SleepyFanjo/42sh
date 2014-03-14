@@ -6,7 +6,7 @@
 /*   By: qchevrin <qchevrin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/24 16:02:14 by qchevrin          #+#    #+#             */
-/*   Updated: 2014/03/12 17:06:28 by qchevrin         ###   ########.fr       */
+/*   Updated: 2014/03/14 15:19:28 by qchevrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # define Q_LINK		(4)
 # define Q_CTRL		(5)
 # define Q_EXE		(6)
+# define Q_SHELL	(7)
 # define Q_SPACE	(0)
 /* Define for next_cmd (parser) */
 # define Q_PIPE		(0)

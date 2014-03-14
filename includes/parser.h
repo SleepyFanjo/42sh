@@ -6,7 +6,7 @@
 /*   By: qchevrin <qchevrin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/24 11:16:46 by qchevrin          #+#    #+#             */
-/*   Updated: 2014/03/12 15:54:28 by qchevrin         ###   ########.fr       */
+/*   Updated: 2014/03/14 14:32:10 by qchevrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,14 @@ t_list		*q_create_obj(void *elem);
 int			q_add_in_list(t_list **list, void *elem);
 t_token		*q_create_token(char *str, int *i, int *error);
 t_token		*q_white_token(char *str, int *i);
+t_token		*q_subshell(char *str, int *i);
 t_token		*q_utility_token(char *name, int inh);
 t_list		*q_lexer(char *str);
 t_list		*q_rolex(t_list *list);
-t_list		*q_parser(t_list *token_list);
-t_cmd		*q_fill_cmd(t_list **token);
+t_list		*q_parser(t_list *token_list, char *argv);
+t_cmd		*q_fill_cmd(t_list **token, char *argv);
+t_cmd		*q_shell_cmd(t_token *elem, char *argv, t_list **token);
+int			is_subshell(t_token *elem);
 t_cmd		*q_init_cmd(void);
 t_cmd		*q_check_cmd(t_cmd *cmd);
 int			q_is_ctrl(t_token *elem);
@@ -51,9 +54,6 @@ void		q_free_elem(t_cmd *elem);
 void		q_delete_whitespace(t_list **list);
 int			q_is_blank(void *elem);
 void		q_free_token(t_list *token);
-
-
-/* ***** */
 char		*tmp_prompt(void);
 
 #endif

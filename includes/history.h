@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   j_malloc.c                                         :+:      :+:    :+:   */
+/*   history.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qchevrin <qchevrin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/03/12 17:59:55 by qchevrin          #+#    #+#             */
-/*   Updated: 2014/03/13 14:10:34 by jrenouf-         ###   ########.fr       */
+/*   Created: 2014/03/13 16:55:56 by qchevrin          #+#    #+#             */
+/*   Updated: 2014/03/13 17:16:42 by qchevrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/select_cmd.h"
+#ifndef HISTORY_H
+# define HISTORY_H
+# define MAX_H_LEN		(100)
+# include <stdlib.h>
+# include <unistd.h>
 
-void				*j_malloc(size_t byte)
+typedef struct		s_history
 {
-	void			*ret;
+	char				*str;
+	struct s_history	*next;
+	struct s_history	*prev;
+}					t_history;
 
-	if ((ret = malloc(byte)) == NULL)
-	{
-		if ((ret = malloc(byte)) == NULL)
-		{
-			ft_putendl("Error : can't malloc");
-			exit(1);
-		}
-	}
-	return (ret);
-}
+void	add_in_history(t_history **history, char *str);
+
+#endif

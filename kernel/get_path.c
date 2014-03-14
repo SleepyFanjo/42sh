@@ -6,7 +6,7 @@
 /*   By: vwatrelo <vwatrelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/15 12:16:19 by vwatrelo          #+#    #+#             */
-/*   Updated: 2014/03/11 15:35:22 by qchevrin         ###   ########.fr       */
+/*   Updated: 2014/03/14 18:16:10 by qchevrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,20 @@ static char	*ft_strjoinpath(char const *s1, char const *s2)
 	return (str);
 }
 
-char		*type_cmd(char *str)
+static void	v_free_tab(char **table)
+{
+	int		i;
+
+	i = 0;
+	while (table[i] != NULL)
+	{
+		free(table[i]);
+		i++;
+	}
+	free(table);
+}
+
+static char	*type_cmd(char *str)
 {
 	char	*tmp2;
 
@@ -66,10 +79,17 @@ char		*get_path(char *str, char **envp)
 	while (path[i] != NULL)
 	{
 		if ((tmp = ft_strjoinpath(path[i++], str)) == NULL)
+		{
+			v_free_tab(path);
 			return (NULL);
+		}
 		if (access(tmp, X_OK) == 0)
+		{
+			v_free_tab(path);
 			return (tmp);
+		}
 		free(tmp);
 	}
+	v_free_tab(path);
 	return (NULL);
 }

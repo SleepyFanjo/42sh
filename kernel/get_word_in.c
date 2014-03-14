@@ -6,7 +6,7 @@
 /*   By: vwatrelo <vwatrelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/07 17:26:44 by vwatrelo          #+#    #+#             */
-/*   Updated: 2014/03/10 14:27:54 by vwatrelo         ###   ########.fr       */
+/*   Updated: 2014/03/13 17:39:45 by jrenouf-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int			get_word_in(t_cmd *cmd)
 
 	if (pipe(fd_pipe) < 0)
 		return (-1);
-	if ((line = tmp_prompt()) == NULL)
+	if ((line = select_cmd(6, "()()> ", NULL)) == NULL)
 		return (-1);
 	while (ft_strcmp(line, cmd->file_in) != 0)
 	{

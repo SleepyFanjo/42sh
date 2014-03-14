@@ -6,7 +6,7 @@
 /*   By: jrenouf- <jrenouf-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/08 14:32:42 by jrenouf-          #+#    #+#             */
-/*   Updated: 2014/03/13 14:28:41 by lredoban         ###   ########.fr       */
+/*   Updated: 2014/03/14 18:56:15 by lredoban         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include <term.h>
 # include <signal.h>
 # include "../libft/libft.h"
+# include <history.h>
 
 # define C_C		3
 # define C_D		4
@@ -49,6 +50,10 @@
 # define LEN		param->len
 # define LEN_MAX	param->len_max
 # define STR		param->str
+# define HISTORY	param->history
+# define H_STR		param->history->str
+# define H_NEXT		param->history->next
+# define H_PREV		param->history->prev
 
 typedef struct		s_param
 {
@@ -56,8 +61,11 @@ typedef struct		s_param
 	int				len;
 	int				len_max;
 	int				prompt;
+	int				hist_f;
 	char			*p_line;
 	char			*str;
+	char			*save_str;
+	t_history		*history;
 }					t_param;
 
 int					tputs_putchar(int c);
@@ -71,18 +79,20 @@ int					go_down(t_param *param, char *buf);
 int					go_up(t_param *param, char *buf);
 int					tab_key(t_param *param, char *buf);
 int					set_term(void);
-int					unset_term(void);
+char				*unset_term(void);
 int					ft_prompt(char **env);
-char				*select_cmd(int nb, char *str);
+char				*select_cmd(int nb, char *str, t_history *h);
 void				go_left(t_param *param);
 void				go_right(t_param *param);
-void				write_str(t_param *param);
+void				write_str(char *p_line, char *str);
 void				refresh_screen(t_param *param, int mode);
 void				sc_clear(int sig);
 int					get_lenmax(void);
 t_param				*save_param(t_param *param);
-void				init_param(t_param *param, int nb, char *str);
+void				init_param(t_param *param, int nb, char *str, t_history *h);
 void				*j_malloc(size_t byte);
+void				exleft(int tmp);
+int					s_history(t_param *param, char *buf);
 
 int					ft_autocomplete(t_param *param);
 
