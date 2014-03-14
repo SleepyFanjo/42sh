@@ -6,20 +6,28 @@
 /*   By: qchevrin <qchevrin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 15:26:29 by qchevrin          #+#    #+#             */
-/*   Updated: 2014/03/10 13:53:36 by vwatrelo         ###   ########.fr       */
+/*   Updated: 2014/03/14 14:56:35 by qchevrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <parser.h>
 
-int		q_file_error(void)
+static int	q_shell_error(void)
+{
+	ft_putendl_fd("Error : parse error near )", 2);
+	return (1);
+}
+
+int			q_file_error(void)
 {
 	ft_putendl_fd("Error : nothing after file redirection", 2);
 	return (1);
 }
 
-int		q_add_in_cmd(t_token *elem, t_token *next, t_cmd *cmd)
+int			q_add_in_cmd(t_token *elem, t_token *next, t_cmd *cmd)
 {
+	if (elem->type == Q_SHELL)
+		return (q_shell_error());
 	if (elem->type == Q_LINK)
 		return (q_add_link(elem->name, next, cmd));
 	if (elem->type == Q_FILE)
@@ -36,12 +44,12 @@ int		q_add_in_cmd(t_token *elem, t_token *next, t_cmd *cmd)
 	return (0);
 }
 
-int		q_is_ctrl(t_token *elem)
+int			q_is_ctrl(t_token *elem)
 {
 	return (elem->type == Q_CTRL);
 }
 
-t_cmd	*q_init_cmd(void)
+t_cmd		*q_init_cmd(void)
 {
 	t_cmd	*cmd;
 

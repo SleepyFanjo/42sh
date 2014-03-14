@@ -6,7 +6,7 @@
 #    By: qchevrin <qchevrin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/12/03 12:33:25 by qchevrin          #+#    #+#              #
-#    Updated: 2014/03/13 20:30:27 by vwatrelo         ###   ########.fr        #
+#    Updated: 2014/03/14 12:35:03 by qchevrin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,8 @@ SRC= parser_mofo/q_count_token_len.c \
 	 parser_mofo/q_check_cmd.c \
 	 parser_mofo/q_add.c \
 	 parser_mofo/tmp_prompt.c \
+	 parser_mofo/q_subshell.c \
+	 parser_mofo/q_shell_cmd.c \
 	 src_select_cmd/edit_line.c \
 	 src_select_cmd/move.c \
 	 src_select_cmd/refresh.c \

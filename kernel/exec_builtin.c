@@ -6,7 +6,7 @@
 /*   By: vwatrelo <vwatrelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/10 14:41:29 by vwatrelo          #+#    #+#             */
-/*   Updated: 2014/03/12 15:05:29 by lredoban         ###   ########.fr       */
+/*   Updated: 2014/03/14 15:37:17 by qchevrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@ static int	exec_builtin_2(t_cmd *cmd, int *fd_builtin)
 		close_fd(cmd);
 		return (1);
 	}
-
 	return (0);
 }
 

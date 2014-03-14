@@ -6,7 +6,7 @@
 /*   By: qchevrin <qchevrin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/24 16:12:57 by qchevrin          #+#    #+#             */
-/*   Updated: 2014/03/13 20:42:23 by vwatrelo         ###   ########.fr       */
+/*   Updated: 2014/03/14 11:39:28 by qchevrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,8 @@ t_token		*q_create_token(char *str, int *i, int *error)
 	}
 	if (q_is_whitespace(str[j]))
 		return (q_white_token(str, i));
+	if (str[*i] == '(')
+		return (q_subshell(str, i));
 	k = q_count_token_len(str, i, &j, &inh);
 	if (k == -1)
 		return (NULL);
