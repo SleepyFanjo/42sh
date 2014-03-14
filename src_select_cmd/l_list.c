@@ -6,7 +6,7 @@
 /*   By: lredoban <lredoban@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/07 18:53:21 by lredoban          #+#    #+#             */
-/*   Updated: 2014/03/14 19:53:53 by lredoban         ###   ########.fr       */
+/*   Updated: 2014/03/14 20:11:37 by lredoban         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void						l_print_list(t_list *list)
 	{
 		list = list->next;
 	}
-	ft_putendl_fd("", fd);
+	ft_putendl("");
 }
 
 t_list						*l_add_to_list(t_list *list, char *data)
