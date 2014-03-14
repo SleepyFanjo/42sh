@@ -6,7 +6,7 @@
 /*   By: jrenouf- <jrenouf-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/08 14:32:42 by jrenouf-          #+#    #+#             */
-/*   Updated: 2014/03/13 17:29:48 by jrenouf-         ###   ########.fr       */
+/*   Updated: 2014/03/14 15:45:37 by jrenouf-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ typedef struct		s_param
 	int				len;
 	int				len_max;
 	int				prompt;
+	int				hist_f;
 	char			*p_line;
 	char			*str;
 	char			*save_str;
@@ -76,7 +77,7 @@ int					word_jump_right(t_param *param, char *buf);
 int					go_down(t_param *param, char *buf);
 int					go_up(t_param *param, char *buf);
 int					set_term(void);
-int					unset_term(void);
+char				*unset_term(void);
 int					ft_prompt(char **env);
 char				*select_cmd(int nb, char *str, t_history *h);
 void				go_left(t_param *param);

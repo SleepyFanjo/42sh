@@ -6,7 +6,7 @@
 /*   By: jrenouf- <jrenouf-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/08 14:33:20 by jrenouf-          #+#    #+#             */
-/*   Updated: 2014/03/13 20:53:30 by vwatrelo         ###   ########.fr       */
+/*   Updated: 2014/03/14 12:10:14 by jrenouf-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int						tputs_putchar(int c)
 	write(1, &c, 1);
 	return (1);
 }
-
 
 void					extreme_end(t_param *param)
 {
@@ -33,12 +32,16 @@ char					*ft_end_sig(t_param *param, char *buf)
 	if (BUF == C_D)
 	{
 		free(STR);
+		free(P_LINE);
+		unset_term();
 		write(1, "\n", 1);
 		return (ft_strdup("exit"));
 	}
 	if (BUF == C_C)
 	{
 		free(STR);
+		free(P_LINE);
+		unset_term();
 		write(1, "\n", 1);
 		return (ft_strdup(""));
 	}
@@ -91,7 +94,7 @@ char					*select_cmd(int nb, char *str, t_history *h)
 	{
 		ft_bzero(buf, 5);
 		if (read(0, buf, 4) < 0)
-			return (NULL);
+			return (unset_term());
 		if (BUF == C_C || BUF == C_D)
 			return (ft_end_sig(&p, buf));
 		if_forest(&p, buf);
