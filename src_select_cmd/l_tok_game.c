@@ -6,7 +6,7 @@
 /*   By: lredoban <lredoban@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/07 18:34:13 by lredoban          #+#    #+#             */
-/*   Updated: 2014/03/14 19:49:06 by lredoban         ###   ########.fr       */
+/*   Updated: 2014/03/14 19:58:16 by lredoban         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,17 +59,11 @@ static void				l_tab_loop(t_list *begin, t_param *param)
 	char			*tmp2;
 
 	tmp = begin;
-l_print_list(begin);
 	ft_bzero(buf, 5);
 	buf[0] = '\x9';
-int	fd;
-fd = open("toto", O_WRONLY | O_TRUNC | O_CREAT, 0644);
 	insert_word(begin->elem, param, &STR);
 	while (begin->next != NULL && BUF == TAB)
 	{
-ft_putstr_fd("into the while =[", fd);
-ft_putstr_fd(tmp->elem, fd);
-ft_putstr_fd("]\n", fd);
 			if ((read(0, buf, 5) == -1))
 				exit (0);
 			if (TAB == BUF)
@@ -88,32 +82,7 @@ ft_putstr_fd("]\n", fd);
 	else if (tmp2[ft_strlen(tmp2) - 1] != '/')
 		char_insert(param, "\x20\0\0\0\0");
 	refresh_screen(param, 0);
-
-close(fd);
 }
-
-/*static void				l_tab_loop(t_list *begin, t_param *param)
-{
-	t_list				*tmp;
-	char				buf[5];
-
-	insert_word(begin->elem, param, &STR);
-	tmp = begin;
-	ft_bzero(buf, 5);
-	while (BUF != RETURN)
-	{
-		ft_bzero(buf, 5);
-		if (read(0, buf, 4) < 0)
-		 	exit (0);
-		del_word(tmp->elem, param, &STR);
-		if (tmp->next == NULL)
-			tmp = begin;
-		else
-			tmp = tmp->next;
-		insert_word(begin->elem, param, &STR);
-	}
-	char_insert(param, "\x20\0\0\0\0");
-}*/
 
 void					del_word(char *s, t_param *param, char **old)
 {
@@ -129,22 +98,6 @@ void					del_word(char *s, t_param *param, char **old)
 	tmp = ft_strncpy(tmp, STR, len);
 	free(*old);
 	*old = tmp;
-int	fd2;
-fd2 = open("tata", O_WRONLY | O_TRUNC | O_CREAT, 0644);
-ft_putstr_fd("param->str =[", fd2);
-ft_putstr_fd(STR, fd2);
-ft_putstr_fd("] ", fd2);
-ft_putstr_fd("len =[", fd2);
-ft_putnbr_fd(len, fd2);
-ft_putstr_fd("] ", fd2);
-ft_putstr_fd("LEN =[", fd2);
-ft_putnbr_fd(LEN, fd2);
-ft_putstr_fd("] ", fd2);
-ft_putstr_fd("I =[", fd2);
-ft_putnbr_fd(I, fd2);
-ft_putstr_fd("]\n", fd2);
-
-
 }
 
 void					insert_word(char *s, t_param *param, char **old)
@@ -162,14 +115,6 @@ void					insert_word(char *s, t_param *param, char **old)
 	free(*old);
 	*old = tmp;
 	write_str(P_LINE, *old);
-int	fd2;
-fd2 = open("tata", O_WRONLY | O_TRUNC | O_CREAT, 0644);
-ft_putstr_fd("param->str =[", fd2);
-ft_putstr_fd(STR, fd2);
-ft_putstr_fd("]\n", fd2);
-ft_putstr_fd("len =[", fd2);
-ft_putnbr_fd(len, fd2);
-ft_putstr_fd("]\n", fd2);
 }
 
 void					l_check_token(char type, char *s, t_param *param)
