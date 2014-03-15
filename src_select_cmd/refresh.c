@@ -6,7 +6,7 @@
 /*   By: jrenouf- <jrenouf-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 16:23:20 by jrenouf-          #+#    #+#             */
-/*   Updated: 2014/03/13 15:17:34 by jrenouf-         ###   ########.fr       */
+/*   Updated: 2014/03/14 18:17:07 by qchevrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void					sc_clear(int sig)
 	param = save_param(NULL);
 	LEN_MAX = get_lenmax();
 	tmp = I + P;
-	if (LEN + P >=  LEN_MAX)
+	if (LEN + P >= LEN_MAX)
 	{
 		exleft(I + P);
 		ft_putstr("> window too small..");
