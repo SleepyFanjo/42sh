@@ -6,7 +6,7 @@
 /*   By: qchevrin <qchevrin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/17 17:40:21 by qchevrin          #+#    #+#             */
-/*   Updated: 2014/03/14 16:07:54 by qchevrin         ###   ########.fr       */
+/*   Updated: 2014/03/14 18:12:51 by qchevrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,30 +70,29 @@ static void	free_table(char ***table)
 
 int			env(t_cmd *cmd, char **envp, int fd)
 {
-	int		i;
-	int		ret;
+	int		i[2];
 
-	i = 1;
-	ret = 0;
-	if ((cmd->arg)[1] != NULL && !ft_strcmp((cmd->arg)[i], "-i"))
+	i[0] = 1;
+	i[1] = 0;
+	if ((cmd->arg)[1] != NULL && !ft_strcmp((cmd->arg)[i[0]], "-i"))
 	{
 		free_table(&envp);
-		i = i + 1;
+		i[0] = i[0] + 1;
 	}
 	if ((cmd->arg)[1] == NULL)
 	{
 		print_env(envp, fd);
 		return (0);
 	}
-	while ((cmd->arg)[i] != NULL && !is_cmd((cmd->arg)[i]))
+	while ((cmd->arg)[i[0]] != NULL && !is_cmd((cmd->arg)[i[0]]))
 	{
-		modify_env(&envp, (cmd->arg)[i]);
-		i = i + 1;
+		modify_env(&envp, (cmd->arg)[i[0]]);
+		i[0] = i[0] + 1;
 	}
-	if ((cmd->arg)[i] == NULL)
+	if ((cmd->arg)[i[0]] == NULL)
 		print_env(envp, fd);
 	else
-		ret = exec_arg((cmd->arg)[i], cmd->arg + i, envp);
+		i[1] = exec_arg((cmd->arg)[i[0]], cmd->arg + i[0], envp);
 	free_table(&envp);
-	return (ret);
+	return (i[1]);
 }
