@@ -6,7 +6,7 @@
 /*   By: vwatrelo <vwatrelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/10 13:36:35 by vwatrelo          #+#    #+#             */
-/*   Updated: 2014/03/14 16:12:58 by qchevrin         ###   ########.fr       */
+/*   Updated: 2014/03/16 12:07:53 by lredoban         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,6 @@ char		**table_cpy(char **table);
 int			init_sig(void);
 void		kill_cmd(int sig);
 void		quit_term(int sig);
+void		l_pre_prompt(void);
 
 #endif

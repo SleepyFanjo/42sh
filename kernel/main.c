@@ -6,7 +6,7 @@
 /*   By: vwatrelo <vwatrelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/07 15:38:46 by vwatrelo          #+#    #+#             */
-/*   Updated: 2014/03/14 18:55:44 by lredoban         ###   ########.fr       */
+/*   Updated: 2014/03/16 12:09:47 by lredoban         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,10 +77,13 @@ int				main(int argc, char **argv)
 	}
 	if (argc > 1)
 		sub_shell(ft_strdup(argv[1]), argv[0]);
-	while ((line = select_cmd(28, (prompt = tmp_prompt()), history)))
+	prompt = tmp_prompt();
+	l_pre_prompt();
+	while ((line = select_cmd(28, prompt, history)))
 	{
-		free(prompt);
+		l_pre_prompt();
 		fucking_norm(&history, line, argv[0]);
 	}
+	free(prompt);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: lredoban <lredoban@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/07 18:53:21 by lredoban          #+#    #+#             */
-/*   Updated: 2014/03/16 11:17:04 by lredoban         ###   ########.fr       */
+/*   Updated: 2014/03/16 11:43:04 by lredoban         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void						l_del_list(t_list **list)
 
 	if (*list == NULL)
 		return ;
+	tmp = *list;
 	while (tmp != NULL)
 	{
 		free(tmp->elem);
@@ -54,7 +55,7 @@ t_list						*l_add_to_list(t_list *list, char *data)
 
 	new = (t_list *)malloc(sizeof(t_list));
 	new->next = NULL;
-	new->elem = ft_strdup(data);
+	new->elem = data;
 	if (!list)
 		return (new);
 	tmp = list;

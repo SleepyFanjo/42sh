@@ -6,7 +6,7 @@
 /*   By: lredoban <lredoban@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/25 14:55:25 by lredoban          #+#    #+#             */
-/*   Updated: 2014/03/14 20:25:44 by lredoban         ###   ########.fr       */
+/*   Updated: 2014/03/16 11:46:29 by lredoban         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static void			ft_check_builtin(char *s, t_list **begin)
 	while (builtin[i] != NULL)
 	{
 		if (!ft_strncmp(builtin[i], s, ft_strlen(s)))
-			*begin = l_add_to_list(*begin, builtin[i]);
+			*begin = l_add_to_list(*begin, ft_strdup(builtin[i]));
 		i += 1;
 	}
 }
@@ -61,7 +61,7 @@ static void			ft_process(char **tmp, char *s, int i, t_list **begin)
 			{
 				if (l_is_exe(tmp[i], ent, NULL))
 				{
-					*begin = l_add_to_list(*begin, ent->d_name);
+					*begin = l_add_to_list(*begin, ft_strdup(ent->d_name));
 				}
 			}
 		}
