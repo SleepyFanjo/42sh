@@ -6,7 +6,7 @@
 /*   By: lredoban <lredoban@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/07 18:34:13 by lredoban          #+#    #+#             */
-/*   Updated: 2014/03/16 11:24:36 by lredoban         ###   ########.fr       */
+/*   Updated: 2014/03/16 16:22:27 by lredoban         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,15 @@ char					*l_get_token(t_list *list, char *type)
 	return (ret);
 }
 
+static void		l_end_loop(t_param *param, char *buf, t_list *begin, char *tmp)
+{
+	if (BUF != RETURN && begin->next != NULL)
+		char_insert(param, buf);
+	else if (tmp[ft_strlen(tmp) - 1] != '/')
+		char_insert(param, "\x20\0\0\0\0");
+	refresh_screen(param, 1);
+}
+
 static void				l_tab_loop(t_list *begin, t_param *param)
 {
 	t_list				*tmp;
@@ -79,46 +88,7 @@ static void				l_tab_loop(t_list *begin, t_param *param)
 			}
 	}
 	tmp2 = tmp->elem;
-	if (BUF != RETURN && begin->next != NULL)
-		char_insert(param, buf);
-	else if (tmp2[ft_strlen(tmp2) - 1] != '/')
-		char_insert(param, "\x20\0\0\0\0");
-	refresh_screen(param, 0);
-}
-
-void					del_word(char *s, t_param *param, char **old)
-{
-	int					len;
-	char				*tmp;
-//tant que le tab n'est gerer que a la fin;
-
-	exleft(I + P);
-	len = ft_strlen(s);
-	I -= len;
-	LEN -= len;
-	len = ft_strlen(STR) - len;
-	tmp = ft_strnew(len + 1);
-	tmp = ft_strncpy(tmp, STR, len);
-	free(*old);
-	*old = tmp;
-}
-
-void					insert_word(char *s, t_param *param, char **old)
-{
-	int					len;
-	char				*tmp;
-//tant que le tab n'est gerer que a la fin;
-
-	len = ft_strlen(s);
-	I += len;
-	LEN += len;
-	len = ft_strlen(STR) + len;
-	tmp = ft_strnew(len + 1);
-	tmp = ft_strcpy(tmp, STR);
-	tmp = ft_strcat(tmp, s);
-	free(*old);
-	*old = tmp;
-	write_str(P_LINE, *old);
+	l_end_loop(param, buf, begin, tmp2);
 }
 
 void					l_check_token(char type, char *s, t_param *param)

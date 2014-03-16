@@ -6,7 +6,7 @@
 /*   By: lredoban <lredoban@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 14:49:57 by lredoban          #+#    #+#             */
-/*   Updated: 2014/03/14 15:46:08 by lredoban         ###   ########.fr       */
+/*   Updated: 2014/03/16 16:39:42 by lredoban         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,12 @@
 # include "select_cmd.h"
 
 int			ft_autocomplete(t_param *param);
+
+typedef struct	s_dummy
+{
+	char		*s;
+	char		*s_cmp;
+}				t_dummy;
 
 /*
 **   l_search.c
@@ -57,7 +63,7 @@ static const t_check	to_check[] =
 						&l_is_file
 };
 
-int			ft_auto_dir(char *s, char *s_cmp, t_check check_it, t_list **begin, t_param *param);
+int			ft_auto_dir(t_dummy *s, t_check c, t_list **b, t_param *p);
 
 /*
 **   l_path.c
@@ -78,7 +84,7 @@ t_list		*l_add_to_list(t_list *list, char *data);
 void		l_del_list(t_list **list);
 
 /*
-**   tok_game for the moment
+**   l_edit_word.c
 */
 void		insert_word(char *s, t_param *param, char **old);
 void		del_word(char *s, t_param *param, char **old);

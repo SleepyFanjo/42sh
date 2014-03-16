@@ -6,7 +6,7 @@
 #    By: qchevrin <qchevrin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/12/03 12:33:25 by qchevrin          #+#    #+#              #
-#    Updated: 2014/03/16 10:47:04 by lredoban         ###   ########.fr        #
+#    Updated: 2014/03/16 16:06:40 by lredoban         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,6 +39,7 @@ SRC= parser_mofo/q_count_token_len.c \
 	 src_select_cmd/l_search.c \
 	 src_select_cmd/l_to_check.c \
 	 src_select_cmd/l_tok_game.c \
+	 src_select_cmd/l_edit_word.c \
 	 src_select_cmd/select_history.c \
 	 signal/init_sig.c \
 	 signal/quit_term.c \

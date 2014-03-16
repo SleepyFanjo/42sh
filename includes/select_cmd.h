@@ -6,7 +6,7 @@
 /*   By: jrenouf- <jrenouf-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/08 14:32:42 by jrenouf-          #+#    #+#             */
-/*   Updated: 2014/03/14 19:05:16 by lredoban         ###   ########.fr       */
+/*   Updated: 2014/03/16 15:47:47 by lredoban         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ t_param				*save_param(t_param *param);
 void				init_param(t_param *param, int nb, char *str, t_history *h);
 void				*j_malloc(size_t byte);
 void				exleft(int tmp);
+void				l_exleft(int tmp);
 int					s_history(t_param *param, char *buf);
 
 int					ft_autocomplete(t_param *param);
