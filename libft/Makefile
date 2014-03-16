@@ -6,7 +6,7 @@
 #    By: qchevrin <qchevrin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/11/19 15:05:33 by qchevrin          #+#    #+#              #
-#    Updated: 2014/03/13 20:30:26 by vwatrelo         ###   ########.fr        #
+#    Updated: 2014/03/16 10:37:39 by lredoban         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -75,15 +75,15 @@ SRC=ft_memset.c \
 
 OBJ=$(SRC:.c=.o)
 
-
+.SILENT:
 
 .PHONY: all clean fclean re
 
 all : $(NAME)
 
 $(NAME): $(OBJ)
-	ar -q $(NAME) $(OBJ)
-	ranlib $(NAME)
+	@ar -q $(NAME) $(OBJ)
+	@ranlib $(NAME)
 %.o: %.c
 	$(CC) -c $(CFLAGS) -o $@ $<
 clean :

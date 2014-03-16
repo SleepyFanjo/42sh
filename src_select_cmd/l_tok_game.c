@@ -6,7 +6,7 @@
 /*   By: lredoban <lredoban@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/07 18:34:13 by lredoban          #+#    #+#             */
-/*   Updated: 2014/03/14 20:29:04 by lredoban         ###   ########.fr       */
+/*   Updated: 2014/03/16 11:24:36 by lredoban         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ static char				l_find_tok(t_list *prev)
 {
 	t_token				*tok;
 
+	if (prev == NULL)
+		return (0);
 	tok = prev->elem;
 	if (tok->type == Q_CMD)
 		tok->type = Q_ARG;
@@ -30,6 +32,7 @@ char					*l_get_token(t_list *list, char *type)
 	t_list				*prev;
 	char				*ret;
 
+	prev = NULL;
 	if (list == NULL)
 		return (NULL);
 	while (list->next != NULL)
