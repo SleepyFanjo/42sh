@@ -6,7 +6,7 @@
 /*   By: vwatrelo <vwatrelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/07 15:38:46 by vwatrelo          #+#    #+#             */
-/*   Updated: 2014/03/16 12:09:47 by lredoban         ###   ########.fr       */
+/*   Updated: 2014/03/16 12:18:50 by lredoban         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,8 @@ int				main(int argc, char **argv)
 	l_pre_prompt();
 	while ((line = select_cmd(28, prompt, history)))
 	{
-		l_pre_prompt();
 		fucking_norm(&history, line, argv[0]);
+		l_pre_prompt();
 	}
 	free(prompt);
 	return (0);
