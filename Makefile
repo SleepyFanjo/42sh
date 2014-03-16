@@ -6,7 +6,7 @@
 #    By: qchevrin <qchevrin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/12/03 12:33:25 by qchevrin          #+#    #+#              #
-#    Updated: 2014/03/15 18:31:12 by qchevrin         ###   ########.fr        #
+#    Updated: 2014/03/16 10:47:04 by lredoban         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -70,6 +70,12 @@ SRC= parser_mofo/q_count_token_len.c \
 	 kernel/main.c
 
 INCLUDES=-I includes/
+INC=includes/history.h \
+	includes/launch_cmd.h \
+	includes/parser.h \
+	includes/select_cmd.h \
+	includes/struct.h \
+
 OBJ= $(SRC:.c=.o)
 NAME= 42sh
 LIB=-L/usr/lib -ltermcap -L./libft -lft
@@ -81,17 +87,21 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	@(cd $(DIR_LFT) ; make)
-	$(CC) -o $(NAME) $(OBJ) $(LIB)
+	@$(CC) -o $(NAME) $(OBJ) $(LIB)
+	@echo "\t\xF0\x9F\x8F\x81   Compiling \033[35m$(NAME) \033[0mDONE!"
 
-%.o: %.c
-	$(CC) -c $(CFLAGS) $(INCLUDES) -o $@ $< -I./ -I$(DIR_LFT)
+%.o: %.c $(INC)
+	@echo "\t\xF0\x9F\x94\xA7   Building \033[34m $@ \033[0m"
+	@$(CC) -c $(CFLAGS) $(INCLUDES) -o $@ $< -I./ -I$(DIR_LFT)
 
 clean:
+	@echo "\t\xF0\x9F\x92\xA3   Cleaning"
 	@(cd $(DIR_LFT) ; make clean)
-	rm -rf $(OBJ)
+	@rm -rf $(OBJ)
 
 fclean: clean
+	@echo "\t\xF0\x9F\x9A\xBD   Full Clean"
 	@(cd $(DIR_LFT) ; make fclean)
-	rm -rf $(NAME)
+	@rm -rf $(NAME)
 
 re: fclean all
