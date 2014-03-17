@@ -88,7 +88,7 @@ static char	*eval_token_name(char *token_name)
 	{
 		if (!ft_strncmp(token_name + j + 1, g_env[i], len))
 		{
-			ret = ft_strdup(g_env[i] + len - 1);
+			ret = ft_strdup(g_env[i] + len + 1);
 			free(token_name);
 			return (ret);
 		}
