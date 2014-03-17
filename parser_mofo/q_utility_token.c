@@ -6,7 +6,7 @@
 /*   By: qchevrin <qchevrin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/27 15:45:30 by qchevrin          #+#    #+#             */
-/*   Updated: 2014/03/13 20:47:05 by vwatrelo         ###   ########.fr       */
+/*   Updated: 2014/03/17 11:40:55 by qchevrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ static char	*eval_token_name(char *token_name)
 	{
 		if (!ft_strncmp(token_name + j + 1, g_env[i], len))
 		{
-			ret = ft_strdup(g_env[i] + len - 1);
+			ret = ft_strdup(g_env[i] + len + 1);
 			free(token_name);
 			return (ret);
 		}
