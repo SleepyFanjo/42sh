@@ -6,7 +6,7 @@
 /*   By: qchevrin <qchevrin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/26 14:24:50 by qchevrin          #+#    #+#             */
-/*   Updated: 2014/03/12 16:59:33 by qchevrin         ###   ########.fr       */
+/*   Updated: 2014/03/17 16:15:51 by qchevrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,9 @@ static int	is_separator(char *str, int i)
 {
 	if (q_is_whitespace(str[i]) || q_is_special_char(str, i, NULL))
 		return (1);
-	if (str[i] == '\0')
+	if (str[i] == '\0' || str[i] == '\"' || str[i] == '\'')
+		return (1);
+	if (str[i] == ')' || str[i] == '(')
 		return (1);
 	return (0);
 }

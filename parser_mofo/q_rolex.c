@@ -6,7 +6,7 @@
 /*   By: qchevrin <qchevrin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/27 17:45:10 by qchevrin          #+#    #+#             */
-/*   Updated: 2014/03/12 18:38:43 by qchevrin         ###   ########.fr       */
+/*   Updated: 2014/03/17 17:23:57 by qchevrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,5 +67,6 @@ t_list		*q_rolex(t_list *list)
 			token->type = Q_EXE;
 		list = list->next;
 	}
+	print_token_list(begin);
 	return (begin);
 }
