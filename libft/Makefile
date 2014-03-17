@@ -6,7 +6,7 @@
 #    By: qchevrin <qchevrin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/11/19 15:05:33 by qchevrin          #+#    #+#              #
-#    Updated: 2014/03/16 10:37:39 by lredoban         ###   ########.fr        #
+#    Updated: 2014/03/17 10:50:56 by lredoban         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -82,7 +82,7 @@ OBJ=$(SRC:.c=.o)
 all : $(NAME)
 
 $(NAME): $(OBJ)
-	@ar -q $(NAME) $(OBJ)
+	@ar rc $(NAME) $(OBJ)
 	@ranlib $(NAME)
 %.o: %.c
 	$(CC) -c $(CFLAGS) -o $@ $<
