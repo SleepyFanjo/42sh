@@ -6,7 +6,7 @@
 /*   By: qchevrin <qchevrin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/19 11:00:08 by qchevrin          #+#    #+#             */
-/*   Updated: 2014/03/12 18:13:06 by qchevrin         ###   ########.fr       */
+/*   Updated: 2014/03/17 15:58:54 by qchevrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <string.h>
-# include <stdio.h>
 # include "libftprintf.h"
 # define BUFF_SIZE 4096
 
