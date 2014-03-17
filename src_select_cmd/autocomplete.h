@@ -6,7 +6,7 @@
 /*   By: lredoban <lredoban@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 14:49:57 by lredoban          #+#    #+#             */
-/*   Updated: 2014/03/16 16:39:42 by lredoban         ###   ########.fr       */
+/*   Updated: 2014/03/17 11:52:12 by lredoban         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,6 @@ void		l_check_token(char type, char *s, t_param *param);
 /*
 **   l_list.c
 */
-void		l_print_list(t_list *list); //tmp
 t_list		*l_add_to_list(t_list *list, char *data);
 void		l_del_list(t_list **list);
 

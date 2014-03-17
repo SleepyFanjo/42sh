@@ -6,7 +6,7 @@
 /*   By: qchevrin <qchevrin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/27 15:45:30 by qchevrin          #+#    #+#             */
-/*   Updated: 2014/03/13 20:47:05 by vwatrelo         ###   ########.fr       */
+/*   Updated: 2014/03/17 11:59:56 by lredoban         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ static char	*realloc_tilde(char *home, char *str, int i)
 	ft_strcat(ret, home);
 	return (ft_strcat(ret, str + len));
 }
-
 
 static char	*tilde(char *str)
 {
@@ -97,7 +96,6 @@ static char	*eval_token_name(char *token_name)
 	}
 	return (tilde(token_name));
 }
-
 
 t_token		*q_utility_token(char *name, int inh)
 {

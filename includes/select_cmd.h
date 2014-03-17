@@ -6,7 +6,7 @@
 /*   By: jrenouf- <jrenouf-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/08 14:32:42 by jrenouf-          #+#    #+#             */
-/*   Updated: 2014/03/16 15:47:47 by lredoban         ###   ########.fr       */
+/*   Updated: 2014/03/17 11:53:03 by lredoban         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,15 +75,11 @@ int					sideways(t_param *param, char *buf);
 int					extreme_sideways(t_param *param, char *buf);
 int					word_jump_left(t_param *param, char *buf);
 int					word_jump_right(t_param *param, char *buf);
-int					go_down(t_param *param, char *buf);
-int					go_up(t_param *param, char *buf);
 int					tab_key(t_param *param, char *buf);
 int					set_term(void);
 char				*unset_term(void);
 int					ft_prompt(char **env);
 char				*select_cmd(int nb, char *str, t_history *h);
-void				go_left(t_param *param);
-void				go_right(t_param *param);
 void				write_str(char *p_line, char *str);
 void				refresh_screen(t_param *param, int mode);
 void				sc_clear(int sig);
