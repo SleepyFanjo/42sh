@@ -6,7 +6,7 @@
 /*   By: jrenouf- <jrenouf-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/08 14:33:20 by jrenouf-          #+#    #+#             */
-/*   Updated: 2014/03/14 18:54:58 by lredoban         ###   ########.fr       */
+/*   Updated: 2014/03/17 15:10:28 by jrenouf-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ char					*ft_end_sig(t_param *param, char *buf)
 	if (BUF == C_D)
 	{
 		free(STR);
-		free(P_LINE);
 		unset_term();
 		write(1, "\n", 1);
 		return (ft_strdup("exit"));
@@ -40,7 +39,6 @@ char					*ft_end_sig(t_param *param, char *buf)
 	if (BUF == C_C)
 	{
 		free(STR);
-		free(P_LINE);
 		unset_term();
 		write(1, "\n", 1);
 		return (ft_strdup(""));
