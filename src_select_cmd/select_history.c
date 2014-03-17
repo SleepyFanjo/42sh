@@ -6,7 +6,7 @@
 /*   By: jrenouf- <jrenouf-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/13 15:19:19 by jrenouf-          #+#    #+#             */
-/*   Updated: 2014/03/14 16:13:55 by jrenouf-         ###   ########.fr       */
+/*   Updated: 2014/03/17 15:28:16 by jrenouf-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ void					change_up(t_param *param)
 	{
 		if (H_NEXT != NULL)
 			HISTORY = H_NEXT;
+		if (H_NEXT == NULL)
+			tputs(tgetstr("bl", NULL), 1, tputs_putchar);
 		change_str(param, H_STR);
 	}
 }
@@ -60,12 +62,14 @@ int						s_history(t_param *param, char *buf)
 		if (BUF == UP && HISTORY != NULL)
 		{
 			change_up(param);
+			return (1);
 		}
 		else if (BUF == DOWN && param->hist_f != 0)
 		{
 			change_down(param);
+			return (1);
 		}
-		return (1);
+		tputs(tgetstr("bl", NULL), 1, tputs_putchar);
 	}
 	return (0);
 }
