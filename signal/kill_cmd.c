@@ -6,7 +6,7 @@
 /*   By: vwatrelo <vwatrelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/11 16:34:00 by vwatrelo          #+#    #+#             */
-/*   Updated: 2014/03/11 16:57:02 by vwatrelo         ###   ########.fr       */
+/*   Updated: 2014/03/17 15:16:13 by qchevrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void		kill_cmd(int sig)
 
 	if (g_pid != -1)
 	{
+		if (sig == SIGTSTP)
+			ft_putstr("\nJob controls are not done, killing cmd");
 		kill(g_pid, 9);
 		ft_putchar('\n');
 		g_pid = -1;
