@@ -35,7 +35,7 @@ static int	father(t_cmd *cmd, pid_t pid)
 	g_pid = pid;
 	if (close_pipe_father(cmd))
 	{
-		ft_printf("%rUnable to close pipe\n");
+		ft_putstr_fd("Unable to close pipe\n", 2);
 		kill(pid, SIGINT);
 	}
 	wait(&(cmd->return_val));
@@ -53,7 +53,7 @@ int			launch_fork(t_cmd *cmd)
 	ret = 0;
 	if ((pid = fork()) < 0)
 	{
-		ft_printf("%rUnable to create fork\n");
+		ft_putstr_fd("Unable to create fork\n", 2);
 		return (-1);
 	}
 	if (pid == 0)

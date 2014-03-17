@@ -18,7 +18,8 @@ int		exec_cmd(t_cmd *cmd)
 
 	if ((path = get_path(cmd->cmd, g_env)) == NULL)
 	{
-		ft_printf("%rCommand not found: %s\n", cmd->cmd);
+		ft_putstr_fd("Command not found: ", 2);
+		ft_putendl_fd(cmd->cmd, 2);
 		exit(-1);
 	}
 	execve(path, cmd->arg, g_env);

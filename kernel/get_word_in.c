@@ -19,15 +19,14 @@ int			get_word_in(t_cmd *cmd)
 
 	if (pipe(fd_pipe) < 0)
 		return (-1);
-	if ((line = select_cmd(6, "()()> ", NULL)) == NULL)
+	if ((line = select_cmd(1, ">", NULL)) == NULL)
 		return (-1);
 	while (ft_strcmp(line, cmd->file_in) != 0)
 	{
 		write(fd_pipe[1], line, ft_strlen(line));
 		write(fd_pipe[1], "\n", 1);
-		ft_putstr(">");
 		free(line);
-		if ((line = tmp_prompt()) == NULL)
+		if ((line = select_cmd(1, ">", NULL)) == NULL)
 			return (-1);
 	}
 	free(line);
