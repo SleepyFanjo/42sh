@@ -15,6 +15,7 @@
 
 # include <fcntl.h>
 # include <signal.h>
+# include <sys/wait.h>
 # include "struct.h"
 # include "../libft/libft.h"
 # include "parser.h"

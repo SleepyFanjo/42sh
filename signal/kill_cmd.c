@@ -18,7 +18,7 @@ void		kill_cmd(int sig)
 
 	if (g_pid != -1)
 	{
-		kill(g_pid, sig);
+		kill(g_pid, 9);
 		ft_putchar('\n');
 		g_pid = -1;
 	}
