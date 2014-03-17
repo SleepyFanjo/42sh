@@ -6,10 +6,11 @@
 /*   By: qchevrin <qchevrin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/02 10:36:24 by qchevrin          #+#    #+#             */
-/*   Updated: 2013/12/29 18:20:13 by qchevrin         ###   ########.fr       */
+/*   Updated: 2014/03/17 17:26:48 by qchevrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
 #include "libft.h"
 
 static int	str_realloc_cat(char **dest, char *src)
