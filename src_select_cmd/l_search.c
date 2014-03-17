@@ -6,7 +6,7 @@
 /*   By: lredoban <lredoban@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/04 11:53:05 by lredoban          #+#    #+#             */
-/*   Updated: 2014/03/16 16:38:58 by lredoban         ###   ########.fr       */
+/*   Updated: 2014/03/17 12:15:44 by lredoban         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int			l_search_cmd(char type, char *s, t_list **begin, t_param *param)
 	return (1);
 }
 
-int						tab_key(t_param *param, char *buf)
+int			tab_key(t_param *param, char *buf)
 {
 	if (BUF != TAB)
 		return (0);

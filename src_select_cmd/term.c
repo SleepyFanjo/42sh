@@ -6,7 +6,7 @@
 /*   By: jrenouf- <jrenouf-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/08 15:23:26 by jrenouf-          #+#    #+#             */
-/*   Updated: 2014/03/16 12:03:08 by lredoban         ###   ########.fr       */
+/*   Updated: 2014/03/17 12:14:27 by lredoban         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ char				*unset_term(void)
 	return (NULL);
 }
 
-int						get_lenmax(void)
+int					get_lenmax(void)
 {
 	int				len;
 	struct winsize	size;
@@ -50,7 +50,7 @@ int						get_lenmax(void)
 	return (len);
 }
 
-void					init_param(t_param *param, int nb, char *str,
+void				init_param(t_param *param, int nb, char *str,
 									t_history *h)
 {
 	I = 0;
@@ -63,7 +63,7 @@ void					init_param(t_param *param, int nb, char *str,
 	HISTORY = h;
 }
 
-t_param					*save_param(t_param *param)
+t_param				*save_param(t_param *param)
 {
 	static t_param		*p = NULL;
 

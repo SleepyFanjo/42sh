@@ -6,13 +6,13 @@
 /*   By: lredoban <lredoban@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/07 18:34:13 by lredoban          #+#    #+#             */
-/*   Updated: 2014/03/16 16:22:27 by lredoban         ###   ########.fr       */
+/*   Updated: 2014/03/17 12:15:04 by lredoban         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "autocomplete.h"
 
-static char				l_find_tok(t_list *prev)
+static char		l_find_tok(t_list *prev)
 {
 	t_token				*tok;
 
@@ -26,7 +26,7 @@ static char				l_find_tok(t_list *prev)
 	return (tok->type);
 }
 
-char					*l_get_token(t_list *list, char *type)
+char			*l_get_token(t_list *list, char *type)
 {
 	t_token				*token;
 	t_list				*prev;
@@ -63,7 +63,7 @@ static void		l_end_loop(t_param *param, char *buf, t_list *begin, char *tmp)
 	refresh_screen(param, 1);
 }
 
-static void				l_tab_loop(t_list *begin, t_param *param)
+static void		l_tab_loop(t_list *begin, t_param *param)
 {
 	t_list				*tmp;
 	char				buf[5];
@@ -91,7 +91,7 @@ static void				l_tab_loop(t_list *begin, t_param *param)
 	l_end_loop(param, buf, begin, tmp2);
 }
 
-void					l_check_token(char type, char *s, t_param *param)
+void			l_check_token(char type, char *s, t_param *param)
 {
 	int					i;
 	t_list				*begin;

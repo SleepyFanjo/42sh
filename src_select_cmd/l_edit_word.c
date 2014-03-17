@@ -6,13 +6,13 @@
 /*   By: lredoban <lredoban@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/16 16:02:40 by lredoban          #+#    #+#             */
-/*   Updated: 2014/03/16 16:03:48 by lredoban         ###   ########.fr       */
+/*   Updated: 2014/03/17 12:15:55 by lredoban         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "select_cmd.h"
 
-static void					lil_del_word(char *s, t_param *param, char **old)
+static void				lil_del_word(char *s, t_param *param, char **old)
 {
 	int					len;
 	char				*tmp;

@@ -6,7 +6,7 @@
 /*   By: lredoban <lredoban@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 14:49:39 by lredoban          #+#    #+#             */
-/*   Updated: 2014/03/16 16:40:53 by lredoban         ###   ########.fr       */
+/*   Updated: 2014/03/17 12:16:23 by lredoban         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,12 @@ int					ft_auto_dir(t_dummy *s, t_check c, t_list **b, t_param *p)
 	return (1);
 }
 
-char					*ft_get_string(char **s1)
+char				*ft_get_string(char **s1)
 {
-	int					i;
-	int					len;
-	char				*s;
-	char				*dir;
+	int				i;
+	int				len;
+	char			*s;
+	char			*dir;
 
 	dir = *s1;
 	len = ft_strlen(dir);
@@ -68,9 +68,9 @@ char					*ft_get_string(char **s1)
 	return (s);
 }
 
-static char				*get_tmp(t_param *param)
+static char			*get_tmp(t_param *param)
 {
-	char				*ret;
+	char			*ret;
 
 	if (I == LEN)
 		ret = ft_strdup(STR);
@@ -82,12 +82,12 @@ static char				*get_tmp(t_param *param)
 	return (ret);
 }
 
-int						ft_autocomplete(t_param *param)
+int					ft_autocomplete(t_param *param)
 {
-	char				*s;
-	t_list				*list;
-	char				type;
-	char				*tmp;
+	char			*s;
+	t_list			*list;
+	char			type;
+	char			*tmp;
 
 	type = -1;
 	list = NULL;
