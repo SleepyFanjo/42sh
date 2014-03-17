@@ -6,7 +6,7 @@
 /*   By: qchevrin <qchevrin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/17 16:52:03 by qchevrin          #+#    #+#             */
-/*   Updated: 2014/03/14 16:03:40 by qchevrin         ###   ########.fr       */
+/*   Updated: 2014/03/14 18:10:01 by qchevrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static int	is_number(char *str)
 	return (1);
 }
 
-int		ft_exit(t_cmd *cmd, int fd)
+int			ft_exit(t_cmd *cmd, int fd)
 {
 	if ((cmd->arg)[1] == NULL)
 	{
