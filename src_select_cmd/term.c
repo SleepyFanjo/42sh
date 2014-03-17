@@ -6,7 +6,7 @@
 /*   By: jrenouf- <jrenouf-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/08 15:23:26 by jrenouf-          #+#    #+#             */
-/*   Updated: 2014/03/14 15:47:33 by jrenouf-         ###   ########.fr       */
+/*   Updated: 2014/03/16 12:03:08 by lredoban         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void					init_param(t_param *param, int nb, char *str,
 	LEN_MAX = get_lenmax();
 	param->hist_f = 0;
 	STR = ft_strdup("");
-	P_LINE = ft_strdup(str);
+	P_LINE = str;
 	HISTORY = h;
 }
 

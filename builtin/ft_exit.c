@@ -6,7 +6,7 @@
 /*   By: qchevrin <qchevrin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/17 16:52:03 by qchevrin          #+#    #+#             */
-/*   Updated: 2014/03/14 18:10:01 by qchevrin         ###   ########.fr       */
+/*   Updated: 2014/03/17 11:38:51 by qchevrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,12 @@ int			ft_exit(t_cmd *cmd, int fd)
 {
 	if ((cmd->arg)[1] == NULL)
 	{
-		ft_putendl_fd("Bye, nice to meet you", fd);
+		ft_putendl_fd("Come back whenever you want, dirty boy/girl :-*", fd);
 		exit(0);
 	}
 	else if (is_number((cmd->arg)[1]))
 	{
-		ft_putendl_fd("Bye, nice to meet you :)", fd);
+		ft_putendl_fd("Come back whenever you want, dirty boy/girl :-*", fd);
 		exit(ft_atoi((cmd->arg)[1]));
 	}
 	else

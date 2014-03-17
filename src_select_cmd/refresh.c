@@ -6,11 +6,20 @@
 /*   By: jrenouf- <jrenouf-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 16:23:20 by jrenouf-          #+#    #+#             */
-/*   Updated: 2014/03/13 15:17:34 by jrenouf-         ###   ########.fr       */
+/*   Updated: 2014/03/16 15:58:38 by lredoban         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/select_cmd.h"
+
+void					l_exleft(int tmp)
+{
+	while (tmp > 0)
+	{
+		tputs(tgetstr("le", NULL), 1, tputs_putchar);
+		tmp--;
+	}
+}
 
 void					exleft(int tmp)
 {
@@ -30,7 +39,7 @@ void					sc_clear(int sig)
 	param = save_param(NULL);
 	LEN_MAX = get_lenmax();
 	tmp = I + P;
-	if (LEN + P >=  LEN_MAX)
+	if (LEN + P >= LEN_MAX)
 	{
 		exleft(I + P);
 		ft_putstr("> window too small..");

@@ -6,7 +6,7 @@
 /*   By: jrenouf- <jrenouf-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/08 14:33:20 by jrenouf-          #+#    #+#             */
-/*   Updated: 2014/03/14 12:10:14 by jrenouf-         ###   ########.fr       */
+/*   Updated: 2014/03/14 18:54:58 by lredoban         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,18 +47,6 @@ char					*ft_end_sig(t_param *param, char *buf)
 	}
 	return (NULL);
 }
-
-static int				(*key_tab[])(t_param *, char *) =
-{
-						char_insert,
-						char_del,
-						sideways,
-						extreme_sideways,
-						word_jump_left,
-						word_jump_right,
-						s_history,
-						NULL
-};
 
 void					if_forest(t_param *param, char *buf)
 {
