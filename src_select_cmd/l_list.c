@@ -6,7 +6,7 @@
 /*   By: lredoban <lredoban@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/07 18:53:21 by lredoban          #+#    #+#             */
-/*   Updated: 2014/03/16 16:24:31 by lredoban         ###   ########.fr       */
+/*   Updated: 2014/03/18 12:09:50 by lredoban         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,29 @@ t_list						*l_add_to_list(t_list *list, char *data)
 		tmp = tmp->next;
 	tmp->next = new;
 	return (list);
+}
+
+void						l_sort_list(t_list *begin)
+{
+	int						sort;
+	char					*tmp;
+	t_list					*list;
+
+	sort = 0;
+	while (!sort)
+	{
+		sort = 27;
+		list = begin;
+		while (list->next != NULL)
+		{
+			if (ft_strcmp(list->elem, list->next->elem) > 0)
+			{
+				tmp = list->elem;
+				list->elem = list->next->elem;
+				list->next->elem = tmp;
+				sort = 0;
+			}
+			list = list->next;
+		}
+	}
 }

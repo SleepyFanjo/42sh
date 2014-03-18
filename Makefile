@@ -6,7 +6,7 @@
 #    By: qchevrin <qchevrin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/12/03 12:33:25 by qchevrin          #+#    #+#              #
-#    Updated: 2014/03/17 11:38:40 by qchevrin         ###   ########.fr        #
+#    Updated: 2014/03/18 11:31:57 by lredoban         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -76,6 +76,7 @@ INC=includes/history.h \
 	includes/parser.h \
 	includes/select_cmd.h \
 	includes/struct.h \
+	includes/autocomplete.h
 
 OBJ= $(SRC:.c=.o)
 NAME= 42sh
