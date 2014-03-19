@@ -6,7 +6,7 @@
 #    By: qchevrin <qchevrin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/12/03 12:33:25 by qchevrin          #+#    #+#              #
-#    Updated: 2014/03/18 11:31:57 by lredoban         ###   ########.fr        #
+#    Updated: 2014/03/19 19:23:36 by lredoban         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -84,26 +84,27 @@ LIB=-L/usr/lib -ltermcap -L./libft -lft
 DIR_LFT= libft
 
 .PHONY: clean fclean re all
+.SILENT:
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	@(cd $(DIR_LFT) ; make)
-	@$(CC) -o $(NAME) $(OBJ) $(LIB)
-	@echo "\t\xF0\x9F\x8F\x81   Compiling \033[35m$(NAME) \033[0mDONE!"
+	(cd $(DIR_LFT) ; make)
+	$(CC) -o $(NAME) $(OBJ) $(LIB)
+	echo "\t\xF0\x9F\x8F\x81   Compiling \033[35m$(NAME) \033[0mDONE!"
 
 %.o: %.c $(INC)
-	@echo "\t\xF0\x9F\x94\xA7   Building \033[34m $@ \033[0m"
-	@$(CC) -c $(CFLAGS) $(INCLUDES) -o $@ $< -I./ -I$(DIR_LFT)
+	echo "\t\xF0\x9F\x94\xA7   Building \033[34m $@ \033[0m"
+	$(CC) -c $(CFLAGS) $(INCLUDES) -o $@ $< -I./ -I$(DIR_LFT)
 
 clean:
-	@echo "\t\xF0\x9F\x92\xA3   Cleaning"
-	@(cd $(DIR_LFT) ; make clean)
-	@rm -rf $(OBJ)
+	echo "\t\xF0\x9F\x92\xA3   Cleaning"
+	(cd $(DIR_LFT) ; make clean)
+	rm -rf $(OBJ)
 
 fclean: clean
-	@echo "\t\xF0\x9F\x9A\xBD   Full Clean"
-	@(cd $(DIR_LFT) ; make fclean)
-	@rm -rf $(NAME)
+	echo "\t\xF0\x9F\x9A\xBD   Full Clean"
+	(cd $(DIR_LFT) ; make fclean)
+	rm -rf $(NAME)
 
 re: fclean all
