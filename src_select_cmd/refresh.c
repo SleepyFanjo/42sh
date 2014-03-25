@@ -6,7 +6,7 @@
 /*   By: jrenouf- <jrenouf-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 16:23:20 by jrenouf-          #+#    #+#             */
-/*   Updated: 2014/03/16 15:58:38 by lredoban         ###   ########.fr       */
+/*   Updated: 2014/03/25 16:25:14 by jrenouf-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ void					write_str(char *p_line, char *str)
 
 	i = 0;
 	ft_putstr(p_line);
+	if (str[0] == '\0')
+		return ;
 	while (str[i] != '\0')
 	{
 		write(1, str + i, 1);
