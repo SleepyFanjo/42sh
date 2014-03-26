@@ -6,7 +6,7 @@
 /*   By: lredoban <lredoban@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/04 11:53:05 by lredoban          #+#    #+#             */
-/*   Updated: 2014/03/17 16:12:43 by lredoban         ###   ########.fr       */
+/*   Updated: 2014/03/26 11:01:23 by lredoban         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ int			l_search_exe(char type, char *s, t_list **begin, t_param *param)
 
 int			l_search_link(char type, char *s, t_list **begin, t_param *param)
 {
-	(void)s;
 	t_dummy	*sd;
 
 	sd = (t_dummy *)j_malloc(sizeof(t_dummy));

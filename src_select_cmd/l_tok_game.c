@@ -6,7 +6,7 @@
 /*   By: lredoban <lredoban@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/07 18:34:13 by lredoban          #+#    #+#             */
-/*   Updated: 2014/03/18 11:57:21 by lredoban         ###   ########.fr       */
+/*   Updated: 2014/03/26 10:57:02 by lredoban         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,17 +75,17 @@ static void		l_tab_loop(t_list *begin, t_param *param)
 	insert_word(begin->elem, param, &STR);
 	while (begin->next != NULL && BUF == TAB)
 	{
-			if ((read(0, buf, 5) == -1))
-				exit (0);
-			if (TAB == BUF)
-			{
-				del_word(tmp->elem, param, &STR);
-				if (tmp->next != NULL)
-					tmp = tmp->next;
-				else
-					tmp = begin;
-				insert_word(tmp->elem, param, &STR);
-			}
+		if ((read(0, buf, 5) == -1))
+			exit(0);
+		if (TAB == BUF)
+		{
+			del_word(tmp->elem, param, &STR);
+			if (tmp->next != NULL)
+				tmp = tmp->next;
+			else
+				tmp = begin;
+			insert_word(tmp->elem, param, &STR);
+		}
 	}
 	tmp2 = tmp->elem;
 	l_end_loop(param, buf, begin, tmp2);

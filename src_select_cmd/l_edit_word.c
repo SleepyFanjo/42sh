@@ -6,7 +6,7 @@
 /*   By: lredoban <lredoban@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/16 16:02:40 by lredoban          #+#    #+#             */
-/*   Updated: 2014/03/17 12:15:55 by lredoban         ###   ########.fr       */
+/*   Updated: 2014/03/26 11:02:05 by lredoban         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,4 +88,3 @@ void					insert_word(char *s, t_param *param, char **old)
 		l_exleft(LEN - I);
 	}
 }
-

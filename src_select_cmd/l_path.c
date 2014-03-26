@@ -6,7 +6,7 @@
 /*   By: lredoban <lredoban@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/25 14:55:25 by lredoban          #+#    #+#             */
-/*   Updated: 2014/03/16 11:46:29 by lredoban         ###   ########.fr       */
+/*   Updated: 2014/03/26 11:09:09 by lredoban         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,9 @@ static void			ft_clear(char **str)
 
 static void			ft_check_builtin(char *s, t_list **begin)
 {
-	static char		*builtin[7] =
-	{
-		"cd", "echo", "env", "exit", "setenv", "unsetenv",
-		NULL
-	};
 	int				i;
+	static char		*builtin[7] =
+	{"cd", "echo", "env", "exit", "setenv", "unsetenv", NULL};
 
 	i = 0;
 	while (builtin[i] != NULL)
@@ -46,7 +43,7 @@ static void			ft_check_builtin(char *s, t_list **begin)
 static void			ft_process(char **tmp, char *s, int i, t_list **begin)
 {
 	DIR				*dir;
-	struct dirent   *ent;
+	struct dirent	*ent;
 
 	while (tmp[i] != NULL)
 	{

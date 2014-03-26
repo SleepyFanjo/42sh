@@ -6,7 +6,7 @@
 /*   By: lredoban <lredoban@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 14:49:39 by lredoban          #+#    #+#             */
-/*   Updated: 2014/03/17 16:08:41 by lredoban         ###   ########.fr       */
+/*   Updated: 2014/03/26 10:57:37 by lredoban         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ int					ft_autocomplete(t_param *param)
 	type = -1;
 	list = NULL;
 	if (ft_strcmp(param->str, ""))
-		{
+	{
 		tmp = get_tmp(param);
 		list = q_lexer(tmp);
 		if (!(s = l_get_token(list, &type)))
