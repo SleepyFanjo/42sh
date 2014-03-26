@@ -6,7 +6,7 @@
 /*   By: jrenouf- <jrenouf-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/07 15:34:00 by jrenouf-          #+#    #+#             */
-/*   Updated: 2014/03/17 15:29:30 by jrenouf-         ###   ########.fr       */
+/*   Updated: 2014/03/26 11:38:12 by lredoban         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,4 +102,3 @@ int						word_jump_right(t_param *param, char *buf)
 	}
 	return (0);
 }
-

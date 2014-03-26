@@ -6,7 +6,7 @@
 /*   By: lredoban <lredoban@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/25 14:55:25 by lredoban          #+#    #+#             */
-/*   Updated: 2014/03/26 11:09:09 by lredoban         ###   ########.fr       */
+/*   Updated: 2014/03/26 11:44:52 by lredoban         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,16 @@ static void			ft_clear(char **str)
 static void			ft_check_builtin(char *s, t_list **begin)
 {
 	int				i;
-	static char		*builtin[7] =
-	{"cd", "echo", "env", "exit", "setenv", "unsetenv", NULL};
+	char			*builtin[6];
 
 	i = 0;
-	while (builtin[i] != NULL)
+	builtin[0] = "cd";
+	builtin[1] = "echo";
+	builtin[2] = "env";
+	builtin[3] = "exit";
+	builtin[4] = "setenv";
+	builtin[5] = "unsetenv";
+	while (i != 6)
 	{
 		if (!ft_strncmp(builtin[i], s, ft_strlen(s)))
 			*begin = l_add_to_list(*begin, ft_strdup(builtin[i]));
