@@ -6,7 +6,7 @@
 /*   By: jrenouf- <jrenouf-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/08 14:32:42 by jrenouf-          #+#    #+#             */
-/*   Updated: 2014/03/17 15:58:42 by qchevrin         ###   ########.fr       */
+/*   Updated: 2014/03/27 12:09:20 by qchevrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,17 +94,17 @@ int					ft_autocomplete(t_param *param);
 
 typedef int			(*t_key)(t_param *, char *);
 
-static const t_key	key_tab[] =
+static const t_key	g_key_tab[] =
 {
-					&char_insert,
-					&char_del,
-					&sideways,
-					&extreme_sideways,
-					&word_jump_left,
-					&word_jump_right,
-					&s_history,
-					&tab_key,
-					NULL
+	&char_insert,
+	&char_del,
+	&sideways,
+	&extreme_sideways,
+	&word_jump_left,
+	&word_jump_right,
+	&s_history,
+	&tab_key,
+	NULL
 };
 
 #endif

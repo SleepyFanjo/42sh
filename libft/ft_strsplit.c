@@ -6,7 +6,7 @@
 /*   By: qchevrin <qchevrin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/21 16:24:18 by qchevrin          #+#    #+#             */
-/*   Updated: 2014/01/15 19:08:48 by qchevrin         ###   ########.fr       */
+/*   Updated: 2014/03/27 11:33:26 by qchevrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ char			**ft_strsplit(char const *s, char c)
 	int		i;
 	int		j;
 
-	if ((tab = (char **) malloc((nbr_word(s, c) + 1) * sizeof(char *))) == NULL)
+	if ((tab = (char **)malloc((nbr_word(s, c) + 1) * sizeof(char *))) == NULL)
 		return (NULL);
 	i = 0;
 	j = 0;
@@ -73,7 +73,7 @@ char			**ft_strsplit(char const *s, char c)
 		else
 		{
 			if ((tab[j] = ft_strnew(len_word(s + i, c) + 1)) == NULL)
-					return (NULL);
+				return (NULL);
 			copy_word(tab[j], s, &i, c);
 			j = j + 1;
 		}
@@ -82,4 +82,3 @@ char			**ft_strsplit(char const *s, char c)
 	tab[j] = NULL;
 	return (tab);
 }
-

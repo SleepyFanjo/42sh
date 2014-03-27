@@ -6,7 +6,7 @@
 /*   By: qchevrin <qchevrin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/13 16:55:56 by qchevrin          #+#    #+#             */
-/*   Updated: 2014/03/13 17:16:42 by qchevrin         ###   ########.fr       */
+/*   Updated: 2014/03/27 12:00:51 by qchevrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,6 @@ typedef struct		s_history
 	struct s_history	*prev;
 }					t_history;
 
-void	add_in_history(t_history **history, char *str);
+void				add_in_history(t_history **history, char *str);
 
 #endif

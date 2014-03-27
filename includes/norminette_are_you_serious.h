@@ -1,31 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   norminette_are_you_serious.h                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qchevrin <qchevrin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/11/19 12:06:24 by qchevrin          #+#    #+#             */
-/*   Updated: 2014/03/27 11:31:09 by qchevrin         ###   ########.fr       */
+/*   Created: 2014/03/27 11:49:51 by qchevrin          #+#    #+#             */
+/*   Updated: 2014/03/27 12:18:15 by qchevrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
-#include "libft.h"
+#ifndef NORMINETTE_ARE_YOU_SERIOUS_H
+# define NORMINETTE_ARE_YOU_SERIOUS_H
+# include "really_serious.h"
+# include "autocomplete.h"
 
-void	*ft_memcpy(void *s1, const void *s2, size_t n)
+static const t_tok_func		g_tok_tab[] =
 {
-	const char	*src;
-	char		*dest;
+	&l_search_file,
+	&l_search_exe,
+	&l_search_link,
+	&l_search_cmd,
+	NULL
+};
 
-	src = (const char *)s2;
-	dest = (char *)s1;
-	while (n > 0)
-	{
-		*dest = *src;
-		dest = dest + 1;
-		src = src + 1;
-		n = n - 1;
-	}
-	return (s1);
-}
+static const t_check		g_to_check[] =
+{
+	&l_is_exe,
+	&l_is_dir,
+	&l_is_file
+};
+
+#endif

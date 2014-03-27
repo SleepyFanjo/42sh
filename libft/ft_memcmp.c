@@ -6,7 +6,7 @@
 /*   By: qchevrin <qchevrin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/20 09:19:55 by qchevrin          #+#    #+#             */
-/*   Updated: 2013/11/25 09:39:18 by qchevrin         ###   ########.fr       */
+/*   Updated: 2014/03/27 11:35:06 by qchevrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ int		ft_memcmp(const void *s1, const void *s2, size_t n)
 	const char	*str1;
 	const char	*str2;
 
-	str1 = (const char *) s1;
-	str2 = (const char *) s2;
+	str1 = (const char *)s1;
+	str2 = (const char *)s2;
 	i = 0;
 	while (i < n)
 	{

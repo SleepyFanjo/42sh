@@ -6,7 +6,7 @@
 /*   By: jrenouf- <jrenouf-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/08 14:33:20 by jrenouf-          #+#    #+#             */
-/*   Updated: 2014/03/25 16:41:02 by jrenouf-         ###   ########.fr       */
+/*   Updated: 2014/03/27 12:12:52 by qchevrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,9 @@ void					if_forest(t_param *param, char *buf)
 	LEN_MAX = get_lenmax();
 	if (LEN >= LEN_MAX)
 		return ;
-	while (key_tab[i] != NULL)
+	while (g_key_tab[i] != NULL)
 	{
-		if ((key_tab[i])(param, buf))
+		if ((g_key_tab[i])(param, buf))
 			break ;
 		i += 1;
 	}

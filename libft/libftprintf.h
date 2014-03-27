@@ -6,7 +6,7 @@
 /*   By: lredoban <lredoban@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/21 12:13:15 by lredoban          #+#    #+#             */
-/*   Updated: 2014/02/27 18:08:21 by lredoban         ###   ########.fr       */
+/*   Updated: 2014/03/27 11:37:02 by qchevrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,30 +25,11 @@ typedef struct	s_printf_env
 	int			len;
 }				t_printf_env;
 
-/*
-**   ft_printf.c
-*/
-int			ft_printf(const char *format, ...);
-
-/*
-**   ft_putui.c
-*/
-void		ft_putui(unsigned long n, int base);
-
-/*
-**   ft_uitoa.c
-*/
-char		*ft_uitoa(unsigned long n, int base);
-
-/*
-**   ft_num.c
-*/
-void		ft_num(t_printf_env *e, int num);
-void		ft_unsigned(t_printf_env *e, unsigned long num, int base);
-void		ft_maj_hexa(t_printf_env *e, unsigned int num);
-
-/*
-**   ft_hexa.c
-*/
-void		ft_put_maj_hexa(unsigned int n, int base);
+int				ft_printf(const char *format, ...);
+void			ft_putui(unsigned long n, int base);
+char			*ft_uitoa(unsigned long n, int base);
+void			ft_num(t_printf_env *e, int num);
+void			ft_unsigned(t_printf_env *e, unsigned long num, int base);
+void			ft_maj_hexa(t_printf_env *e, unsigned int num);
+void			ft_put_maj_hexa(unsigned int n, int base);
 #endif

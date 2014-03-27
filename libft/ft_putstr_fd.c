@@ -6,7 +6,7 @@
 /*   By: qchevrin <qchevrin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/21 18:22:47 by qchevrin          #+#    #+#             */
-/*   Updated: 2013/11/21 18:28:54 by qchevrin         ###   ########.fr       */
+/*   Updated: 2014/03/27 11:31:42 by qchevrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,5 @@
 
 void	ft_putstr_fd(char const *s, int fd)
 {
-	write(fd, s, (int) ft_strlen(s));
+	write(fd, s, (int)ft_strlen(s));
 }

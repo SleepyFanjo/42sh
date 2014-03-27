@@ -6,7 +6,7 @@
 /*   By: qchevrin <qchevrin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/02 10:36:24 by qchevrin          #+#    #+#             */
-/*   Updated: 2014/03/17 17:26:48 by qchevrin         ###   ########.fr       */
+/*   Updated: 2014/03/27 11:34:41 by qchevrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ static int	str_realloc_cat(char **dest, char *src)
 	char	*buff;
 	int		size;
 
-	size = (int) ft_strlen(*dest) + (int) ft_strlen(src) + 1;
+	size = (int)ft_strlen(*dest) + (int)ft_strlen(src) + 1;
 	buff = *dest;
 	free(*dest);
-	if ((*dest = (char *) malloc(size * sizeof(char))) == NULL)
+	if ((*dest = (char *)malloc(size * sizeof(char))) == NULL)
 		return (-1);
 	ft_strcpy(*dest, buff);
 	ft_strcat(*dest, src);
@@ -46,7 +46,7 @@ int			get_next_line(int const fd, char **line)
 	char		*pos;
 	int			ret;
 
-	if ((*line = (char *) malloc((int) ft_strlen(old_char) + 1)) == NULL)
+	if ((*line = (char *)malloc((int)ft_strlen(old_char) + 1)) == NULL)
 		return (-1);
 	*line = ft_strcpy(*line, old_char);
 	while ((pos = ft_strchr(*line, '\n')) == NULL

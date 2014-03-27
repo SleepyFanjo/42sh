@@ -6,7 +6,7 @@
 /*   By: qchevrin <qchevrin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/19 16:57:18 by qchevrin          #+#    #+#             */
-/*   Updated: 2013/11/25 09:38:27 by qchevrin         ###   ########.fr       */
+/*   Updated: 2014/03/27 11:30:51 by qchevrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	*ft_memchr(const void *s, int c, size_t n)
 	const char	*str;
 	void		*ret;
 
-	str = (const char *) s;
+	str = (const char *)s;
 	while (*str != c)
 	{
 		if (n <= 0)

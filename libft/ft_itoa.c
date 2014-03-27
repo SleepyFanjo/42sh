@@ -6,7 +6,7 @@
 /*   By: qchevrin <qchevrin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/21 16:59:46 by qchevrin          #+#    #+#             */
-/*   Updated: 2014/02/07 14:37:47 by qchevrin         ###   ########.fr       */
+/*   Updated: 2014/03/27 11:29:39 by qchevrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static char		*reverse_str(char *str)
 	char	buff;
 
 	i = 0;
-	j = (int) ft_strlen(str) - 1;
+	j = (int)ft_strlen(str) - 1;
 	while (i < j)
 	{
 		buff = str[i];

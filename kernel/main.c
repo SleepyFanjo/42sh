@@ -6,7 +6,7 @@
 /*   By: vwatrelo <vwatrelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/07 15:38:46 by vwatrelo          #+#    #+#             */
-/*   Updated: 2014/03/25 16:29:21 by jrenouf-         ###   ########.fr       */
+/*   Updated: 2014/03/27 11:42:43 by qchevrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,13 @@ static void		fucking_norm(t_history **history, char *line, char *argv)
 int				main(int argc, char **argv)
 {
 	char		*line;
+	extern char	**environ;
 	t_history	*history;
 	char		*prompt;
 
 	g_pid = -1;
-	g_env = ft_cpytab(environ);
+	g_environ = environ;
+	g_env = ft_cpytab(g_environ);
 	history = NULL;
 	if (init_sig() < 0)
 	{

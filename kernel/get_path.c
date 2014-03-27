@@ -6,7 +6,7 @@
 /*   By: vwatrelo <vwatrelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/15 12:16:19 by vwatrelo          #+#    #+#             */
-/*   Updated: 2014/03/14 18:16:10 by qchevrin         ###   ########.fr       */
+/*   Updated: 2014/03/27 11:26:09 by qchevrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,22 +59,11 @@ static char	*type_cmd(char *str)
 	return (NULL);
 }
 
-char		*get_path(char *str, char **envp)
+static char	*path_join(char **path, char *str)
 {
-	int			i;
 	char		*tmp;
-	char		**path;
+	int			i;
 
-	i = 0;
-	if (!envp)
-		return (NULL);
-	if ((tmp = type_cmd(str)) != NULL)
-		return (tmp);
-	while (envp[i] && ft_strncmp(envp[i], "PATH=", 5))
-		i++;
-	if (envp[i] == NULL)
-		return (NULL);
-	path = ft_strsplit(envp[i] + 5, ':');
 	i = 0;
 	while (path[i] != NULL)
 	{
@@ -92,4 +81,23 @@ char		*get_path(char *str, char **envp)
 	}
 	v_free_tab(path);
 	return (NULL);
+}
+
+char		*get_path(char *str, char **envp)
+{
+	int			i;
+	char		*tmp;
+	char		**path;
+
+	i = 0;
+	if (!envp)
+		return (NULL);
+	if ((tmp = type_cmd(str)) != NULL)
+		return (tmp);
+	while (envp[i] && ft_strncmp(envp[i], "PATH=", 5))
+		i++;
+	if (envp[i] == NULL)
+		return (NULL);
+	path = ft_strsplit(envp[i] + 5, ':');
+	return (path_join(path, str));
 }

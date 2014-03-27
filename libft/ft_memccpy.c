@@ -6,7 +6,7 @@
 /*   By: qchevrin <qchevrin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/19 14:35:51 by qchevrin          #+#    #+#             */
-/*   Updated: 2013/11/25 11:32:00 by qchevrin         ###   ########.fr       */
+/*   Updated: 2014/03/27 11:30:35 by qchevrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ void	*ft_memccpy(void *s1, const void *s2, int c, size_t n)
 	int			i;
 
 	i = 0;
-	dest = (char *) s1;
-	src = (const char *) s2;
+	dest = (char *)s1;
+	src = (const char *)s2;
 	while (n > 0)
 	{
 		dest[i] = src[i];

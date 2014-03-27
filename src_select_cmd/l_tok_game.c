@@ -6,7 +6,7 @@
 /*   By: lredoban <lredoban@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/07 18:34:13 by lredoban          #+#    #+#             */
-/*   Updated: 2014/03/26 10:57:02 by lredoban         ###   ########.fr       */
+/*   Updated: 2014/03/27 12:20:30 by qchevrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,9 +99,9 @@ void			l_check_token(char type, char *s, t_param *param)
 
 	i = 0;
 	begin = NULL;
-	while (tok_tab[i] != NULL)
+	while (g_tok_tab[i] != NULL)
 	{
-		if ((ret = tok_tab[i](type, s, &begin, param)))
+		if ((ret = g_tok_tab[i](type, s, &begin, param)))
 			break ;
 		i += 1;
 	}

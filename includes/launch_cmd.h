@@ -6,7 +6,7 @@
 /*   By: vwatrelo <vwatrelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/10 13:36:35 by vwatrelo          #+#    #+#             */
-/*   Updated: 2014/03/16 12:07:53 by lredoban         ###   ########.fr       */
+/*   Updated: 2014/03/27 11:43:02 by qchevrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include "parser.h"
 # include "select_cmd.h"
 
-extern char	**environ;
+char		**g_environ;
 pid_t		g_pid;
 
 char		*get_path(char *str, char **envp);
